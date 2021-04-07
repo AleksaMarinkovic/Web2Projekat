@@ -16,6 +16,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(): void{
-    window.alert("Login!");
+    //window.alert("Login!");
+    
   }
 }

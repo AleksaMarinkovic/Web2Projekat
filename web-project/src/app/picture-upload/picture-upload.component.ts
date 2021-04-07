@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
   styleUrls: ['./picture-upload.component.css']
 })
 export class PictureUploadComponent implements OnInit {  
-  imageURL: string = "../../../assets/images/profileDefault.png"; 
+  imageURL: string = "../../../assets/images/PROFILE.png"; 
 
   constructor() {
     

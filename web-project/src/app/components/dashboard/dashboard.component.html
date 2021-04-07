@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<br/>
+<br/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm" *ngFor= "let card of cards_info"> 
+            <app-dashboard-card [card_info]="card"></app-dashboard-card>         
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <app-line-chart></app-line-chart>
+        </div>
+        <div class="col-sm">
+            <app-pie-chart></app-pie-chart>
+            
+        </div>
+    </div>
