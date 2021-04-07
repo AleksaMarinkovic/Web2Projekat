@@ -17,6 +17,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { SafetyDocumentsComponent } from './components/safety-documents/safety-documents.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +38,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     DashboardCardComponent,
     PieChartComponent,
     LineChartComponent,
+    DataTableComponent,
+    SafetyDocumentsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,12 +48,18 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     FormsModule,
     HttpClientModule,
     ChartsModule,
+    MatButtonToggleModule,
     RouterModule.forRoot([
         {path: "", component: LoginFormComponent},
         {path : "passwordRecovery", component: PasswordRecoveryComponent},
         {path : "createAccount", component: RegistrationComponent},
-        {path : "dashboard", component: DashboardComponent}
-      ])
+        {path : "dashboard", component: DashboardComponent},
+        {path : "safetyDocuments", component: SafetyDocumentsComponent}
+      ]),
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

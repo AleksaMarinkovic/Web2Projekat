@@ -25,6 +25,6 @@ export const cards_info = [
       alt: "MY SAFETY DOCUMENTS",
       src: './../../assets/images/SAFETYDOCS.png',
       title: "MY SAFETY DOCUMENTS",
-      route: '/'
+      route: '/safetyDocuments'
     }
   ];
