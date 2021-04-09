@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { safetyDocTypes } from "../../../../assets/safetyDocTypes.enum";
+import { safetyDocTypes } from "../../../../assets/Types.enum";
 
 @Component({
   selector: 'app-basic-information',

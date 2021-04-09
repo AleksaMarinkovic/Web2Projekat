@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {documentStates} from "../../../assets/documentStates.enum";
-import {safetyDocTypes} from "../../../assets/safetyDocTypes.enum";
+import {safetyDocumentStates} from "../../../assets/docStates.enum";
+import {safetyDocTypes} from "../../../assets/Types.enum";
 
 
 @Component({
@@ -16,14 +16,14 @@ export class AddSafetyDocumentComponent implements OnInit {
 
   ngOnInit(): void {
     this.addSafetyDocumentForm = this.formBuilder.group({
-      type : safetyDocTypes,
+      type : safetyDocTypes.PlannedWork,
       phoneNumber: "",
       dateCreated: "",
       details: "",
       notes: "",   
       lastEditor: "",
       dateEdited: "",
-      docState: documentStates,
+      docState: safetyDocumentStates.Issue,
       safetyDocImage: "",
       equipmentList : "",
       allWorkOperationsCompleted: "",

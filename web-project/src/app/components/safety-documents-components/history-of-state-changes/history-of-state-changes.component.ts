@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { documentStates } from "../../../../assets/documentStates.enum";
+import { safetyDocumentStates } from "../../../../assets/docStates.enum";
 
 @Component({
   selector: 'app-history-of-state-changes',
@@ -9,7 +9,7 @@ import { documentStates } from "../../../../assets/documentStates.enum";
 })
 export class HistoryOfStateChangesComponent implements OnInit {
   @Input() addSafetyDocumentForm: FormGroup;
-  public documentStates = Object.values(documentStates);
+  public safetyDocumentStates = Object.values(safetyDocumentStates);
   constructor() { }
 
   ngOnInit(): void {

@@ -1,0 +1,102 @@
+<div class="container-fluid grid-border">
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-3">
+            <label for="type">Type:</label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkRequestForm">
+            <select id="type" name="type" [formControlName]="'type'">
+                <option *ngFor="let workReqType of workReqTypes" [value]="workReqType">
+                    {{workReqType}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Status:
+        </div>
+        <div class="col-3">
+            Status label
+        </div>        
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Incident:
+        </div>
+        <div class="col-3">
+            Incident ID label
+        </div>
+        <div class="col-3" [formGroup]="addWorkRequestForm">
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" id="emergency"  [formControlName]="'emergency'">  
+                <label class="custom-control-label" for="emergency">Emergency work? </label>              
+              </div>
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Company:
+        </div>
+        <div class="col-3" [formGroup]="addWorkRequestForm">
+            <input class="form-control" id="company" name="company" type="text" [formControlName]="'company'">
+        </div>
+        <div class="col-3">
+            <label for="dateCreated">Created date:</label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkRequestForm">
+            <input class="form-control" id="createdDate" type="date" name="createdDate" [formControlName]="'createdDate'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="dateCreated">Start date:</label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkRequestForm">
+            <input class="form-control" id="startDate" type="date" name="startDate" [formControlName]="'startDate'">
+        </div>
+        <div class="col-3">
+            <label for="dateCreated">End date:</label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkRequestForm">
+            <input class="form-control" id="endDate" type="date" name="endDate" [formControlName]="'endDate'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Street:
+        </div>
+        <div class="col-3" [formGroup]="addWorkRequestForm">
+            <input class="form-control" id="street" name="street" type="text" [formControlName]="'street'">
+        </div>
+        <div class="col-3">
+            Phone number:
+        </div>
+        <div class="col-3" [formGroup]="addWorkRequestForm">
+            <input class="form-control" id="phoneNumber" name="phoneNumber" type="text" [formControlName]="'phoneNumber'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Created by:
+        </div>
+        <div class="col-3">
+            Logged in user
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="purpose">Purpose:</label>
+        </div>
+        <div class="col-9" [formGroup]="addWorkRequestForm">
+            <input class="form-control" id="purpose" name ="purpose" type="text" [formControlName]="'purpose'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="notes">Notes:</label>
+        </div>
+        <div class="col-9" [formGroup]="addWorkRequestForm">
+            <input class="form-control" id="notes" name ="notes" type="text" [formControlName]="'notes'">
+        </div>
+    </div>
+
+</div>

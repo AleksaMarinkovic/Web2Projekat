@@ -21,7 +21,7 @@
         </div>
         <div class="col-9" [formGroup]="addSafetyDocumentForm">
             <select id="docState" name="docState" [formControlName]="'docState'">
-                <option *ngFor="let documentState of documentStates" [value]="documentState">
+                <option *ngFor="let documentState of safetyDocumentStates" [value]="documentState">
                     {{documentState}}</option>
             </select>
         </div>

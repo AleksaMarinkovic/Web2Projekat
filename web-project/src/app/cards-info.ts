@@ -4,7 +4,7 @@ export const cards_info = [
       alt: "MY INCIDENTS",
       src: './../../assets/images/MYINCIDENTS.png',
       title: "MY INCIDENTS",
-      route: '/'
+      route: '/incidents'
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ export const cards_info = [
       alt: "MY WORK REQUESTS",
       src: './../../assets/images/WORKREQUESTS.png',
       title: "MY WORK REQUESTS",
-      route: '/'
+      route: '/workRequests'
     },
     {
       id: 4,

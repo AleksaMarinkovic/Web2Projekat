@@ -1,0 +1,6 @@
+.grid-border{
+    border: 2px solid rgb(102, 99, 99);
+    border-radius: 15px;
+    margin-top: 30px;
+    width: 80%;
+}
