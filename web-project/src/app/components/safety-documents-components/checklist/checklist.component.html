@@ -1,0 +1,35 @@
+
+<div class="container-fluid grid-border">
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-6" [formGroup]="addSafetyDocumentForm"> 
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" id="allWorkOperationsCompleted"  [formControlName]="'allWorkOperationsCompleted'">  
+                <label class="custom-control-label" for="allWorkOperationsCompleted">All work operations completed? </label>              
+              </div>
+        </div>
+    </div>
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-4" [formGroup]="addSafetyDocumentForm"> 
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" id="allTagsRemoved"  [formControlName]="'allTagsRemoved'">  
+                <label class="custom-control-label" for="allTagsRemoved">All tags removed? </label>              
+              </div>
+        </div>
+    </div>
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-4" [formGroup]="addSafetyDocumentForm"> 
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" id="groundingRemoved"  [formControlName]="'groundingRemoved'">  
+                <label class="custom-control-label" for="groundingRemoved">Grounding removed? </label>              
+              </div>
+        </div>
+    </div>
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-4" [formGroup]="addSafetyDocumentForm"> 
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" id="readyForService"  [formControlName]="'readyForService'">  
+                <label class="custom-control-label" for="readyForService">Ready for service?  </label>              
+              </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="container-fluid grid-border">
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-3">
+            <label for="type">Type:</label>
+        </div>
+        <div class="col-3" [formGroup]="addSafetyDocumentForm">
+            <select id="type" name="type" [formControlName]="'type'">
+                <option *ngFor="let safetyDocumentType of safetyDocTypes" [value]="safetyDocumentType">
+                    {{safetyDocumentType}}</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <label for="phoneNumber">Phone number: </label>
+        </div>
+        <div class="col-3" [formGroup]="addSafetyDocumentForm">
+            <input class="form-control" id="phoneNumber" name="phoneNumber" type="text" [formControlName]="'phoneNumber'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Status:
+        </div>
+        <div class="col-3">
+            Status label
+        </div>
+        <div class="col-3">
+            Field crew:
+        </div>
+        <div class="col-3">
+            Crew name label
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Switching plan:
+        </div>
+        <div class="col-3">
+            Switching plan ID
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="dateCreated">Date created:</label>
+        </div>
+        <div class="col-3" [formGroup]="addSafetyDocumentForm">
+            <input class="form-control" id="dateCreated" type="date" name="dateCreated" [formControlName]="'dateCreated'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Created by:
+        </div>
+        <div class="col-3">
+            Created by *Name*
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="details">Details:</label>
+        </div>
+        <div class="col-9" [formGroup]="addSafetyDocumentForm">
+            <input class="form-control" id="details" name="details" type="text" [formControlName]="'details'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="notes">Notes:</label>
+        </div>
+        <div class="col-9" [formGroup]="addSafetyDocumentForm">
+            <input class="form-control" id="notes" name ="notes" type="text" [formControlName]="'notes'">
+        </div>
+    </div>
+
+</div>

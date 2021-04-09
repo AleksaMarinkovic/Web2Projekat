@@ -23,7 +23,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { SafetyDocumentsComponent } from './components/safety-documents/safety-documents.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
+import { AddSafetyDocumentComponent } from './components/add-safety-document/add-safety-document.component';
+import { BasicInformationComponent } from './components/safety-documents-components/basic-information/basic-information.component';
+import { HistoryOfStateChangesComponent } from './components/safety-documents-components/history-of-state-changes/history-of-state-changes.component';
+import { MultimediaAttachmentsComponent } from './components/safety-documents-components/multimedia-attachments/multimedia-attachments.component';
+import { EquipmentComponent } from './components/safety-documents-components/equipment/equipment.component';
+import { EquipmentService } from './services/equipment.service';
+import { ChecklistComponent } from './components/safety-documents-components/checklist/checklist.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +47,13 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     PieChartComponent,
     LineChartComponent,
     DataTableComponent,
-    SafetyDocumentsComponent
+    SafetyDocumentsComponent,
+    AddSafetyDocumentComponent,
+    BasicInformationComponent,
+    HistoryOfStateChangesComponent,
+    MultimediaAttachmentsComponent,
+    EquipmentComponent,
+    ChecklistComponent
   ],
   imports: [
     BrowserModule,
@@ -49,19 +63,21 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     HttpClientModule,
     ChartsModule,
     MatButtonToggleModule,
+    MatTabsModule,
     RouterModule.forRoot([
         {path: "", component: LoginFormComponent},
         {path : "passwordRecovery", component: PasswordRecoveryComponent},
         {path : "createAccount", component: RegistrationComponent},
         {path : "dashboard", component: DashboardComponent},
-        {path : "safetyDocuments", component: SafetyDocumentsComponent}
+        {path : "safetyDocuments", component: SafetyDocumentsComponent},
+        {path : "addSafetyDocuments", component: AddSafetyDocumentComponent}
       ]),
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [EquipmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

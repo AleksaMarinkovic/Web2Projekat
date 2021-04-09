@@ -1,0 +1,40 @@
+<div class="container-fluid grid-border">
+    <div class="row text-right mb-5 mt-4 mx-3">
+        <div class="col">
+            <a routerLink="/dashboard" class="btn btn-primary btn-sm"><i class="material-icons"
+                    style="vertical-align: -6px;">add_circle</i> ADD ADDITIONAL ELEMENT</a>
+        </div>
+    </div>
+    <form [formGroup]="equipmentGroup" (ngSubmit)="onSubmit()">
+        <div class="row text-center mb-5 mt-4 mx-3">
+            <div class="col-1">
+                <label for="newEquipment">
+                    Choose equipment:
+                </label>
+            </div>
+            <div class="col-2">
+                <select id="newEquipment" name="newEquipment" formControlName="newEquipment"
+                    [(ngModel)]="selectedEquipment">
+                    <option *ngFor="let equipment of equipments | async" [ngValue]="equipment">
+                        {{equipment.name}}</option>
+                </select>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+
+    </form>
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-5">
+            <h1>Chosen equipment: </h1>
+            <ul *ngFor="let equipment of equipmentList" class="list-group">
+                <li class="list-group-item">
+                    ID: {{equipment.id}} | Name: "{{equipment.name}}" | Type: "{{equipment.type}}" | Address: "{{equipment.address}}" | Coords: "{{equipment.coords}}"
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+
+</div>

@@ -1,0 +1,36 @@
+[
+    {   
+      "id": 1,
+      "type": "Switch",
+      "name": "Switch1",
+      "address": "address1",
+      "coords" : "213213,21345312"
+    },
+    {   
+        "id": 2,
+        "type": "Fuse",
+        "name": "Fuse1",
+        "address": "address2",
+        "coords" : "54354,54354"
+      },
+      {   
+        "id": 3,
+        "type": "Transformer",
+        "name": "Transformer1",
+        "address": "address3",
+        "coords" : "76456756,54234535"
+      },
+      {   
+        "id": 4,
+        "type": "Disconnector",
+        "name": "Disconnector1",
+        "address": "address4",
+        "coords" : "123425246,889345434"
+      }, {   
+        "id": 5,
+        "type": "Switch",
+        "name": "switch2",
+        "address": "address5",
+        "coords" : "56347536,234567378"
+      }
+  ]
