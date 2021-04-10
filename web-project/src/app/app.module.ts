@@ -50,7 +50,10 @@ import { AddElementComponent } from './components/add-element/add-element.compon
 import { DataTableElementComponent } from './components/data-tables/data-table-element/data-table-element.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AddNewElementComponent } from './components/add-new-element/add-new-element.component';
-
+import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './components/map/map.component';
+import { SplitPipe } from './pipes/pipes/split.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -90,6 +93,8 @@ import { AddNewElementComponent } from './components/add-new-element/add-new-ele
     AddElementComponent,
     DataTableElementComponent,
     AddNewElementComponent,
+    MapComponent,
+    SplitPipe,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +105,7 @@ import { AddNewElementComponent } from './components/add-new-element/add-new-ele
     ChartsModule,
     MatButtonToggleModule,
     MatTabsModule,
+    NgbModule,
     RouterModule.forRoot([
       { path: "", component: LoginFormComponent },
       { path: "passwordRecovery", component: PasswordRecoveryComponent },
@@ -112,8 +118,12 @@ import { AddNewElementComponent } from './components/add-new-element/add-new-ele
       { path: "incidents", component: IncidentsComponent },
       { path: "addIncident", component: AddIncidentComponent },
       { path: "addElement", component: AddElementComponent },
-      { path: "addNewElement", component: AddNewElementComponent}
-    ]),
+      { path: "addNewElement", component: AddNewElementComponent },
+      { path: "map", component: MapComponent }
+    ]),    
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAN3C1PGzRuOlC5cismR2Bb1V91MFY-b_Y'
+    }),
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
