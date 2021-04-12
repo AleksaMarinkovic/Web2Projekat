@@ -54,6 +54,9 @@ import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './components/map/map.component';
 import { SplitPipe } from './pipes/pipes/split.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddCrewComponent } from './components/add-crew/add-crew.component';
+import { DataTableCrewComponent } from './components/data-tables/data-table-crew/data-table-crew.component';
+import { AddNewCrewComponent } from './components/add-new-crew/add-new-crew.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +98,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AddNewElementComponent,
     MapComponent,
     SplitPipe,
+    AddCrewComponent,
+    DataTableCrewComponent,
+    AddNewCrewComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +125,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       { path: "addIncident", component: AddIncidentComponent },
       { path: "addElement", component: AddElementComponent },
       { path: "addNewElement", component: AddNewElementComponent },
-      { path: "map", component: MapComponent }
+      { path: "map", component: MapComponent },
+      { path: "addCrew", component: AddCrewComponent },
+      { path: "addNewCrew", component: AddNewCrewComponent }
     ]),    
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAN3C1PGzRuOlC5cismR2Bb1V91MFY-b_Y'
