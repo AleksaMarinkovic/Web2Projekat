@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from "@angular/forms";
@@ -57,6 +57,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddCrewComponent } from './components/add-crew/add-crew.component';
 import { DataTableCrewComponent } from './components/data-tables/data-table-crew/data-table-crew.component';
 import { AddNewCrewComponent } from './components/add-new-crew/add-new-crew.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
+import { SearchComponent } from './components/search/search.component';
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -101,6 +107,7 @@ import { AddNewCrewComponent } from './components/add-new-crew/add-new-crew.comp
     AddCrewComponent,
     DataTableCrewComponent,
     AddNewCrewComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,6 +119,10 @@ import { AddNewCrewComponent } from './components/add-new-crew/add-new-crew.comp
     MatButtonToggleModule,
     MatTabsModule,
     NgbModule,
+    MatFormFieldModule,
+    CommonModule,
+    MatInputModule,
+    MatSelectModule,
     RouterModule.forRoot([
       { path: "", component: LoginFormComponent },
       { path: "passwordRecovery", component: PasswordRecoveryComponent },
@@ -127,8 +138,10 @@ import { AddNewCrewComponent } from './components/add-new-crew/add-new-crew.comp
       { path: "addNewElement", component: AddNewElementComponent },
       { path: "map", component: MapComponent },
       { path: "addCrew", component: AddCrewComponent },
-      { path: "addNewCrew", component: AddNewCrewComponent }
-    ]),    
+      { path: "addNewCrew", component: AddNewCrewComponent },
+      { path: "search", component: SearchComponent }
+
+    ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAN3C1PGzRuOlC5cismR2Bb1V91MFY-b_Y'
     }),
@@ -139,6 +152,7 @@ import { AddNewCrewComponent } from './components/add-new-crew/add-new-crew.comp
     MatButtonModule
   ],
   providers: [EquipmentService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [MatInputModule, MatFormFieldModule]
 })
 export class AppModule { }
