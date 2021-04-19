@@ -1,0 +1,30 @@
+<div class="container-fluid grid-border">
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col">
+            <label for="lastEditor">Last editor:</label>
+        </div>
+        <div class="col" [formGroup]="addSafetyDocumentForm">
+            <input class="form-control" id="lastEditor" name="lastEditor" type="text" [formControlName]="'lastEditor'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col">
+            <label for="dateEdited">Edited:</label>
+        </div>
+        <div class="col" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="dateEdited" type="date" name="dateEdited" [formControlName]="'dateEdited'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-3">
+            <label for="docState">Document state:</label>
+        </div>
+        <div class="col-9" [formGroup]="addWorkPlanForm">
+            <select id="docState" name="docState" [formControlName]="'docState'">
+                <option *ngFor="let documentState of workPlanDocumentStates" [value]="documentState">
+                    {{documentState}}</option>
+            </select>
+        </div>
+    </div>
+
+</div>

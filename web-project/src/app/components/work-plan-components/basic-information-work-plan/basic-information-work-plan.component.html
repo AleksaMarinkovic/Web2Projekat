@@ -1,0 +1,108 @@
+<div class="container-fluid grid-border">   
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="documentType">Document Type:</label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <select id="documentType" name="documentType" [formControlName]="'documentType'">
+                <option *ngFor="let docType of workPlanDocumentTypes" [value]="docType">
+                    {{docType}}</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <label for="created">Date created:</label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="created" type="date" name="created"
+                [formControlName]="'created'">
+        </div>
+    </div>
+   
+    
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Status:
+        </div>
+        <div class="col-3">
+            status label
+        </div>
+        <div class="col-3">
+            Created by:
+        </div>
+        <div class="col-3">
+            created by label
+        </div>
+        <div class="col-3">
+            <label for="workRequest">Work Request: </label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="workRequest" name="workRequest" type="text" [formControlName]="'workRequest'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="startWorkDate">Start work:</label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="startWorkDate" name="startWorkDate" type="date" [formControlName]="'startWorkDate'">
+        </div>
+        <div class="col-3">
+            <label for="endWorkDate">Finish work:</label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="endWorkDate" name="endWorkDate" type="date" [formControlName]="'endWorkDate'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="incident">Incident:</label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="incident" name="incident" type="text"
+                [formControlName]="'incident'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="address">Address: </label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="address" name="address" type="text" [formControlName]="'address'">
+        </div>
+        <div class="col-3">
+            <label for="purpose">Purpose: </label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="purpose" name="purpose" type="text" [formControlName]="'purpose'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="company">Company: </label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="company" name="company" type="text" [formControlName]="'company'">
+        </div>
+        <div class="col-3">
+            <label for="notes">Notes: </label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="notes" name="notes" type="text" [formControlName]="'notes'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="phoneNumber">Phone Number: </label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="company" name="company" type="text" [formControlName]="'company'">
+        </div>
+        <div class="col-3">
+            <label for="crew">Crew: </label>
+        </div>
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            <input class="form-control" id="crew" name="crew" type="text" [formControlName]="'crew'">
+        </div>
+    </div>
+
+</div>

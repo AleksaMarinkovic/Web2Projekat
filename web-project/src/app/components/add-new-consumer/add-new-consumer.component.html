@@ -1,0 +1,98 @@
+
+<form [formGroup]="newConsumerForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 text-left">
+                <a routerLink="/addCrew" class="btn btn-primary btn-sm"><i class="material-icons"
+                        style="vertical-align: -6px;">arrow_back_ios</i>CREWS</a>
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="id">
+                    ID:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="id" type="text" formControlName="id">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="name">
+                    Name:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="name" type="text" formControlName="name">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="lastname">
+                    Lastname:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="lastname" type="text" formControlName="lastname">
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="location">
+                    Location:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="location" type="text" formControlName="priority">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="location">
+                    Priority:--AUTOMATSKI SE DODELJUJE
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="priority" type="text" formControlName="priority">
+            </div>
+        </div>
+
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="phoneNumber">
+                    phoneNumber:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="phoneNumber" type="text" formControlName="phoneNumber">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-lg-3">
+              <label class="padding" for="accountTypes">
+                Consumer:
+              </label>
+            </div>
+            <div class="col-lg-3">
+              <select>
+                <option *ngFor="let consumer of accountTypes" [value]="consumer">{{consumer}}</option>
+              </select>
+            </div>
+          </div>              
+
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newConsumerForm.value)">ADD CONSUMER</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <pre class="temp_pre"><h1>TEMPORARY</h1>{{newConsumerForm.value | json}}</pre>
+            </div>
+        </div>
+    </div>
+</form>
