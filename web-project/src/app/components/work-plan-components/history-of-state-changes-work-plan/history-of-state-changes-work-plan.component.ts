@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { workPlanStateChange } from 'src/assets/workPlanStateChange.enum';
 
 @Component({
   selector: 'app-history-of-state-changes-work-plan',
@@ -7,8 +8,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./history-of-state-changes-work-plan.component.css']
 })
 export class HistoryOfStateChangesWorkPlanComponent implements OnInit {
- // @Input() addSafetyDocumentForm: FormGroup;
- // public safetyDocumentStates = Object.values(safetyDocumentStates);
+  @Input() addWorkPlanForm!: FormGroup;
+  public workPlanStateChange = Object.values(workPlanStateChange);
   constructor() { }
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { workPlanStateChange } from 'src/assets/workPlanStateChange.enum';
 import { workPlanDocumentTypes } from 'src/assets/workPlantDocumentTypes.enum';
 import { workPlanTypes } from 'src/assets/workPlanTypes.enum';
 
@@ -31,6 +32,11 @@ export class AddWorkPlanComponent implements OnInit {
       phoneNumber: "",
       created: Date.now(),
       workPlanImage: "",
+      lastEditor: "",
+      dateEdited: "",
+      docState: workPlanStateChange.Approve,
+      equipmentList: "",
+      
     });
   }
 

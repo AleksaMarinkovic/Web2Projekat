@@ -3,8 +3,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-equipment',
-  templateUrl: './equipment.component.html',
-  styleUrls: ['./equipment.component.css']
+  templateUrl: './equipment-work-plan.component.html',
+  styleUrls: ['./equipment-work-plan.component.css']
 })
 export class EquipmentWorkPlanComponent implements OnInit {
  /* @Input() addWorkPlanForm: FormGroup;
