@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<br />
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 text-left">
+            <a routerLink="/work-plans" class="btn btn-primary btn-sm"><i class="material-icons"
+                    style="vertical-align: -6px;">arrow_back_ios</i>WORK PLANS</a>
+        </div>
+        <div class="col-6 text-right">
+            temp
+        </div>
+    </div>
+    <div class="row justify-content-center buffer">
+        <div class="col text-left">
+            <form [formGroup]="addWorkPlanForm">
+                <mat-tab-group>
+                    <mat-tab label=" Basic information">
+                        <app-basic-information-work-plan [addWorkPlanForm]="addWorkPlanForm"></app-basic-information-work-plan>
+                    </mat-tab>
+                    <mat-tab label="History of State Changes"><app-history-of-state-changes-work-plan [addWorkPlanForm]="addWorkPlanForm"></app-history-of-state-changes-work-plan> </mat-tab>                                   
+                    <mat-tab label="Multimedia attatchments"> <app-multimedia-attachments-work-plan [addWorkPlanForm]="addWorkPlanForm"></app-multimedia-attachments-work-plan> </mat-tab>                    
+                    <mat-tab label="Equipment"> <app-equipment-work-plan [addWorkPlanForm]="addWorkPlanForm"></app-equipment-work-plan> </mat-tab> 
+                    <mat-tab label="Switching Instructions"> <app-switching-instructions-work-plan [addWorkPlanForm]="addWorkPlanForm"></app-switching-instructions-work-plan> </mat-tab>
+                </mat-tab-group>
+                <pre class="temp_pre"><h1>TEMPORARY</h1>>{{addWorkPlanForm.value | json}}</pre>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+    </div>
+</div>
