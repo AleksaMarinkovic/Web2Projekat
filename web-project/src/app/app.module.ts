@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { OutageReportComponent } from './components/outage-report/outage-report.component';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
@@ -63,6 +64,22 @@ import { SearchComponent } from './components/search/search.component';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { NotificationsComponent} from './components/notifications/notifications.component';
+import { SettingsComponent} from './components/settings/settings.component';
+import { AddConsumerComponent} from './components/add-consumer/add-consumer.component';
+import { AddWorkPlanComponent } from './components/add-work-plan/add-work-plan.component';
+import { DataTableConsumerComponent } from './components/data-tables/data-table-consumer/data-table-consumer.component';
+import { DataTableWorkPlanComponent } from './components/data-tables/data-table-work-plan/data-table-work-plan.component';
+import { BasicInformationWorkPlanComponent } from './components/work-plan-components/basic-information-work-plan/basic-information-work-plan.component';
+import { EquipmentWorkPlanComponent } from './components/work-plan-components/equipment-work-plan/equipment-work-plan.component';
+import { HistoryOfStateChangesWorkPlanComponent } from './components/work-plan-components/history-of-state-changes-work-plan/history-of-state-changes-work-plan.component';
+import { MultimediaAttachmentsWorkPlanComponent } from './components/work-plan-components/multimedia-attachments-work-plan/multimedia-attachments-work-plan.component';
+import { SwitchingInstructionsWorkPlanComponent } from './components/work-plan-components/switching-instructions-work-plan/switching-instructions-work-plan.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { AddNewConsumerComponent } from './components/add-new-consumer/add-new-consumer.component';
+import { WorkPlansComponent } from './components/work-plans/work-plans.component';
+import { DataTableInstructionsComponent } from './components/data-tables/data-table-instructions/data-table-instructions.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +125,22 @@ import {MatSelectModule} from '@angular/material/select';
     DataTableCrewComponent,
     AddNewCrewComponent,
     SearchComponent,
+    UserProfileComponent,
+    NotificationsComponent,
+    SettingsComponent,
+    AddConsumerComponent,
+    AddWorkPlanComponent,
+    DataTableConsumerComponent,
+    DataTableWorkPlanComponent,
+    BasicInformationWorkPlanComponent,
+    EquipmentWorkPlanComponent,
+    HistoryOfStateChangesWorkPlanComponent,
+    MultimediaAttachmentsWorkPlanComponent,
+    SwitchingInstructionsWorkPlanComponent,
+    AddNewConsumerComponent,
+    WorkPlansComponent,
+    DataTableInstructionsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -139,8 +172,16 @@ import {MatSelectModule} from '@angular/material/select';
       { path: "map", component: MapComponent },
       { path: "addCrew", component: AddCrewComponent },
       { path: "addNewCrew", component: AddNewCrewComponent },
-      { path: "search", component: SearchComponent }
 
+      { path: "search", component: SearchComponent },
+      { path: "userProfile", component: UserProfileComponent},
+      { path: "notifications", component: NotificationsComponent},
+      { path: "settings", component: SettingsComponent},
+      { path: "addConsumer", component: AddConsumerComponent},
+      { path: "addWorkPlan", component: AddWorkPlanComponent},
+      { path: "addNewConsumer", component: AddNewConsumerComponent},
+      { path: "work-plans", component: WorkPlansComponent},
+     
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAN3C1PGzRuOlC5cismR2Bb1V91MFY-b_Y'
@@ -149,7 +190,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRadioModule
   ],
   providers: [EquipmentService],
   bootstrap: [AppComponent],

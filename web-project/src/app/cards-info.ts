@@ -11,7 +11,7 @@ export const cards_info = [
       alt: "MY WORK PLANS",
       src: './../../assets/images/WORKPLANS.png',
       title: "MY WORK PLANS",
-      route: '/'
+      route: '/work-plans'
     },
     {
       id: 3,

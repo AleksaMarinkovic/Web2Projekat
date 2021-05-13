@@ -1,0 +1,41 @@
+<div class="container-fluid grid-border">     
+    <div class="row">
+        <div class="col-6 text-left">        
+            <form [formGroup] = "instructionGroup">
+                <div class="row justify-content-center buffer">
+                    <div class="col-3">
+                        <label class="padding" for="element">
+                            Element
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" id="element" type="element" formControlName="element">
+                    </div>
+                </div>
+                <div class="row justify-content-center buffer">
+                    <div class="col-3">
+                        <label class="padding" for="InstructionDescription">
+                            Instruction Description:
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" id="InstructionDescription" type="InstructionDescription" formControlName="instructionDescription">
+                    </div>
+                </div>
+                <div class="row justify-content-center buffer">                   
+                    <div class="col-3">
+                        <button type="submit(instructionGroup)" class="btn btn-primary">Validate & Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center buffer">
+        <div class="col text-left">
+                <app-data-table-instructions></app-data-table-instructions>
+        </div>
+    </div>
+    <div class="row">
+        <br/>
+    </div>      
+</div>

@@ -27,4 +27,12 @@ export class DataTableComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+
+  modify(id : any){
+    window.alert("Modifed element " + id);
+  }
+
+  delete(id : any){
+    window.alert("Deleted element " + id);
+  }
 }
