@@ -1,0 +1,6 @@
+<app-navbar></app-navbar>
+<br>
+<br>
+<agm-map [latitude]='startLatitude' [longitude]='startLongitude' [zoom]="14">
+    <agm-marker *ngFor='let equipment of allEquipment | async' latitude="{{equipment.coords | split: ',' : 0 }}" longitude="{{equipment.coords | split: ',' : 1}}"></agm-marker>>
+</agm-map>

@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+<br />
+<br />
+<form [formGroup]="newElementForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 text-left">
+                <a routerLink="/addElement" class="btn btn-primary btn-sm"><i class="material-icons"
+                        style="vertical-align: -6px;">arrow_back_ios</i>ELEMENTS</a>
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="type">
+                    Type:
+                </label>
+            </div>
+            <div class="col-3">
+                <select id="type" name="type" [formControlName]="'type'">
+                    <option *ngFor="let equipmentType of equipmentTypes" [value]="equipmentType">
+                        {{equipmentType}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="id">
+                    ID:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="id" type="text" formControlName="id">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="name">
+                    Name:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="name" type="text" formControlName="name">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="address">
+                    Address:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="address" type="text" formControlName="address">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="coords">
+                    Coordinates:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="coords" type="text" formControlName="coords">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newElementForm.value)">ADD ELEMENT</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <pre class="temp_pre"><h1>TEMPORARY</h1>{{newElementForm.value | json}}</pre>
+            </div>
+        </div>
+    </div>
+</form>

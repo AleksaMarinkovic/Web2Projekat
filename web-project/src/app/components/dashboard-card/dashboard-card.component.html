@@ -1,0 +1,27 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+        <img class="card-img-top big-icon mt-3" [src]="card_info.src" alt="card_info.alt">
+        <h5 class="card-title">{{card_info.title}}</h5>
+    </div>
+
+    <div class="card-body">
+        <ul>
+            <li>
+                <p>Executing: </p>
+            </li>
+            <li>
+                <p>Drafts: </p>
+            </li>
+            <li>
+                <p>Completed: </p>
+            </li>
+            <li>
+                <p>Canceled: </p>
+            </li>
+        </ul>
+        <div class="col d-flex justify-content-center">
+            <a [routerLink]="card_info.route" class="btn btn-primary">Details</a>
+        </div>
+
+    </div>
+</div>

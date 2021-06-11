@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<br />
+<br />
+<form [formGroup]="newCrewForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 text-left">
+                <a routerLink="/addCrew" class="btn btn-primary btn-sm"><i class="material-icons"
+                        style="vertical-align: -6px;">arrow_back_ios</i>CREWS</a>
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="id">
+                    ID:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="id" type="text" formControlName="id">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="name">
+                    Name:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="name" type="text" formControlName="name">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="member">
+                    Member:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="member" type="text" formControlName="member">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newCrewForm.value)">ADD CREW</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <pre class="temp_pre"><h1>TEMPORARY</h1>{{newCrewForm.value | json}}</pre>
+            </div>
+        </div>
+    </div>
+</form>

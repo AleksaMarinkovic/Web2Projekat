@@ -1,18 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< Updated upstream
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-=======
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { OutageReportComponent } from './components/outage-report/outage-report.component';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
@@ -177,6 +172,7 @@ import { DataTableInstructionsComponent } from './components/data-tables/data-ta
       { path: "map", component: MapComponent },
       { path: "addCrew", component: AddCrewComponent },
       { path: "addNewCrew", component: AddNewCrewComponent },
+
       { path: "search", component: SearchComponent },
       { path: "userProfile", component: UserProfileComponent},
       { path: "notifications", component: NotificationsComponent},
@@ -185,7 +181,7 @@ import { DataTableInstructionsComponent } from './components/data-tables/data-ta
       { path: "addWorkPlan", component: AddWorkPlanComponent},
       { path: "addNewConsumer", component: AddNewConsumerComponent},
       { path: "work-plans", component: WorkPlansComponent},
-      
+     
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAN3C1PGzRuOlC5cismR2Bb1V91MFY-b_Y'
@@ -196,9 +192,9 @@ import { DataTableInstructionsComponent } from './components/data-tables/data-ta
     MatSortModule,
     MatButtonModule,
     MatRadioModule
->>>>>>> Stashed changes
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [EquipmentService],
+  bootstrap: [AppComponent],
+  exports: [MatInputModule, MatFormFieldModule]
 })
 export class AppModule { }

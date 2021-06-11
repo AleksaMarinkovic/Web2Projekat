@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<br />
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 text-left">
+            <a routerLink="/workRequests" class="btn btn-primary btn-sm"><i class="material-icons"
+                    style="vertical-align: -6px;">arrow_back_ios</i>WORK REQUESTS</a>
+        </div>
+        <div class="col-6 text-right">
+            temp
+        </div>
+    </div>
+    <div class="row justify-content-center buffer">
+        <div class="col text-left">
+            <form [formGroup]="addWorkRequestForm">
+                <mat-tab-group>
+                    <mat-tab label=" Basic information">
+                        <app-basic-information-wr [addWorkRequestForm]="addWorkRequestForm"></app-basic-information-wr>
+                    </mat-tab>
+
+                    <mat-tab label="History of state changes">
+                        <app-history-of-state-changes-wr [addWorkRequestForm]="addWorkRequestForm">
+                        </app-history-of-state-changes-wr>
+                    </mat-tab>
+                    <mat-tab label="Multimedia attatchments"> <app-multimedia-attachments-wr [addWorkRequestForm]="addWorkRequestForm"></app-multimedia-attachments-wr> </mat-tab>
+                    <mat-tab label="Equipment"> <app-equipment-wr [addWorkRequestForm]="addWorkRequestForm"></app-equipment-wr> </mat-tab>
+                </mat-tab-group>
+                <pre class="temp_pre"><h1>TEMPORARY</h1>>{{addWorkRequestForm.value | json}}</pre>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+    </div>
+</div>

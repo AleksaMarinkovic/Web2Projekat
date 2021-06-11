@@ -1,0 +1,114 @@
+<div class="container-fluid grid-border">
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-3">
+            Incident ID::
+        </div>
+        <div class="col-3">
+            id
+        </div>
+        <div class="col-3">
+            <label for="affectedConsumers">Affected consumer: </label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <input class="form-control" id="affectedConsumers" name="affectedConsumers" type="number"
+                [formControlName]="'affectedConsumers'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="type">Type:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <select id="type" name="type" [formControlName]="'type'">
+                <option *ngFor="let incidentTypes of incidentTypes" [value]="incidentTypes">
+                    {{incidentTypes}}</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <label for="dateOccured">Date occured:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <input class="form-control" id="dateOccured" type="date" name="dateOccured"
+                [formControlName]="'dateOccured'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="priority">Priority:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <select id="priority" name="priority" [formControlName]="'priority'">
+                <option *ngFor="let incidentPriority of incidentPriorities" [value]="incidentPriority">
+                    {{incidentPriority}}</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <label for="ETR">ETR:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <input class="form-control" id="ETR" type="date" name="ETR" [formControlName]="'ETR'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-6" [formGroup]="addIncidentForm">
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" id="approved" [formControlName]="'approved'">
+                <label class="custom-control-label" for="approved">Approved? </label>
+            </div>
+        </div>
+        <div class="col-3">
+            <label for="numberOfCalls">Number of calls: </label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <input class="form-control" id="numberOfCalls" name="numberOfCalls" type="number"
+                [formControlName]="'numberOfCalls'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            Status:
+        </div>
+        <div class="col-3">
+            status label
+        </div>
+        <div class="col-3">
+            <label for="voltage">Voltage: </label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <input class="form-control" id="voltage" name="voltage" type="number" [formControlName]="'voltage'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="ETA">ETA:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <input class="form-control" id="ETA" name="ETA" type="date" [formControlName]="'ETA'">
+        </div>
+        <div class="col-3">
+            <label for="ATA">ATA:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <input class="form-control" id="ATA" name="ATA" type="date" [formControlName]="'ATA'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="scheduledTime">Scheduled time:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <input class="form-control" id="scheduledTime" name="scheduledTime" type="date"
+                [formControlName]="'scheduledTime'">
+        </div>
+    </div>
+    <div class="row text-left mb-5 mx-3">
+        <div class="col-3">
+            <label for="resolver">Resolver: </label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <input class="form-control" id="resolver" name="resolver" type="text" [formControlName]="'resolver'">
+        </div>
+
+    </div>
+
+</div>

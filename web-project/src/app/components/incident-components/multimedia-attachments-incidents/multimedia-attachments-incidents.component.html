@@ -1,0 +1,7 @@
+<div [formGroup]="addIncidentForm">
+    <input type="file" accept="image/*" (change)="showPreview($event)" id="incidentImage" name="incidentImage"
+      [formControlName]="'incidentImage'" />
+    <div class="imagePreview">
+      <img width="150" height="150" [src]="imageURL">
+    </div>
+  </div>

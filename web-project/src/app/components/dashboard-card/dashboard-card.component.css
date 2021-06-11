@@ -1,0 +1,21 @@
+.big-icon{
+    width: 35px;
+    height: 35px;
+}
+.small-icon{
+  width: 25px;
+  height: 25px;
+}
+.medium-icon{
+  width: 30px;
+  height: 30px;
+}
+.card-img-top .big-icon{
+    width: 30px;
+    height: 30px;
+}
+ul.no-bullets {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+  }

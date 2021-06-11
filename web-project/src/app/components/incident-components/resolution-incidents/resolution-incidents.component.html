@@ -1,0 +1,46 @@
+<div class="container-fluid grid-border">
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-3">
+            <label for="cause">Cause:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <select id="cause" name="cause" [formControlName]="'cause'">
+                <option *ngFor="let causeType of causeTypes" [value]="causeType">
+                    {{causeType}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-3">
+            <label for="subcause">Subcause:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <select id="subcause" name="subcause" [formControlName]="'subcause'">
+                <option *ngFor="let subcauseType of subcauseTypes" [value]="subcauseType">
+                    {{subcauseType}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-3">
+            <label for="constructionType">Construction type:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <select id="constructionType" name="constructionType" [formControlName]="'constructionType'">
+                <option *ngFor="let constructionType of constructionTypes" [value]="constructionType">
+                    {{constructionType}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row text-left mb-5 mt-4 mx-3">
+        <div class="col-3">
+            <label for="material">Material:</label>
+        </div>
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <select id="material" name="material" [formControlName]="'material'">
+                <option *ngFor="let materialType of materialTypes" [value]="materialType">
+                    {{materialType}}</option>
+            </select>
+        </div>
+    </div>
+</div>

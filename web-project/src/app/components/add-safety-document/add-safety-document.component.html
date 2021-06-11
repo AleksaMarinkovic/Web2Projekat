@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<br />
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 text-left">
+            <a routerLink="/safetyDocuments" class="btn btn-primary btn-sm"><i class="material-icons"
+                    style="vertical-align: -6px;">arrow_back_ios</i>SAFETY DOCUMENTS</a>
+        </div>
+        <div class="col-6 text-right">
+            temp
+        </div>
+    </div>
+    <div class="row justify-content-center buffer">
+        <div class="col text-left">
+            <form [formGroup]="addSafetyDocumentForm">
+                <mat-tab-group>
+                    <mat-tab label=" Basic information">
+                        <app-basic-information [addSafetyDocumentForm]="addSafetyDocumentForm"></app-basic-information>
+                    </mat-tab>
+
+                    <mat-tab label="History of state changes">
+                        <app-history-of-state-changes [addSafetyDocumentForm]="addSafetyDocumentForm">
+                        </app-history-of-state-changes>
+                    </mat-tab>
+                    <mat-tab label="Multimedia attatchments"> <app-multimedia-attachments [addSafetyDocumentForm]="addSafetyDocumentForm"></app-multimedia-attachments> </mat-tab>
+                    <mat-tab label="Equipment"> <app-equipment [addSafetyDocumentForm]="addSafetyDocumentForm"></app-equipment> </mat-tab>
+                    <mat-tab label="Checklist"> <app-checklist [addSafetyDocumentForm]="addSafetyDocumentForm"></app-checklist> </mat-tab>
+                </mat-tab-group>
+                <pre class="temp_pre"><h1>TEMPORARY</h1>>{{addSafetyDocumentForm.value | json}}</pre>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+    </div>
+</div>

@@ -1,0 +1,85 @@
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.mt-12{
+  margin-top: 11rem !important;
+}
+.pt-10{
+  padding-top: 9rem !important;
+}
+.pt-9{
+  padding-top: 8rem !important;
+}
+
+.mt-8{
+  margin-top: 7rem !important;
+}
+
+* {box-sizing: border-box}
+
+
+input:hover,
+.btn:hover {
+  opacity: 1;
+}
+
+/* add appropriate colors to fb, twitter and google buttons */
+.fb {
+  background-color: #3B5998;
+  color: white;
+  max-width: 200px;
+}
+
+.twitter {
+  background-color: #55ACEE;
+  color: white;
+  max-width: 200px;
+}
+
+.google {
+  background-color: #dd4b39;
+  color: white;
+  max-width: 200px;
+}
+
+/* style the submit button */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container-fluid{
+  background-color: #f8f9fa !important;
+}
