@@ -14,5 +14,8 @@ namespace Web2BE.Models
         public int WorkPlanSwitchingInstructionstId { get; set; }
         public string Element { get; set; }
         public string Description { get; set; }
+        public int WorkPlanId { get; set; }
+        public WorkPlan WorkPlan { get; set; }
+
     }
 }

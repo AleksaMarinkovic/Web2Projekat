@@ -12,11 +12,15 @@ namespace Web2BE.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NotificationId { get; set; }
-        //FK needed prolly on smth
         public string NotificationType { get; set; }
-        //FK from incidend description needed
         public string Description { get; set; }
         public bool Read { get; set; }
         public string TimeStamp { get; set; }
+
+        public int IncdidentId { get; set; }
+        public Incident Incident { get; set; }
+
+        public int SafetyDocumentId { get; set; }
+        public SafetyDocument SafetyDocument { get; set; }
     }
 }

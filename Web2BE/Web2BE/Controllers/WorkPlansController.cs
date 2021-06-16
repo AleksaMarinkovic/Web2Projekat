@@ -12,48 +12,48 @@ namespace Web2BE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class WorkPlansController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public UsersController(DataContext context)
+        public WorkPlansController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/WorkPlans
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<WorkPlan>>> GetWorkPlan()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.WorkPlan.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/WorkPlans/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<WorkPlan>> GetWorkPlan(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var workPlan = await _context.WorkPlan.FindAsync(id);
 
-            if (user == null)
+            if (workPlan == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return workPlan;
         }
-        
-        // PUT: api/Users/5
+
+        // PUT: api/WorkPlans/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutWorkPlan(int id, WorkPlan workPlan)
         {
-            if (id != user.UserId)
+            if (id != workPlan.WorkPlanId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(workPlan).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Web2BE.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!WorkPlanExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace Web2BE.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/WorkPlans
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<WorkPlan>> PostWorkPlan(WorkPlan workPlan)
         {
-            _context.Users.Add(user);
+            _context.WorkPlan.Add(workPlan);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetWorkPlan", new { id = workPlan.WorkPlanId }, workPlan);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/WorkPlans/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<ActionResult<WorkPlan>> DeleteWorkPlan(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var workPlan = await _context.WorkPlan.FindAsync(id);
+            if (workPlan == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.WorkPlan.Remove(workPlan);
             await _context.SaveChangesAsync();
 
-            return user;
+            return workPlan;
         }
 
-        private bool UserExists(int id)
+        private bool WorkPlanExists(int id)
         {
-            return _context.Users.Any(e => e.UserId == id);
+            return _context.WorkPlan.Any(e => e.WorkPlanId == id);
         }
     }
 }

@@ -13,16 +13,14 @@ namespace Web2BE.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WorkPlanId { get; set; }
         public string DocumentType { get; set; }
-        //FK
-        public string Incident { get; set; }
-        //FK
+        public int IncdidentId { get; set; }
+        public Incident Incident{ get; set; }
         public string Status { get; set; }
 
         public string WorkRequest { get; set; }
         public string StartWorkDate { get; set; }
         public string EndWorkDate { get; set; }
         public string CreationDate { get; set; }
-        //FK Existing User
         public string CreatedBy { get; set; }
         public string Address { get; set; }
         public string Company { get; set; }

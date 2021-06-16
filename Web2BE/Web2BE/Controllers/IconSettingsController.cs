@@ -12,48 +12,48 @@ namespace Web2BE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class IconSettingsController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public UsersController(DataContext context)
+        public IconSettingsController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/IconSettings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<IconSettings>>> GetIconSettings()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.IconSettings.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/IconSettings/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<IconSettings>> GetIconSettings(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var iconSettings = await _context.IconSettings.FindAsync(id);
 
-            if (user == null)
+            if (iconSettings == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return iconSettings;
         }
-        
-        // PUT: api/Users/5
+
+        // PUT: api/IconSettings/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutIconSettings(int id, IconSettings iconSettings)
         {
-            if (id != user.UserId)
+            if (id != iconSettings.IconSettingsId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(iconSettings).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Web2BE.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!IconSettingsExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace Web2BE.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/IconSettings
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<IconSettings>> PostIconSettings(IconSettings iconSettings)
         {
-            _context.Users.Add(user);
+            _context.IconSettings.Add(iconSettings);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetIconSettings", new { id = iconSettings.IconSettingsId }, iconSettings);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/IconSettings/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<ActionResult<IconSettings>> DeleteIconSettings(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var iconSettings = await _context.IconSettings.FindAsync(id);
+            if (iconSettings == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.IconSettings.Remove(iconSettings);
             await _context.SaveChangesAsync();
 
-            return user;
+            return iconSettings;
         }
 
-        private bool UserExists(int id)
+        private bool IconSettingsExists(int id)
         {
-            return _context.Users.Any(e => e.UserId == id);
+            return _context.IconSettings.Any(e => e.IconSettingsId == id);
         }
     }
 }

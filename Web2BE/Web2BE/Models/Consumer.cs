@@ -14,7 +14,6 @@ namespace Web2BE.Models
         public int ConsumerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //Gets from existing user?
         public string Location { get; set; }
         public string Priority { get; set; }
         public string Phone { get; set; }

@@ -16,5 +16,8 @@ namespace Web2BE.Models
         public string EquipmentType { get; set; }
         public string Address { get; set; }
         public string Coordinates { get; set; }
+        public int WorkPlanId { get; set; }
+
+        public WorkPlan WorkPlan { get; set; }
     }
 }

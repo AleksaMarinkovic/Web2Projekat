@@ -12,48 +12,48 @@ namespace Web2BE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class SafetyDocumentsController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public UsersController(DataContext context)
+        public SafetyDocumentsController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/SafetyDocuments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<SafetyDocument>>> GetSafetyDocument()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.SafetyDocument.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/SafetyDocuments/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<SafetyDocument>> GetSafetyDocument(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var safetyDocument = await _context.SafetyDocument.FindAsync(id);
 
-            if (user == null)
+            if (safetyDocument == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return safetyDocument;
         }
-        
-        // PUT: api/Users/5
+
+        // PUT: api/SafetyDocuments/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutSafetyDocument(int id, SafetyDocument safetyDocument)
         {
-            if (id != user.UserId)
+            if (id != safetyDocument.SafetyDocumentId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(safetyDocument).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Web2BE.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!SafetyDocumentExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace Web2BE.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/SafetyDocuments
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<SafetyDocument>> PostSafetyDocument(SafetyDocument safetyDocument)
         {
-            _context.Users.Add(user);
+            _context.SafetyDocument.Add(safetyDocument);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetSafetyDocument", new { id = safetyDocument.SafetyDocumentId }, safetyDocument);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/SafetyDocuments/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<ActionResult<SafetyDocument>> DeleteSafetyDocument(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var safetyDocument = await _context.SafetyDocument.FindAsync(id);
+            if (safetyDocument == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.SafetyDocument.Remove(safetyDocument);
             await _context.SaveChangesAsync();
 
-            return user;
+            return safetyDocument;
         }
 
-        private bool UserExists(int id)
+        private bool SafetyDocumentExists(int id)
         {
-            return _context.Users.Any(e => e.UserId == id);
+            return _context.SafetyDocument.Any(e => e.SafetyDocumentId == id);
         }
     }
 }
