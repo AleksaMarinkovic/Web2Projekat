@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\Web2BE\\Web2BE.csproj": {}
+    "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\BackEnd\\BackEnd.csproj": {}
   },
   "projects": {
-    "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\Web2BE\\Web2BE.csproj": {
+    "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\BackEnd\\BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\Web2BE\\Web2BE.csproj",
-        "projectName": "Web2BE",
-        "projectPath": "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\Web2BE\\Web2BE.csproj",
+        "projectUniqueName": "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\BackEnd\\BackEnd.csproj",
+        "projectName": "BackEnd",
+        "projectPath": "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\BackEnd\\BackEnd.csproj",
         "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\Web2BE\\obj\\",
+        "outputPath": "C:\\Users\\David\\Documents\\Veb2Repo\\Web2Projekat\\Web2BE\\BackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

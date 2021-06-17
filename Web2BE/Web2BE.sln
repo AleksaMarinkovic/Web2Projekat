@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web2BE", "Web2BE\Web2BE.csproj", "{BAA427F7-ACAF-490D-B86E-72DC85178132}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web2BE", "Web2BE\Web2BE.csproj", "{3256FEBA-4F26-4D89-AAC3-E5F8D50E024C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BAA427F7-ACAF-490D-B86E-72DC85178132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BAA427F7-ACAF-490D-B86E-72DC85178132}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BAA427F7-ACAF-490D-B86E-72DC85178132}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BAA427F7-ACAF-490D-B86E-72DC85178132}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3256FEBA-4F26-4D89-AAC3-E5F8D50E024C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3256FEBA-4F26-4D89-AAC3-E5F8D50E024C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3256FEBA-4F26-4D89-AAC3-E5F8D50E024C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3256FEBA-4F26-4D89-AAC3-E5F8D50E024C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
