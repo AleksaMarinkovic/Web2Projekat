@@ -5,16 +5,15 @@
                     style="vertical-align: -6px;">add_circle</i> ADD ADDITIONAL ELEMENT</a>
         </div>
     </div>
-    <form [formGroup]="equipmentGroup" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
         <div class="row text-center mb-5 mt-4 mx-3">
             <div class="col-1">
-                <label for="newEquipment">
+                <label>
                     Choose equipment:
                 </label>
             </div>
             <div class="col-2">
-                <select id="newEquipment" name="newEquipment" formControlName="newEquipment"
-                    [(ngModel)]="selectedEquipment">
+                <select [(ngModel)]="selectedEquipment" [ngModelOptions]="{standalone: true}">
                     <option *ngFor="let equipment of equipments | async" [ngValue]="equipment">
                         {{equipment.name}}</option>
                 </select>
@@ -22,8 +21,12 @@
             <div class="col-1">
                 <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             </div>
+            <form [formGroup]="addSafetyDocumentForm" (ngSubmit)="onSubmit()">
+                <div formGroupName="equipmentList">
+                    <input type="hidden" id="newEquipment" name="newEquipment" [formControlName]="'newEquipment'" [(ngModel)]="equipmentList">
+                </div>
+            </form>
         </div>
-
     </form>
     <div class="row text-left mb-5 mt-4 mx-3">
         <div class="col-5">
