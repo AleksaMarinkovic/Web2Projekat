@@ -22,5 +22,7 @@ namespace Web2BE.Models
 
         public int SafetyDocumentId { get; set; }
         public SafetyDocument SafetyDocument { get; set; }
+        public int WorkPlanId { get; set; }
+        public WorkPlan WorkPlan { get; set; }
     }
 }

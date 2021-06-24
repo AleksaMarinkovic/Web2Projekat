@@ -63,6 +63,8 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from './components/search/search.component';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { NotificationsComponent} from './components/notifications/notifications.component';
@@ -80,6 +82,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { AddNewConsumerComponent } from './components/add-new-consumer/add-new-consumer.component';
 import { WorkPlansComponent } from './components/work-plans/work-plans.component';
 import { DataTableInstructionsComponent } from './components/data-tables/data-table-instructions/data-table-instructions.component';
+import { CallsComponent } from './components/incident-components/calls/calls.component';
+import { AddNewCallComponent } from './components/incident-components/add-new-call/add-new-call.component';
+import { ConsumerDialogueComponent } from './components/consumer-dialogue/consumer-dialogue.component';
 
 @NgModule({
   declarations: [
@@ -140,6 +145,9 @@ import { DataTableInstructionsComponent } from './components/data-tables/data-ta
     AddNewConsumerComponent,
     WorkPlansComponent,
     DataTableInstructionsComponent,
+    CallsComponent,
+    AddNewCallComponent,
+    ConsumerDialogueComponent,
 
   ],
   imports: [
@@ -181,7 +189,8 @@ import { DataTableInstructionsComponent } from './components/data-tables/data-ta
       { path: "addWorkPlan", component: AddWorkPlanComponent},
       { path: "addNewConsumer", component: AddNewConsumerComponent},
       { path: "work-plans", component: WorkPlansComponent},
-     
+      { path: "calls", component:CallsComponent},
+      { path: "addNewCall", component:AddNewCallComponent}
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAN3C1PGzRuOlC5cismR2Bb1V91MFY-b_Y'
@@ -191,7 +200,9 @@ import { DataTableInstructionsComponent } from './components/data-tables/data-ta
     MatPaginatorModule,
     MatSortModule,
     MatButtonModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDividerModule,
+    MatDialogModule
   ],
   providers: [EquipmentService],
   bootstrap: [AppComponent],

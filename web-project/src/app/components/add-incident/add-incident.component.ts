@@ -33,7 +33,7 @@ export class AddIncidentComponent implements OnInit {
       cause : causeTypes.Failure,
       subcause: subcauseTypes.Hailstorm,
       constructionType: constructionType.Surface,
-      material: materialType.Metal
+      material: materialType.Metal,     
     });  
   }
 

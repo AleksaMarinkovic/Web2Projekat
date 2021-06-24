@@ -1,3 +1,17 @@
 
 .vscode/tasks.json
 .vscode/launch.json
+Web2BE/Web2BE/obj/Web2BE.csproj.nuget.g.props
+Web2BE/Web2BE/obj/Web2BE.csproj.nuget.dgspec.json
+Web2BE/Web2BE/obj/project.nuget.cache
+Web2BE/Web2BE/obj/project.assets.json
+Web2BE/Web2BE/obj/Debug/netcoreapp3.1/Web2BE.pdb
+Web2BE/Web2BE/obj/Debug/netcoreapp3.1/Web2BE.genruntimeconfig.cache
+Web2BE/Web2BE/obj/Debug/netcoreapp3.1/Web2BE.dll
+Web2BE/Web2BE/obj/Debug/netcoreapp3.1/Web2BE.csprojAssemblyReference.cache
+Web2BE/Web2BE/obj/Debug/netcoreapp3.1/Web2BE.csproj.FileListAbsolute.txt
+Web2BE/Web2BE/obj/Debug/netcoreapp3.1/Web2BE.csproj.CoreCompileInputs.cache
+Web2BE/Web2BE/obj/Debug/netcoreapp3.1/Web2BE.assets.cache
+Web2BE/Web2BE/bin/Debug/netcoreapp3.1/Web2BE.runtimeconfig.json
+Web2BE/Web2BE/bin/Debug/netcoreapp3.1/Web2BE.runtimeconfig.dev.json
+Web2BE/Web2BE/bin/Debug/netcoreapp3.1/Web2BE.deps.json

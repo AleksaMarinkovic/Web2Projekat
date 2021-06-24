@@ -16,7 +16,7 @@ export class DataTableConsumerComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<DataTableConsumerItem>;
   dataSource: DataTableConsumerDataSource;
   
-  displayedColumns = ['id', 'name', 'lastname', 'location', 'priority', 'phoneNumber','consumerType', 'modify', 'delete'];
+  displayedColumns = ['id', 'firstName', 'lastName', 'location', 'priority', 'phone','consumerType', 'modify', 'delete'];
 
   constructor() { 
     this.dataSource = new DataTableConsumerDataSource();

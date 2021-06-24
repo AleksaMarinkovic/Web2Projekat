@@ -19,6 +19,35 @@ namespace Web2BE.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Web2BE.Models.Call", b =>
+                {
+                    b.Property<int>("CallId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ConsumerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HazardName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HazardPriority")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Reason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CallId");
+
+                    b.HasIndex("ConsumerId");
+
+                    b.ToTable("Call");
+                });
+
             modelBuilder.Entity("Web2BE.Models.Consumer", b =>
                 {
                     b.Property<int>("ConsumerId")
@@ -104,11 +133,16 @@ namespace Web2BE.Migrations
                     b.Property<string>("TimeStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("WorkPlanId")
+                        .HasColumnType("int");
+
                     b.HasKey("NotificationId");
 
                     b.HasIndex("IncidentId");
 
                     b.HasIndex("SafetyDocumentId");
+
+                    b.HasIndex("WorkPlanId");
 
                     b.ToTable("Notification");
                 });
@@ -134,6 +168,45 @@ namespace Web2BE.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("AllTagsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AllWorkOperationsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DateCreated")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateEdited")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("GroundingRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastEditor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ReadyForService")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SafetyDocumentId");
 
@@ -299,6 +372,17 @@ namespace Web2BE.Migrations
                     b.ToTable("WorkPlanSwitchingInstructions");
                 });
 
+            modelBuilder.Entity("Web2BE.Models.Call", b =>
+                {
+                    b.HasOne("Web2BE.Models.Consumer", "Consumer")
+                        .WithMany()
+                        .HasForeignKey("ConsumerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Consumer");
+                });
+
             modelBuilder.Entity("Web2BE.Models.Notification", b =>
                 {
                     b.HasOne("Web2BE.Models.Incident", "Incident")
@@ -311,9 +395,17 @@ namespace Web2BE.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Web2BE.Models.WorkPlan", "WorkPlan")
+                        .WithMany()
+                        .HasForeignKey("WorkPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Incident");
 
                     b.Navigation("SafetyDocument");
+
+                    b.Navigation("WorkPlan");
                 });
 
             modelBuilder.Entity("Web2BE.Models.WorkPlan", b =>

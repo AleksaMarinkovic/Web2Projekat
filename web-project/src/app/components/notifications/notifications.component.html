@@ -10,10 +10,7 @@
                 <mat-select (selectionChange)="onChange($event)" [(value)]="selectedFilter">
                   <mat-option *ngFor="let property of elementProperties"  value="{{property}}" id="filterVal">{{property}}</mat-option>
                 </mat-select>
-            </mat-form-field>               
-            <!-- <select (change)="onChange($event.target.value)" class ="example-header">
-                <option *ngFor="let property of elementProperties">{{property}}</option>
-            </select> -->
+            </mat-form-field>                          
         </div>
     </div>
     <div class="row">

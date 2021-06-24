@@ -8,32 +8,32 @@ import { accountTypes } from '../../../../assets/accountTypes.enum';
 // TODO: Replace this with your own data model type
 export interface DataTableConsumerItem {
     id: number;
-    name: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
     location: string;
     priority: string;
-    phoneNumber: string;
+    phone: string;
     consumerType: accountTypes;
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: DataTableConsumerItem[] = [
-  {id: 1, name: 'NS Consumer', lastname: 'TempMember1', location: 'NS', priority: 'a', phoneNumber: '123121', consumerType: accountTypes.Commercial},
-  {id: 2, name: 'NS Consumer', lastname:'TempMember2', location: 'NS', priority: 'a', phoneNumber: '123121', consumerType: accountTypes.Commercial},
-  {id: 3, name: 'NS Consumer', lastname:'TempMember3', location: 'NS', priority: 'a', phoneNumber: '123121', consumerType: accountTypes.Commercial},
-  {id: 4, name: 'NS Consumer', lastname:'TempMember4', location: 'NS', priority: 'a', phoneNumber: '123121', consumerType: accountTypes.Commercial},
-  {id: 5, name: 'NS Consumer',lastname: 'TempMember5', location: 'NS', priority: 'a', phoneNumber: '123121', consumerType: accountTypes.Commercial},
- {id: 6, name: '021 Consumer', lastname:'TempMember6', location: 'NS', priority: 'a', phoneNumber: '123121', consumerType: accountTypes.Commercial},
- {id: 7, name: '021 Consumer', lastname:'TempMember7', location: 'NS', priority: 'a', phoneNumber: '123121', consumerType: accountTypes.Commercial},
-  {id: 8, name: '021 Consumer',lastname: 'TempMember8', location: 'BG', priority: 'a', phoneNumber: '123121', consumerType: accountTypes.Commercial},
-  {id: 9, name: '021 Consumer',lastname: 'TempMember9', location: 'BG', priority: 'a', phoneNumber: '123121', consumerType: accountTypes.Residential},
-  {id: 10, name: '021 Consumer', lastname:'TempMember10', location: 'BG', priority: 's', phoneNumber: '123123421', consumerType: accountTypes.Residential},
-  {id: 11, name: 'BEST Consumer',lastname: 'TempMember11', location: 'BG', priority: 'ssa', phoneNumber: '123121', consumerType: accountTypes.Residential},
-  {id: 12, name: 'BEST Consumer', lastname:'TempMember12', location: 'BG', priority: 'sa', phoneNumber: '123121', consumerType: accountTypes.Residential},
-  {id: 13, name: 'BEST Consumer', lastname:'TempMember13', location: 'BG', priority: 'sa', phoneNumber: '12312123', consumerType: accountTypes.Residential},
-  {id: 14, name: 'BEST Consumer',lastname: 'TempMember14', location: 'NS', priority: 'sa', phoneNumber: '123543121', consumerType: accountTypes.Residential},
-  {id: 16, name: 'BEST Consumer', lastname:'TempMember16', location: 'NS', priority: 'sa', phoneNumber: '123121', consumerType: accountTypes.Residential},
-  {id: 17, name: 'BEST Consumer',lastname: 'TempMember17', location: 'NS', priority: 'sa', phoneNumber: '123121', consumerType: accountTypes.Residential},
+export const EXAMPLE_DATA: DataTableConsumerItem[] = [
+  {id: 1, firstName: 'NS Consumer', lastName: 'TempMember1', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
+  {id: 2, firstName: 'NS Consumer', lastName:'TempMember2', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
+  {id: 3, firstName: 'NS Consumer', lastName:'TempMember3', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
+  {id: 4, firstName: 'NS Consumer', lastName:'TempMember4', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
+  {id: 5, firstName: 'NS Consumer',lastName: 'TempMember5', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
+ {id: 6, firstName: '021 Consumer', lastName:'TempMember6', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
+ {id: 7, firstName: '021 Consumer', lastName:'TempMember7', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
+  {id: 8, firstName: '021 Consumer',lastName: 'TempMember8', location: 'BG', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
+  {id: 9, firstName: '021 Consumer',lastName: 'TempMember9', location: 'BG', priority: 'a', phone: '123121', consumerType: accountTypes.Residential},
+  {id: 10, firstName: '021 Consumer', lastName:'TempMember10', location: 'BG', priority: 's', phone: '123123421', consumerType: accountTypes.Residential},
+  {id: 11, firstName: 'BEST Consumer',lastName: 'TempMember11', location: 'BG', priority: 'ssa', phone: '123121', consumerType: accountTypes.Residential},
+  {id: 12, firstName: 'BEST Consumer', lastName:'TempMember12', location: 'BG', priority: 'sa', phone: '123121', consumerType: accountTypes.Residential},
+  {id: 13, firstName: 'BEST Consumer', lastName:'TempMember13', location: 'BG', priority: 'sa', phone: '12312123', consumerType: accountTypes.Residential},
+  {id: 14, firstName: 'BEST Consumer',lastName: 'TempMember14', location: 'NS', priority: 'sa', phone: '123543121', consumerType: accountTypes.Residential},
+  {id: 16, firstName: 'BEST Consumer', lastName:'TempMember16', location: 'NS', priority: 'sa', phone: '123121', consumerType: accountTypes.Residential},
+  {id: 17, firstName: 'BEST Consumer',lastName: 'TempMember17', location: 'NS', priority: 'sa', phone: '123121', consumerType: accountTypes.Residential},
 ];
 
 
@@ -95,13 +95,13 @@ export class DataTableConsumerDataSource extends DataSource<DataTableConsumerIte
       return data.sort((a, b) => {
         const isAsc = this.sort?.direction === 'asc';
         switch (this.sort?.active) {
-          case 'name': return compare(a.name, b.name, isAsc);
+          case 'firstName': return compare(a.firstName, b.firstName, isAsc);
           case 'id': return compare(+a.id, +b.id, isAsc);
-          case 'lastname': return compare(a.name, b.name, isAsc);
-          case 'location': return compare(a.name, b.name, isAsc);
-          case 'priority': return compare(a.name, b.name, isAsc);
-          case 'phoneNumber': return compare(a.name, b.name, isAsc);
-          case 'consumerType': return compare(a.name, b.name, isAsc);
+          case 'lastName': return compare(a.firstName, b.firstName, isAsc);
+          case 'location': return compare(a.firstName, b.firstName, isAsc);
+          case 'priority': return compare(a.firstName, b.firstName, isAsc);
+          case 'phone': return compare(a.firstName, b.firstName, isAsc);
+          case 'consumerType': return compare(a.firstName, b.firstName, isAsc);
 
           default: return 0;
         }
@@ -109,7 +109,7 @@ export class DataTableConsumerDataSource extends DataSource<DataTableConsumerIte
     }
   }
   
-  /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
+  /** Simple sort comparator for example ID/firstName columns (for client-side sorting). */
   function compare(a: string | number, b: string | number, isAsc: boolean): number {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }

@@ -11,11 +11,11 @@ export class AddNewConsumerComponent implements OnInit {
   public accountTypes = Object.values(accountTypes);  
   newConsumerForm = this.formBuilder.group({
     id: "",
-    name: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     location: "",
     priority: "",
-    phoneNumber: "",
+    phone: "",
     consumerType: accountTypes,
   })
   constructor(private formBuilder : FormBuilder) { }

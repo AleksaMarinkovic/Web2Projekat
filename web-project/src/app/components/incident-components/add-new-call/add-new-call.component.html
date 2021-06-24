@@ -1,0 +1,115 @@
+<app-navbar></app-navbar>
+<br />
+<br />
+<form [formGroup]="newCallForm">
+    <div class="container-fluid">
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="reason">
+                    Reason:
+                </label>
+            </div>
+            <div class="col-3">
+                <select id="reason" name="reason" [formControlName]="'reason'">
+                    <option *ngFor="let reasonType of reasonTypes" [value]="reasonType">
+                        {{reasonType}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="hazard"  >
+                    Hazard name:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="hazardName" type="text" formControlName="hazardName">
+            </div>
+        </div>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="hazard"  >
+                    Hazard Priority:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" id="hazardPriority" type="text" formControlName="hazardPriority">
+            </div>
+        </div>
+
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <label class="padding" for="comment">
+                    Comment:
+                </label>
+            </div>
+            <div class="col-3">
+                <input class="form-control" type="text" formControlName="comment">
+            </div>
+        </div>
+        <mat-divider ></mat-divider>
+       
+        <div class="col-3">
+            <label class="padding">
+                Consumer Info:
+            </label>
+        </div>
+        
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <button class="btn btn-sm-4 btn-primary" (click)="openModalDialogue()">ADD CONSUMER INFO</button>
+            </div>
+        </div>    
+
+        <div *ngIf = "consumer">
+            <div class="row text-left mb-5 mx-3">
+                <div class="col-3">
+                    <label class="padding">
+                    Id: {{consumer.id}}
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label class="padding">
+                    First Name: {{consumer.firstName}}
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label class="padding">
+                    Last Name: {{consumer.lastName}}
+                    </label>
+                </div>
+            </div>
+            <div class="row text-left mb-5 mx-3">
+                <div class="col-3">
+                    <label class="padding">
+                    Priority: {{consumer.priority}}
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label class="padding">
+                    Location: {{consumer.location}}
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label class="padding">
+                    Type: {{consumer.consumerType}}
+                    </label>
+                </div>
+            </div>
+            <div class="col-3">
+                <label class="padding">
+                Phone Number {{consumer.phone}}
+                </label>
+            </div>
+            <input type="hidden" value="consumer.id" formControlName="consumerId" />
+        </div>
+        
+        <mat-divider></mat-divider>
+        <div class="row justify-content-center buffer">
+            <div class="col-3">
+                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newCallForm.value)">ADD CALL</button>
+            </div>
+        </div>    
+    </div>
+</form>

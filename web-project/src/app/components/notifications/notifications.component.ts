@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
-import { Notif } from 'src/entities/notifs';
 import { notificationTypes } from 'src/assets/notificationTypes.enum';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ViewChild } from '@angular/core';
@@ -21,7 +20,6 @@ export class NotificationsComponent implements OnInit {
   dataSource = new MatTableDataSource<FilterNotification>(EXAMPLE_DATA);
   elementProperties = Object.values(notificationTypesDisplayed);
   
-
   public selectedFilter : string = "All";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
