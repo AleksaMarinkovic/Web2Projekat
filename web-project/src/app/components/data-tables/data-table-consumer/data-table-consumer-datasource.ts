@@ -6,8 +6,8 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 import { accountTypes } from '../../../../assets/accountTypes.enum';
 
 // TODO: Replace this with your own data model type
-export interface DataTableConsumerItem {
-    id: number;
+export interface DataTableConsumerItem {  
+    consumerId: number
     firstName: string;
     lastName: string;
     location: string;
@@ -18,27 +18,12 @@ export interface DataTableConsumerItem {
 
 // TODO: replace this with real data from your application
 export const EXAMPLE_DATA: DataTableConsumerItem[] = [
-  {id: 1, firstName: 'NS Consumer', lastName: 'TempMember1', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
-  {id: 2, firstName: 'NS Consumer', lastName:'TempMember2', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
-  {id: 3, firstName: 'NS Consumer', lastName:'TempMember3', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
-  {id: 4, firstName: 'NS Consumer', lastName:'TempMember4', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
-  {id: 5, firstName: 'NS Consumer',lastName: 'TempMember5', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
- {id: 6, firstName: '021 Consumer', lastName:'TempMember6', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
- {id: 7, firstName: '021 Consumer', lastName:'TempMember7', location: 'NS', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
-  {id: 8, firstName: '021 Consumer',lastName: 'TempMember8', location: 'BG', priority: 'a', phone: '123121', consumerType: accountTypes.Commercial},
-  {id: 9, firstName: '021 Consumer',lastName: 'TempMember9', location: 'BG', priority: 'a', phone: '123121', consumerType: accountTypes.Residential},
-  {id: 10, firstName: '021 Consumer', lastName:'TempMember10', location: 'BG', priority: 's', phone: '123123421', consumerType: accountTypes.Residential},
-  {id: 11, firstName: 'BEST Consumer',lastName: 'TempMember11', location: 'BG', priority: 'ssa', phone: '123121', consumerType: accountTypes.Residential},
-  {id: 12, firstName: 'BEST Consumer', lastName:'TempMember12', location: 'BG', priority: 'sa', phone: '123121', consumerType: accountTypes.Residential},
-  {id: 13, firstName: 'BEST Consumer', lastName:'TempMember13', location: 'BG', priority: 'sa', phone: '12312123', consumerType: accountTypes.Residential},
-  {id: 14, firstName: 'BEST Consumer',lastName: 'TempMember14', location: 'NS', priority: 'sa', phone: '123543121', consumerType: accountTypes.Residential},
-  {id: 16, firstName: 'BEST Consumer', lastName:'TempMember16', location: 'NS', priority: 'sa', phone: '123121', consumerType: accountTypes.Residential},
-  {id: 17, firstName: 'BEST Consumer',lastName: 'TempMember17', location: 'NS', priority: 'sa', phone: '123121', consumerType: accountTypes.Residential},
+            
 ];
 
 
 export class DataTableConsumerDataSource extends DataSource<DataTableConsumerItem> {
-    data: DataTableConsumerItem[] = EXAMPLE_DATA;
+    data: DataTableConsumerItem[];
     paginator: MatPaginator | undefined;
     sort: MatSort | undefined;
   
@@ -71,7 +56,7 @@ export class DataTableConsumerDataSource extends DataSource<DataTableConsumerIte
     disconnect(): void {}
   
     /**
-     * Paginate the data (client-side). If you're using server-side pagination,
+     * Paginate the data (client-scustomerIde). If you're using server-scustomerIde pagination,
      * this would be replaced by requesting the appropriate data from the server.
      */
     private getPagedData(data: DataTableConsumerItem[]): DataTableConsumerItem[] {
@@ -84,7 +69,7 @@ export class DataTableConsumerDataSource extends DataSource<DataTableConsumerIte
     }
   
     /**
-     * Sort the data (client-side). If you're using server-side sorting,
+     * Sort the data (client-scustomerIde). If you're using server-scustomerIde sorting,
      * this would be replaced by requesting the appropriate data from the server.
      */
     private getSortedData(data: DataTableConsumerItem[]): DataTableConsumerItem[] {
@@ -95,13 +80,13 @@ export class DataTableConsumerDataSource extends DataSource<DataTableConsumerIte
       return data.sort((a, b) => {
         const isAsc = this.sort?.direction === 'asc';
         switch (this.sort?.active) {
+          case 'consumerId' : return compare(a.consumerId, b.consumerId, isAsc);
           case 'firstName': return compare(a.firstName, b.firstName, isAsc);
-          case 'id': return compare(+a.id, +b.id, isAsc);
-          case 'lastName': return compare(a.firstName, b.firstName, isAsc);
-          case 'location': return compare(a.firstName, b.firstName, isAsc);
-          case 'priority': return compare(a.firstName, b.firstName, isAsc);
-          case 'phone': return compare(a.firstName, b.firstName, isAsc);
-          case 'consumerType': return compare(a.firstName, b.firstName, isAsc);
+          case 'lastName': return compare(a.lastName, b.lastName, isAsc);
+          case 'location': return compare(a.location, b.location, isAsc);
+          case 'priority': return compare(a.priority, b.priority, isAsc);
+          case 'phone': return compare(a.phone, b.phone, isAsc);
+          case 'consumerType': return compare(a.consumerType, b.consumerType, isAsc);
 
           default: return 0;
         }
@@ -109,7 +94,7 @@ export class DataTableConsumerDataSource extends DataSource<DataTableConsumerIte
     }
   }
   
-  /** Simple sort comparator for example ID/firstName columns (for client-side sorting). */
+  /** Simple sort comparator for example customerId/firstName columns (for client-scustomerIde sorting). */
   function compare(a: string | number, b: string | number, isAsc: boolean): number {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }

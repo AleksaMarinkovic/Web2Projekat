@@ -17,6 +17,6 @@ namespace Web2BE.Models
         public string Location { get; set; }
         public string Priority { get; set; }
         public string Phone { get; set; }
-        public string AccountType { get; set; }
+        public string ConsumerType { get; set; }
     }
 }

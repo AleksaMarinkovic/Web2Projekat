@@ -1,7 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { ConsumerService } from 'src/app/services/consumer.service';
+import { AddNewConsumerComponent } from '../../add-new-consumer/add-new-consumer.component';
 import { DataTableConsumerDataSource, DataTableConsumerItem } from './data-table-consumer-datasource';
 
 
@@ -14,25 +17,40 @@ export class DataTableConsumerComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<DataTableConsumerItem>;
-  dataSource: DataTableConsumerDataSource;
-  
-  displayedColumns = ['id', 'firstName', 'lastName', 'location', 'priority', 'phone','consumerType', 'modify', 'delete'];
+  dataSource: DataTableConsumerDataSource;  
+  displayedColumns = ['consumerId', 'firstName', 'lastName', 'location', 'priority', 'phone','consumerType', 'modify', 'delete'];
 
-  constructor() { 
+  constructor(private consumerService: ConsumerService, public dialog: MatDialog) {    
     this.dataSource = new DataTableConsumerDataSource();
-
+  }
+  
+  ngAfterViewInit (): void {
+    this.refresh();
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
-  }
+  modify(consumer: any){
+    const d = this.dialog.open(AddNewConsumerComponent, {
+      data: {consumer: consumer}
+    });
 
-  modify(rowId:any){
-    window.alert("temp, should modify element with id: " + rowId);
+    d.afterClosed().subscribe(
+      () => this.refresh()
+    );
   }
-  delete(rowId:any){
-    window.alert("temp, should delete element with id: " + rowId);
+  delete(consumer: any){  
+     this.consumerService.deleteConsumer(consumer.consumerId).subscribe(
+       () => this.refresh()
+     );
   }  
+
+  refresh(){
+    this.consumerService.getAllConsumers().subscribe(
+      data =>{
+        this.dataSource.data = data;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator; 
+        this.table.dataSource = this.dataSource;         
+      }
+    ); 
+  }
 }
