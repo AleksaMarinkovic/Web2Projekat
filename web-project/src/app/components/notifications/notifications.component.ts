@@ -17,14 +17,14 @@ import { notificationTypesDisplayed } from 'src/assets/notificationTypesDisplaye
 
 export class NotificationsComponent implements OnInit {  
 
-  dataSource = new MatTableDataSource<FilterNotification>(EXAMPLE_DATA);
+  dataSource = new MatTableDataSource<DataTableNotificationsItem>(EXAMPLE_DATA);
   elementProperties = Object.values(notificationTypesDisplayed);
   
   public selectedFilter : string = "All";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  columnsToDisplay = ['id', 'type', 'description', 'timestamp', 'read'];
+  columnsToDisplay = ['notificationId', 'type', 'description', 'timestamp', 'read'];
 
   constructor(private _notificationService: NotificationService) {
   }
@@ -72,8 +72,8 @@ export class NotificationsComponent implements OnInit {
     alert("read " + element)
   }
 }
-export interface FilterNotification {
-  id: number;
+export interface DataTableNotificationsItem {
+  notificationId: number;
   description: string;
   type: notificationTypes;
   timestamp: number;
@@ -81,16 +81,16 @@ export interface FilterNotification {
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: FilterNotification[] = [
-  { id: 1, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread},
-  { id: 2, type: notificationTypes.Warning, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { id: 3, type: notificationTypes.Warning, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { id: 4, type: notificationTypes.SuccessfulAction, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { id: 5, type: notificationTypes.SuccessfulAction, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { id: 6, type: notificationTypes.SuccessfulAction, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread },
-  { id: 7, type: notificationTypes.Information, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { id: 8, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread },
-  { id: 9, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
+export const EXAMPLE_DATA: DataTableNotificationsItem[] = [
+  { notificationId: 1, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread},
+  { notificationId: 2, type: notificationTypes.Warning, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
+  { notificationId: 3, type: notificationTypes.Warning, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
+  { notificationId: 4, type: notificationTypes.SuccessfulAction, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
+  { notificationId: 5, type: notificationTypes.SuccessfulAction, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
+  { notificationId: 6, type: notificationTypes.SuccessfulAction, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread },
+  { notificationId: 7, type: notificationTypes.Information, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
+  { notificationId: 8, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread },
+  { notificationId: 9, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
  
   
 ];

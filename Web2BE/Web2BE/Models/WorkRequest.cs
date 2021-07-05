@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace Web2BE.Models
 {
-    public class IconSettings
+    public class WorkRequest
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IconSettingsId { get; set; }
-
-        public string IconType { get; set; }
-        public string Icon { get; set; }
+        public int WorkRequestId { get; set; }
     }
 }

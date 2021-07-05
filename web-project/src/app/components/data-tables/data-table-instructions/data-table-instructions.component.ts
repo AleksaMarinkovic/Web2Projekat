@@ -27,3 +27,10 @@ export class DataTableInstructionsComponent implements AfterViewInit {
 
  
 }
+export interface DataTableWorkPlanSwitchingInstructionsItem{
+  workPlanSwitchingInstructionsId: number,
+  element: string,
+  description: string,
+  workPlanId: number,
+}
+const EXAMPLE_DATA: DataTableWorkPlanSwitchingInstructionsItem[] =[]

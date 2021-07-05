@@ -17,12 +17,15 @@ namespace Web2BE.Models
         public bool Read { get; set; }
         public string TimeStamp { get; set; }
 
-        public int IncdidentId { get; set; }
+        public int? IncdidentId { get; set; }
         public Incident Incident { get; set; }
 
-        public int SafetyDocumentId { get; set; }
+        public int? SafetyDocumentId { get; set; }
         public SafetyDocument SafetyDocument { get; set; }
-        public int WorkPlanId { get; set; }
+        public int? WorkPlanId { get; set; }
         public WorkPlan WorkPlan { get; set; }
+
+        public int? WorkRequestId { get; set; }
+        public WorkRequest WorkRequest { get; set; }
     }
 }

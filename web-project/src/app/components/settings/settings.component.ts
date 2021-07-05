@@ -27,7 +27,7 @@ export class SettingsComponent implements OnInit {
   AddStreetPriority(){
     alert("street prio alert");
   }
-  onSubmit(){
+  onSubmit(settings: any){
     alert("succesful changes");
   }
   

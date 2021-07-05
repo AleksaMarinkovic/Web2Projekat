@@ -2,7 +2,7 @@
 <br />
 <br />
 <div class="containter-fluid background">
-    <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">  
+    <form [formGroup]="settingsForm" (ngSubmit)="onSubmit(settingsForm)">  
         <div class="containter">
           <div class="row align-items-center">
             <div class="col-lg-12">
@@ -60,19 +60,7 @@
             <div class="col-lg-3">
               <input class="form-control" id="streetPriority" type="text" formControlName="streetPriority">              
             </div>
-          </div>
-    
-          <div class="row mb-2">
-            <div class="col-lg-3">
-              <label class="padding" for="iconDisplay">
-                Icon Display:
-              </label>
-            </div>
-            <div class="col-lg-3">
-              <input class="form-control" id="iconDisplay" type="text" formControlName="iconDisplay">
-              <button class="btn btn-sm-4 btn-primary" type="button" (click)="AddStreetPriority()">Add Street</button>
-            </div>
-          </div>
+          </div>              
     
           <div class="row mb-2">
             <div class="col-lg-3">
@@ -98,6 +86,18 @@
             </div>
           </div>                     
     
+          <div class="row mb-2">
+            <div class="col-lg-3">
+              <label class="padding" for="iconDisplay">
+                Icon Display:
+              </label>
+            </div>
+            <div class="col-lg-3">
+              <input class="form-control" id="iconDisplay" type="text" formControlName="iconDisplay">
+              <button class="btn btn-sm-4 btn-primary" type="text" formControlName="streetPriority">Add Street</button>
+            </div>
+          </div>        
+
           <div class="row mb-2">
             <div class="col-lg-4">
               <div class="d-flex justify-content-center">

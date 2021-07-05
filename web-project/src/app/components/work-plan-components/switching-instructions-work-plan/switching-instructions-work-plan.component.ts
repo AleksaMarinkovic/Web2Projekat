@@ -12,12 +12,12 @@ export class SwitchingInstructionsWorkPlanComponent implements OnInit {
   @Input() addWorkPlanForm: FormGroup;
   instructionsList : any [] = [];
   selectedInstruction: any;
-  instructions = this.instructionService.getAllInstructions();
   instructionGroup = this.formBuilder.group({
     instructionDescription: "",
     element: "",
   });
-
+  displayedColumns = ['id', 'start_date', 'phone_number', 'status', 'address'];
+  
   constructor(private instructionService: InstructionService, private formBuilder: FormBuilder ) { }
 
   ngOnInit(): void {
@@ -25,4 +25,10 @@ export class SwitchingInstructionsWorkPlanComponent implements OnInit {
   submit(instructionGroup: any){
     window.alert("instruction Added");
   }
+}
+export interface DataTableWorkPlanSwitchingInstructionsItem{
+  workPlanSwitchingInstructionsId: number,
+  element: string,
+  description: string,
+  workPlanId: number,
 }

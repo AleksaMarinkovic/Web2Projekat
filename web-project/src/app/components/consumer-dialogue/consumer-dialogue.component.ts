@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { ConsumerService } from 'src/app/services/consumer.service';
 import { DataTableConsumerDataSource, DataTableConsumerItem, EXAMPLE_DATA } from '../data-tables/data-table-consumer/data-table-consumer-datasource';
 
 @Component({
@@ -20,17 +21,28 @@ export class ConsumerDialogueComponent implements AfterViewInit {
   displayedColumns = ['id', 'name', 'lastname', 'location', 'priority', 'phoneNumber','consumerType', 'select'];
   public selectedFilter : string = "";
   constructor(
-   // public dialogRef: MatDialogRef<ConsumerDialogueComponent>,
-   // @Inject(MAT_DIALOG_DATA) public data: DataTableConsumerItem
+    public dialogRef: MatDialogRef<ConsumerDialogueComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DataTableConsumerItem,
+    private consumerService: ConsumerService
   ) { 
   }
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.refresh();
   }
   
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();   
+  }
+
+  refresh(){
+    this.consumerService.getAllConsumers().subscribe(
+      data =>{
+        this.dataSource = new MatTableDataSource<DataTableConsumerItem>(data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator; 
+        this.table.dataSource = this.dataSource;         
+      }
+    ); 
   }
 }

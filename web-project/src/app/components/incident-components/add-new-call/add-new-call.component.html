@@ -3,6 +3,12 @@
 <br />
 <form [formGroup]="newCallForm">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 text-left">
+                <a routerLink="/calls" class="btn btn-primary btn-sm"><i class="material-icons"
+                        style="vertical-align: -6px;">arrow_back_ios</i>CALLS</a>
+            </div>
+        </div>
         <div class="row justify-content-center buffer">
             <div class="col-3">
                 <label class="padding" for="reason">
@@ -65,9 +71,9 @@
         <div *ngIf = "consumer">
             <div class="row text-left mb-5 mx-3">
                 <div class="col-3">
-                    <label class="padding">
+                    <label class="padding" for="consumerId">
                     Id: {{consumer.id}}
-                    </label>
+                    </label>                    
                 </div>
                 <div class="col-3">
                     <label class="padding">

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web2BE.Data;
 
 namespace Web2BE.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210703161824_nullableFK")]
+    partial class nullableFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,9 +90,6 @@ namespace Web2BE.Migrations
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IconType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("IconSettingsId");
 
                     b.ToTable("IconSettings");
@@ -139,9 +138,6 @@ namespace Web2BE.Migrations
                     b.Property<int?>("WorkPlanId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("WorkRequestId")
-                        .HasColumnType("int");
-
                     b.HasKey("NotificationId");
 
                     b.HasIndex("IncidentId");
@@ -149,8 +145,6 @@ namespace Web2BE.Migrations
                     b.HasIndex("SafetyDocumentId");
 
                     b.HasIndex("WorkPlanId");
-
-                    b.HasIndex("WorkRequestId");
 
                     b.ToTable("Notification");
                 });
@@ -377,18 +371,6 @@ namespace Web2BE.Migrations
                     b.ToTable("WorkPlanSwitchingInstructions");
                 });
 
-            modelBuilder.Entity("Web2BE.Models.WorkRequest", b =>
-                {
-                    b.Property<int>("WorkRequestId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("WorkRequestId");
-
-                    b.ToTable("WorkRequest");
-                });
-
             modelBuilder.Entity("Web2BE.Models.Call", b =>
                 {
                     b.HasOne("Web2BE.Models.Consumer", "Consumer")
@@ -412,17 +394,11 @@ namespace Web2BE.Migrations
                         .WithMany()
                         .HasForeignKey("WorkPlanId");
 
-                    b.HasOne("Web2BE.Models.WorkRequest", "WorkRequest")
-                        .WithMany()
-                        .HasForeignKey("WorkRequestId");
-
                     b.Navigation("Incident");
 
                     b.Navigation("SafetyDocument");
 
                     b.Navigation("WorkPlan");
-
-                    b.Navigation("WorkRequest");
                 });
 
             modelBuilder.Entity("Web2BE.Models.WorkPlan", b =>
