@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Web2BE.Models
@@ -17,7 +18,7 @@ namespace Web2BE.Models
         public string DateEdited { get; set; }
         public string State { get; set; }
         public string DocImage { get; set; }
-        //public         
+        public ICollection<Equipment> Equipment { get; set; }
         public bool AllWorkOperationsCompleted { get; set; }
         public bool AllTagsRemoved { get; set; }
         public bool GroundingRemoved { get; set; }

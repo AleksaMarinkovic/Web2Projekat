@@ -23,5 +23,9 @@ namespace Web2BE.Data
         public DbSet<Web2BE.Models.WorkPlanSwitchingInstructions> WorkPlanSwitchingInstructions { get; set; }
         public DbSet<Web2BE.Models.NotificationTypesToDisplay> NotificationTypesToDisplay { get; set; }
         public DbSet<Web2BE.Models.Call> Call { get; set; }
+        public DbSet<Equipment> Equipment { get; set; }
+        public DbSet<WorkRequest> WorkRequests { get; set; }
+        public DbSet<Crew> Crews { get; set; }
+
     }
 }
