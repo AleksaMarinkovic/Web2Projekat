@@ -36,6 +36,8 @@ export class AddNewConsumerComponent implements OnInit {
     else{
       this.consumerService.postConsumer(consumer).subscribe();
     }
+    console.log(consumer);
+
     this.newConsumerForm.reset();    
   }
 }
