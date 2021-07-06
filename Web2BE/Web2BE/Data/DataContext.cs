@@ -27,5 +27,50 @@ namespace Web2BE.Data
         public DbSet<WorkRequest> WorkRequests { get; set; }
         public DbSet<Crew> Crews { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+            modelBuilder.Entity<Call>().Property(c => c.CallId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Call>().HasKey(c => c.CallId);
+
+            modelBuilder.Entity<Consumer>().Property(c => c.ConsumerId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Consumer>().HasKey(c => c.ConsumerId);
+
+            modelBuilder.Entity<Crew>().Property(c => c.CrewId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Crew>().HasKey(c => c.CrewId);
+
+            modelBuilder.Entity<Equipment>().Property(c => c.EquipmentId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Equipment>().HasKey(c => c.EquipmentId);
+
+            modelBuilder.Entity<IconSettings>().Property(c => c.IconSettingsId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<IconSettings>().HasKey(c => c.IconSettingsId);
+
+            modelBuilder.Entity<Incident>().Property(c => c.IncidentId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Incident>().HasKey(c => c.IncidentId);
+
+            modelBuilder.Entity<Notification>().Property(c => c.NotificationId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Notification>().HasKey(c => c.NotificationId);
+
+            modelBuilder.Entity<NotificationTypesToDisplay>().Property(c => c.NotificationTypesToDisplayId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<NotificationTypesToDisplay>().HasKey(c => c.NotificationTypesToDisplayId);
+
+            modelBuilder.Entity<SafetyDocument>().Property(c => c.SafetyDocumentId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<SafetyDocument>().HasKey(c => c.SafetyDocumentId);
+
+            modelBuilder.Entity<User>().Property(c => c.UserId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<User>().HasKey(c => c.UserId);
+
+            modelBuilder.Entity<WorkPlan>().Property(c => c.WorkPlanId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<WorkPlan>().HasKey(c => c.WorkPlanId);
+
+            modelBuilder.Entity<WorkPlanEquipment>().Property(c => c.WorkPlanEquipmentId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<WorkPlanEquipment>().HasKey(c => c.WorkPlanEquipmentId);
+
+            modelBuilder.Entity<WorkPlanSwitchingInstructions>().Property(c => c.WorkPlanSwitchingInstructionstId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<WorkPlanSwitchingInstructions>().HasKey(c => c.WorkPlanSwitchingInstructionstId);
+
+            modelBuilder.Entity<WorkRequest>().Property(c => c.WorkRequestId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<WorkRequest>().HasKey(c => c.WorkRequestId);
+        }
     }
 }

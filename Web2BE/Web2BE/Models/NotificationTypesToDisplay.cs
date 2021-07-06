@@ -9,8 +9,7 @@ namespace Web2BE.Models
 {
     public class NotificationTypesToDisplay
     {
-        [Key]//The idea is to store from settings to here and use that as a query for notiftypes as a filter to show only those notifications!
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //The idea is to store from settings to here and use that as a query for notiftypes as a filter to show only those notifications!
         public int NotificationTypesToDisplayId { get; set; }
         public string NotificationTypeToDisplay { get; set; }
     }

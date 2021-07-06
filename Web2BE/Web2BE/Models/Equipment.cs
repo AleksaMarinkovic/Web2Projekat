@@ -9,8 +9,6 @@ namespace Web2BE.Models
 {
     public class Equipment
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EquipmentId { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }

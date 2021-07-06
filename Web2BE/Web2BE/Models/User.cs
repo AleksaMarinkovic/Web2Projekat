@@ -9,10 +9,7 @@ namespace Web2BE.Models
 {
     public class User
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
-        
+        public int UserId { get; set; }        
         public string Userame { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

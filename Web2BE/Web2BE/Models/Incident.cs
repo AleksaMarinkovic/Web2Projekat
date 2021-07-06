@@ -6,8 +6,6 @@ namespace Web2BE.Models
 {
     public class Incident
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IncidentId { get; set; }
         public string AffectedCustomer { get; set; }
         public string Type { get; set; }

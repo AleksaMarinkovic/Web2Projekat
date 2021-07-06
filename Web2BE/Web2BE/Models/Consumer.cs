@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 namespace Web2BE.Models
 {
     public class Consumer
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    {       
         public int ConsumerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

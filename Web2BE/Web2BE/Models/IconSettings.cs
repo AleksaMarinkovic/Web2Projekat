@@ -9,10 +9,7 @@ namespace Web2BE.Models
 {
     public class IconSettings
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IconSettingsId { get; set; }
-
         public string IconType { get; set; }
         public string Icon { get; set; }
     }

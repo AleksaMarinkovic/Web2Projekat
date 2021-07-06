@@ -9,10 +9,7 @@ namespace Web2BE.Models
 {
     public class Call
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CallId { get; set; }
-
         //FK        
         public int? ConsumerId { get; set; }
         public Consumer Consumer { get; set; }

@@ -6,8 +6,6 @@ namespace Web2BE.Models
 {
     public class SafetyDocument
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SafetyDocumentId { get; set; }
         public string Type { get; set; }
         public string PhoneNumber { get; set; }

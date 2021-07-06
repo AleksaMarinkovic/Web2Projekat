@@ -29,13 +29,14 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/Notifications
+        /*
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Notification>>> GetNotificationByType(string NotificationType)
         {
             var sql = _context.Notification.FromSqlRaw("SELECT * FROM  [dbo].[Notifications]({0})", NotificationType);
             return await sql.ToListAsync();
         }
-
+        */
         // GET: api/Notifications/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Notification>> GetNotification(int id)

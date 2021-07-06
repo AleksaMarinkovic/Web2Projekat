@@ -9,8 +9,6 @@ namespace Web2BE.Models
 {
     public class WorkRequest
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WorkRequestId { get; set; }
         public string Type { get; set; }
         public bool EmergencyWork { get; set; }

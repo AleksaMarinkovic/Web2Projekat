@@ -9,8 +9,6 @@ namespace Web2BE.Models
 {
     public class WorkPlanEquipment
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WorkPlanEquipmentId { get; set; }
         public string Name { get; set; }
         public string EquipmentType { get; set; }

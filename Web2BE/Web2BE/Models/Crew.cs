@@ -9,9 +9,6 @@ namespace Web2BE.Models
 {
     public class Crew
     {
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CrewId { get; set; }
         public string CrewName { get; set; }
         public string Members { get; set; }
