@@ -37,7 +37,6 @@ export class CallsComponent implements OnInit {
         this.dataSource = new MatTableDataSource<DataTableCallItem>(EXAMPLE_DATA);
       }
     );
-   
   }
 
 }

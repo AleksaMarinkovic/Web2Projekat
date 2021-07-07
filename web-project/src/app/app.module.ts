@@ -88,6 +88,7 @@ import { ConsumerDialogueComponent } from './components/consumer-dialogue/consum
 import { ModifyElementComponent } from './components/modify-element/modify-element.component';
 import { ModifyCrewComponent } from './components/modify-crew/modify-crew.component';
 import { IncidentsWrComponent } from './components/work-request-components/incidents-wr/incidents-wr.component';
+import { DataTableIconSettingsComponent } from './components/data-tables/data-table-icon-settings/data-table-icon-settings.component';
 
 @NgModule({
   declarations: [
@@ -154,6 +155,7 @@ import { IncidentsWrComponent } from './components/work-request-components/incid
     ModifyElementComponent,
     ModifyCrewComponent,
     IncidentsWrComponent,
+    DataTableIconSettingsComponent,
 
   ],
   imports: [

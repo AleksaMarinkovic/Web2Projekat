@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
@@ -15,7 +15,7 @@ import { notificationTypesDisplayed } from 'src/assets/notificationTypesDisplaye
   styleUrls: ['./notifications.component.css']
 })
 
-export class NotificationsComponent implements OnInit {  
+export class NotificationsComponent implements AfterViewInit  {  
 
   dataSource = new MatTableDataSource<DataTableNotificationsItem>(EXAMPLE_DATA);
   elementProperties = Object.values(notificationTypesDisplayed);
@@ -29,7 +29,7 @@ export class NotificationsComponent implements OnInit {
   constructor(private _notificationService: NotificationService) {
   }
 
-  ngOnInit(): void {  
+  ngAfterViewInit(): void {  
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = function (data, filter: string): boolean {     
@@ -91,6 +91,8 @@ export const EXAMPLE_DATA: DataTableNotificationsItem[] = [
   { notificationId: 7, type: notificationTypes.Information, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
   { notificationId: 8, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread },
   { notificationId: 9, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
- 
+  { notificationId: 11, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread},
+  { notificationId: 21, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread},
+  { notificationId: 12, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread},
   
 ];

@@ -92,6 +92,9 @@
                 Icon Display:
               </label>
             </div>
+            <div class="row mb-2">
+              <app-data-table-icon-settings (iconSettingsEmmiter)="iconSettingsEmmiter($event)"></app-data-table-icon-settings>
+            </div>
             <div class="col-lg-3">
               <input class="form-control" id="iconDisplay" type="text" formControlName="iconDisplay">
               <button class="btn btn-sm-4 btn-primary" type="text" formControlName="streetPriority">Add Street</button>

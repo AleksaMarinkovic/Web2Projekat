@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-left">
   <a class="navbar-brand separator-right" [routerLink]="['/dashboard']" title="Home">
-    <img class="d-inline-block align-top" src="../../../assets/images/logo.png" alt="Home" width="50" height="50">
+    <img class="d-inline-block align-top" [src]="this.iconMap.get('Logo')" alt="Home" width="50" height="50">
   </a>
   <button class="navbar-toggler" type="button" (click)="navbarCollapsed = !navbarCollapsed"
     [attr.aria-expanded]="!navbarCollapsed" aria-controls="navbarContent" aria-expanded="false"
@@ -11,48 +11,48 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item mx-1">
         <a class="nav-link" [routerLink]="['/search']" title="Search">
-          <img class="small-icon" src="../../../assets/images/SEARCH.png" alt="Search">
+          <img class="small-icon" [src]="this.iconMap.get('Search')" alt="Search">
         </a>
       </li>
       <li class="nav-item mx-1">
         <a class="nav-link" [routerLink]="['/notifications']" title="Notifications">
-          <img class="small-icon" src="../../../assets/images/NOTIFICATION.png" alt="Notifications">
+          <img class="small-icon" [src]="this.iconMap.get('Notifications')" alt="Notifications">
         </a>
       </li>
       <li class="nav-item mx-1">
         <a class="nav-link" [routerLink]="['/map']" title="Map">
-          <img class="small-icon" src="../../../assets/images/MAP.png" alt="Map">
+          <img class="small-icon" [src]="this.iconMap.get('Map')" alt="Map">
         </a>
       </li>
       <li class="nav-item mx-1">
         <a class="nav-link" [routerLink]="['/dashboard']" title="Documents">
-          <img class="small-icon" src="../../../assets/images/DOCUMENTS.png" alt="Documents">
+          <img class="small-icon" [src]="this.iconMap.get('Documents')" alt="Documents">
         </a>
       </li>
       <li class="nav-item mx-1">
         <a class="nav-link" [routerLink]="['/addElement']" title="Add elements">
-          <img class="small-icon" src="../../../assets/images/ADDELEMENT.png" alt="Add elements">
+          <img class="small-icon" [src]="this.iconMap.get('Element')" alt="Add elements">
         </a>
       </li>
       <li class="nav-item mx-1">
         <a class="nav-link" [routerLink]="['/addCrew']" title="Add crew members">
-          <img class="small-icon" src="../../../assets/images/ADDCREW2.png" alt="Add crew members">
+          <img class="small-icon" [src]="this.iconMap.get('Crew')" alt="Add crew members">
         </a>
       </li>
       <li class="nav-item mx-1">
         <a class="nav-link" [routerLink]="['/addConsumer']" title="Add consumer">
-          <img class="small-icon" src="../../../assets/images/ADDCONSUMER.png" alt="Add consumer">
+          <img class="small-icon" [src]="this.iconMap.get('Consumer')" alt="Add consumer">
         </a>
       </li>
     </ul>
     <a class="nav-link" [routerLink]="['/settings']" title="Settings">
-      <img class="medium-icon" src="../../../assets/images/SETTINGS.png" alt="Settings">
+      <img class="medium-icon" [src]="this.iconMap.get('Settings')" alt="Settings">
     </a>
     <a class="nav-link separator" [routerLink]="['/userProfile']" title="Profile">
-      <img class="medium-icon" src="../../../assets/images/PROFILE.png" alt="Profile">
+      <img class="medium-icon" [src]="this.iconMap.get('Profile')" alt="Profile">
     </a>
     <a class="nav-link separator" [routerLink]="['/']" title="Sign out">
-      <img class="medium-icon" src="../../../assets/images/LOGOUT.png" alt="Sign out">
+      <img class="medium-icon" [src]="this.iconMap.get('Sign out')" alt="Sign out">
     </a>
   </div>
 </nav>
