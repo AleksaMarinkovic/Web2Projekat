@@ -85,6 +85,7 @@ import { DataTableInstructionsComponent } from './components/data-tables/data-ta
 import { CallsComponent } from './components/incident-components/calls/calls.component';
 import { AddNewCallComponent } from './components/incident-components/add-new-call/add-new-call.component';
 import { ConsumerDialogueComponent } from './components/consumer-dialogue/consumer-dialogue.component';
+import { DataTableIconSettingsComponent } from './components/data-tables/data-table-icon-settings/data-table-icon-settings.component';
 
 @NgModule({
   declarations: [
@@ -148,6 +149,7 @@ import { ConsumerDialogueComponent } from './components/consumer-dialogue/consum
     CallsComponent,
     AddNewCallComponent,
     ConsumerDialogueComponent,
+    DataTableIconSettingsComponent,
 
   ],
   imports: [
