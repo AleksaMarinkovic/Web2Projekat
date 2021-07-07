@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { DataTableIncidentsDataSource, DataTableIncidentsItem } from './data-table-incidents-datasource';
+import { IncidentService } from 'src/app/services/incident.service';
 
 @Component({
   selector: 'app-data-table-incidents',
@@ -16,15 +17,27 @@ export class DataTableIncidentsComponent implements AfterViewInit {
   dataSource: DataTableIncidentsDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'type', 'priority', 'status', 'ETA'];
+  displayedColumns = ['incidentId', 'type', 'priority', 'cause', 'eta'];
 
-  constructor() {
+  constructor(private incidentService: IncidentService) {
     this.dataSource = new DataTableIncidentsDataSource();
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.refresh();
+  }
+
+  refresh(){
+    this.incidentService.getAllIncidents().subscribe(
+      data => {       
+        console.log(data);
+        this.dataSource.data = data;   
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator; 
+        this.table.dataSource = this.dataSource; 
+        this.dataSource.paginator._changePageSize(this.paginator.pageSize);
+           
+      }
+    ); 
   }
 }

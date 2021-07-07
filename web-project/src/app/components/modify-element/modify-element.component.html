@@ -1,0 +1,54 @@
+<form [formGroup]="newElementForm">
+    <div class="container-fluid">              
+
+        <div class="row buffer">
+            <div class="col-3">
+                <label class="padding" for="Type">
+                    Type:
+                </label>
+            </div>
+            <div class="col-6">
+                <select formControlName="type">
+                    <option *ngFor="let element of equipmentTypes" [value]="element" id="element" >{{element}}</option>
+                  </select>
+            </div>
+        </div>      
+
+        <div class="row buffer">
+            <div class="col-3">
+                <label class="padding" for="Name">
+                    Name:
+                </label>
+            </div>            
+            <div class="col-6">
+                <input class="form-control" id="name" type="text" formControlName="name">
+            </div>
+        </div>
+        <div class="row buffer">
+            <div class="col-3">
+                <label class="padding" for="Address">
+                    Address:
+                </label>
+            </div>
+            <div class="col-6">
+                <input class="form-control" id="address" type="text" formControlName="address">
+            </div>
+        </div>
+
+        <div class="row buffer">
+            <div class="col-3">
+                <label class="padding" for="Coordinates">
+                    Coordinates:
+                </label>
+            </div>
+            <div class="col-6">
+                <input class="form-control" id="coordinates" type="text" formControlName="coordinates">
+            </div>
+        </div>
+        <div class="row buffer">
+            <div class="col-3">
+                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newElementForm.value)">CONFIRM</button>
+            </div>
+        </div>     
+    </div>
+</form>

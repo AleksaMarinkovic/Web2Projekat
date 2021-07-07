@@ -1,8 +1,10 @@
-import { AfterViewInit, Component, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { EquipmentService } from 'src/app/services/equipment.service';
+import { ModifyElementComponent } from '../../modify-element/modify-element.component';
 import { DataTableElementDataSource, DataTableElementItem } from './data-table-element-datasource';
 
 @Component({
@@ -17,9 +19,9 @@ export class DataTableElementComponent implements AfterViewInit {
   dataSource: DataTableElementDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'type', 'coordinates', 'address', 'modify','delete'];
+  displayedColumns = ['id', 'type', 'name', 'address', 'coordinates', 'modify','delete'];
 
-  constructor(private equipmentService: EquipmentService, private changeDetectorRefs: ChangeDetectorRef) {
+  constructor(private equipmentService: EquipmentService, public dialog: MatDialog) {
     this.dataSource = new DataTableElementDataSource();
   }
 
@@ -27,8 +29,14 @@ export class DataTableElementComponent implements AfterViewInit {
     this.refresh();
   }
   
-  modify(rowId:any){
-    window.alert("temp, should modify element with id: " + rowId);
+  modify(element:any){
+    const d = this.dialog.open(ModifyElementComponent, {
+      data: {element: element}
+    });
+
+    d.afterClosed().subscribe(
+      () => this.refresh()
+    );
   }
   delete(equipment:any){
    this.equipmentService.deleteEquipment(equipment.equipmentId).subscribe(()=>this.refresh());

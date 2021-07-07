@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { DataTableWorkRequestsDataSource, DataTableWorkRequestsItem } from './data-table-work-requests-datasource';
+import { WorkRequestService } from 'src/app/services/work-request.service';
 
 @Component({
   selector: 'app-data-table-work-requests',
@@ -16,15 +17,28 @@ export class DataTableWorkRequestsComponent implements AfterViewInit {
   dataSource: DataTableWorkRequestsDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'start_date', 'phone_number', 'status', 'address'];
+  displayedColumns = ['workRequestId', 'startDate', 'phoneNumber', 'docState', 'street'];
 
-  constructor() {
+  constructor(private workRequestService: WorkRequestService) {
     this.dataSource = new DataTableWorkRequestsDataSource();
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.refresh();
+
+  }
+
+  refresh(){
+    this.workRequestService.getAllWorkRequests().subscribe(
+      data => {       
+        console.log(data);
+        this.dataSource.data = data;   
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator; 
+        this.table.dataSource = this.dataSource; 
+        this.dataSource.paginator._changePageSize(this.paginator.pageSize);
+           
+      }
+    ); 
   }
 }

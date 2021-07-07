@@ -85,6 +85,9 @@ import { DataTableInstructionsComponent } from './components/data-tables/data-ta
 import { CallsComponent } from './components/incident-components/calls/calls.component';
 import { AddNewCallComponent } from './components/incident-components/add-new-call/add-new-call.component';
 import { ConsumerDialogueComponent } from './components/consumer-dialogue/consumer-dialogue.component';
+import { ModifyElementComponent } from './components/modify-element/modify-element.component';
+import { ModifyCrewComponent } from './components/modify-crew/modify-crew.component';
+import { IncidentsWrComponent } from './components/work-request-components/incidents-wr/incidents-wr.component';
 
 @NgModule({
   declarations: [
@@ -148,6 +151,9 @@ import { ConsumerDialogueComponent } from './components/consumer-dialogue/consum
     CallsComponent,
     AddNewCallComponent,
     ConsumerDialogueComponent,
+    ModifyElementComponent,
+    ModifyCrewComponent,
+    IncidentsWrComponent,
 
   ],
   imports: [

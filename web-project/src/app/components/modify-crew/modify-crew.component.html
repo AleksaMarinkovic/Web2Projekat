@@ -1,0 +1,33 @@
+<form [formGroup] = "newCrewForm">
+    <div class="container-fluid">              
+
+       
+        <div class="row buffer">
+            <div class="col-3">
+                <label class="padding" for="crewName">
+                    Crew name:
+                </label>
+            </div>            
+            <div class="col-6">
+                <input class="form-control" id="crewName" type="text" formControlName="crewName">
+            </div>
+        </div>
+
+        <div class="row buffer">
+            <div class="col-3">
+                <label class="padding" for="members">
+                    Members:
+                </label>
+            </div>
+            <div class="col-6">
+                <input class="form-control" id="members" type="text" formControlName="members">
+            </div>
+        </div>
+        <div class="row buffer">
+            <div class="col-3">
+                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newCrewForm.value)">CONFIRM</button>
+            </div>
+        </div>   
+    </div>
+
+</form>

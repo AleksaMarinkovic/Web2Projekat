@@ -16,6 +16,7 @@ namespace Web2BE.Models
         public string CreatedDate { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
+        public string CreatedBy { get; set; }
         public string Street { get; set; }
         public string PhoneNumber { get; set; }
         public string Purpose { get; set; }
@@ -24,6 +25,7 @@ namespace Web2BE.Models
         public string DateEdited { get; set; }
         public string DocState { get; set; }
         public string WRImage { get; set; }
+        public ICollection<Incident> Incidents { get; set; }
         public ICollection<Equipment> Equipment { get; set; }
     }
 }

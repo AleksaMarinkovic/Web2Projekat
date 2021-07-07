@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { causeTypes, constructionType, incidentTypes, materialType, subcauseTypes } from 'src/assets/Types.enum';
 import { incidentPriorities } from 'src/assets/Types.enum';
+import { IncidentService } from 'src/app/services/incident.service';
+import { Router } from '@angular/router'
 
 @Component({
   templateUrl: './add-incident.component.html',
@@ -11,7 +13,7 @@ import { incidentPriorities } from 'src/assets/Types.enum';
 export class AddIncidentComponent implements OnInit {
 
   addIncidentForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private incidentService: IncidentService, private _router: Router) { }
 
   ngOnInit(): void {
     this.addIncidentForm = this.formBuilder.group({
@@ -36,5 +38,10 @@ export class AddIncidentComponent implements OnInit {
       material: materialType.Metal,     
     });  
   }
-
+  onSubmit(incident: any){
+    this.incidentService.postIncident(incident).subscribe();
+    console.log(incident);    
+    this.addIncidentForm.reset();   
+    this._router.navigate(['/incidents']);
+  }
 }

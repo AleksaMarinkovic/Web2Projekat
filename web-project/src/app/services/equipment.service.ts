@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { throwError } from 'rxjs';
-import { catchError, retry} from 'rxjs/operators';
+import { catchError} from 'rxjs/operators';
 import { handleError } from 'src/assets/errorHandler';
 import { DataTableElementItem } from '../components/data-tables/data-table-element/data-table-element-datasource';
 

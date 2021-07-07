@@ -7,7 +7,7 @@ namespace Web2BE.Models
     public class Incident
     {
         public int IncidentId { get; set; }
-        public string AffectedCustomer { get; set; }
+        public int AffectedConsumers { get; set; }
         public string Type { get; set; }
         public string DateOccured { get; set; }
         public string Priority { get; set; }

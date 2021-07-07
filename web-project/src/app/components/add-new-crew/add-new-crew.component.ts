@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
+import { CrewService } from 'src/app/services/crew.service';
+import { DataTableCrewItem } from '../data-tables/data-table-crew/data-table-crew-datasource';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-add-new-crew',
@@ -8,18 +11,19 @@ import {FormBuilder} from "@angular/forms";
 })
 export class AddNewCrewComponent implements OnInit {
   newCrewForm = this.formBuilder.group({
-    id: "",
-    name: "",
-    member: ""
-
+    crewName: "",
+    members: "",
   })
-  constructor(private formBuilder : FormBuilder) { }
+  constructor(private formBuilder : FormBuilder, private crewService: CrewService, private _router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(crew:any){
-    window.alert("temp. Should add crew with id: "+ crew.id);
+  onSubmit(crew: DataTableCrewItem){
+    this.crewService.postCrew(crew).subscribe();
+    console.log(crew);    
+    this.newCrewForm.reset();   
+    this._router.navigate(['/addCrew']);
   }
 
 }

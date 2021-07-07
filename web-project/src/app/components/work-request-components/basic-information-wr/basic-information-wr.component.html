@@ -1,4 +1,4 @@
-<div class="container-fluid grid-border">
+<div class="container-fluid grid-border">    
     <div class="row text-left mb-5 mt-4 mx-3">
         <div class="col-3">
             <label for="type">Type:</label>
@@ -9,26 +9,10 @@
                     {{workReqType}}</option>
             </select>
         </div>
-    </div>
-    <div class="row text-left mb-5 mx-3">
-        <div class="col-3">
-            Status:
-        </div>
-        <div class="col-3">
-            Status label
-        </div>        
-    </div>
-    <div class="row text-left mb-5 mx-3">
-        <div class="col-3">
-            Incident:
-        </div>
-        <div class="col-3">
-            Incident ID label
-        </div>
         <div class="col-3" [formGroup]="addWorkRequestForm">
             <div class="custom-control custom-switch">
-                <input class="custom-control-input" type="checkbox" id="emergency"  [formControlName]="'emergency'">  
-                <label class="custom-control-label" for="emergency">Emergency work? </label>              
+                <input class="custom-control-input" type="checkbox" id="emergencyWork"  [formControlName]="'emergencyWork'">  
+                <label class="custom-control-label" for="emergencyWork">Emergency work? </label>              
               </div>
         </div>
     </div>

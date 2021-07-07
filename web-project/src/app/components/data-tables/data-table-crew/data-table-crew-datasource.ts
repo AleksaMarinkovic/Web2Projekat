@@ -6,30 +6,30 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface DataTableCrewItem {
-  name: string;
-  id: number;
-  member: string;
+  crewName: string;
+  crewId: number;
+  members: string;
 }
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: DataTableCrewItem[] = [
-  {id: 1, name: 'NS Crew', member: 'TempMember1'},
-  {id: 2, name: 'NS Crew', member:'TempMember2'},
-  {id: 3, name: 'NS Crew', member:'TempMember3'},
-  {id: 4, name: 'NS Crew', member:'TempMember4'},
-  {id: 5, name: 'NS Crew',member: 'TempMember5'},
- {id: 6, name: '021 Crew', member:'TempMember6'},
- {id: 7, name: '021 Crew', member:'TempMember7'},
-  {id: 8, name: '021 Crew',member: 'TempMember8'},
-  {id: 9, name: '021 Crew',member: 'TempMember9'},
-  {id: 10, name: '021 Crew', member:'TempMember10'},
-  {id: 11, name: 'BEST Crew',member: 'TempMember11'},
-  {id: 12, name: 'BEST Crew', member:'TempMember12'},
-  {id: 13, name: 'BEST Crew', member:'TempMember13'},
-  {id: 14, name: 'BEST Crew',member: 'TempMember14'},
-  {id: 15, name: 'BEST Crew',member: 'TempMember15'},
-  {id: 16, name: 'BEST Crew', member:'TempMember16'},
-  {id: 17, name: 'BEST Crew',member: 'TempMember17'},
+//   {id: 1, name: 'NS Crew', member: 'TempMember1'},
+//   {id: 2, name: 'NS Crew', member:'TempMember2'},
+//   {id: 3, name: 'NS Crew', member:'TempMember3'},
+//   {id: 4, name: 'NS Crew', member:'TempMember4'},
+//   {id: 5, name: 'NS Crew',member: 'TempMember5'},
+//  {id: 6, name: '021 Crew', member:'TempMember6'},
+//  {id: 7, name: '021 Crew', member:'TempMember7'},
+//   {id: 8, name: '021 Crew',member: 'TempMember8'},
+//   {id: 9, name: '021 Crew',member: 'TempMember9'},
+//   {id: 10, name: '021 Crew', member:'TempMember10'},
+//   {id: 11, name: 'BEST Crew',member: 'TempMember11'},
+//   {id: 12, name: 'BEST Crew', member:'TempMember12'},
+//   {id: 13, name: 'BEST Crew', member:'TempMember13'},
+//   {id: 14, name: 'BEST Crew',member: 'TempMember14'},
+//   {id: 15, name: 'BEST Crew',member: 'TempMember15'},
+//   {id: 16, name: 'BEST Crew', member:'TempMember16'},
+//   {id: 17, name: 'BEST Crew',member: 'TempMember17'},
 ];
 
 /**
@@ -95,9 +95,9 @@ export class DataTableCrewDataSource extends DataSource<DataTableCrewItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
-        case 'member': return compare(a.name, b.name, isAsc);
+        case 'crewName': return compare(a.crewName, b.crewName, isAsc);
+        case 'crewId': return compare(+a.crewId, +b.crewId, isAsc);
+        case 'members': return compare(a.members, b.members, isAsc);
         default: return 0;
       }
     });

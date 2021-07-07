@@ -10,7 +10,7 @@ using Web2BE.Data;
 namespace Web2BE.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210706131532_Initial")]
+    [Migration("20210707165647_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,8 +170,8 @@ namespace Web2BE.Migrations
                     b.Property<string>("ATA")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AffectedCustomer")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AffectedConsumers")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Approved")
                         .HasColumnType("bit");
@@ -218,7 +218,12 @@ namespace Web2BE.Migrations
                     b.Property<int>("Voltage")
                         .HasColumnType("int");
 
+                    b.Property<int?>("WorkRequestId")
+                        .HasColumnType("int");
+
                     b.HasKey("IncidentId");
+
+                    b.HasIndex("WorkRequestId");
 
                     b.ToTable("Incident");
                 });
@@ -505,6 +510,9 @@ namespace Web2BE.Migrations
                     b.Property<string>("Company")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreatedDate")
                         .HasColumnType("nvarchar(max)");
 
@@ -572,6 +580,13 @@ namespace Web2BE.Migrations
 
                     b.HasOne("Web2BE.Models.WorkRequest", null)
                         .WithMany("Equipment")
+                        .HasForeignKey("WorkRequestId");
+                });
+
+            modelBuilder.Entity("Web2BE.Models.Incident", b =>
+                {
+                    b.HasOne("Web2BE.Models.WorkRequest", null)
+                        .WithMany("Incidents")
                         .HasForeignKey("WorkRequestId");
                 });
 

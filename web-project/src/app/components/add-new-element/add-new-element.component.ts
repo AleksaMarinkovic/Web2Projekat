@@ -3,7 +3,7 @@ import {FormBuilder} from "@angular/forms";
 import { EquipmentService } from 'src/app/services/equipment.service';
 import { equipmentType} from "src/assets/equipmentType.enum";
 import { DataTableElementItem } from '../data-tables/data-table-element/data-table-element-datasource';
-
+import { Router } from '@angular/router'
 @Component({
   templateUrl: './add-new-element.component.html',
   styleUrls: ['./add-new-element.component.css']
@@ -17,13 +17,14 @@ export class AddNewElementComponent implements OnInit {
     address: "",
     coordinates: "",
   })
-  constructor(private formBuilder: FormBuilder, private equipmentService: EquipmentService) { }
+  constructor(private formBuilder: FormBuilder, private equipmentService: EquipmentService, private _router: Router) { }
 
   ngOnInit(): void {
   }
   onSubmit(equipment: DataTableElementItem){
     this.equipmentService.postEquipment(equipment).subscribe();
-    console.log(equipment);
-    this.newElementForm.reset();    
+    console.log(equipment);    
+    this.newElementForm.reset();   
+    this._router.navigate(['/addElement']);
   }
 }

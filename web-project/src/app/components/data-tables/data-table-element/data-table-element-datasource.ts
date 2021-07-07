@@ -83,7 +83,7 @@ export class DataTableElementDataSource extends DataSource<DataTableElementItem>
         case 'id': return compare(+a.id, +b.id, isAsc);
         case 'type': return compare(a.type, b.type, isAsc);
         case 'address': return compare(a.address, b.address, isAsc);
-        case 'coords': return compare(a.coordinates, b.coordinates, isAsc);
+        case 'coordinates': return compare(a.coordinates, b.coordinates, isAsc);
         default: return 0;
       }
     });
