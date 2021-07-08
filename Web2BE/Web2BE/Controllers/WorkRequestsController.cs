@@ -42,6 +42,44 @@ namespace Web2BE.Controllers
             return workRequest;
         }
 
+        [ActionName("Drafted")]
+        [HttpGet("Drafted")]
+        public async Task<ActionResult<int>> GetDraftedWorkRequests()
+        {
+            var res = await _context.WorkRequests.Where(d => d.DocState == "Drafted").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+        [ActionName("Completed")]
+        [HttpGet("Completed")]
+        public async Task<ActionResult<int>> GetCompletedWorkRequests()
+        {
+            var res = await _context.WorkRequests.Where(d => d.DocState == "Completed").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+
+        [ActionName("Canceled")]
+        [HttpGet("Canceled")]
+        public async Task<ActionResult<int>> GetCanceledWorkRequests()
+        {
+            var res = await _context.WorkRequests.Where(d => d.DocState == "Canceled").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+
+        [ActionName("Issued")]
+        [HttpGet("Issued")]
+        public async Task<ActionResult<int>> GetIssuedWorkRequests()
+        {
+            var res = await _context.WorkRequests.Where(d => d.DocState == "Issued").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
         // PUT: api/WorkRequests/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -80,6 +118,38 @@ namespace Web2BE.Controllers
         [HttpPost]
         public async Task<ActionResult<WorkRequest>> PostWorkRequest(WorkRequest workRequest)
         {
+            var tempEquipment = new List<Equipment>();
+            var tempIncidents = new List<Incident>();
+            foreach(var e in workRequest.Equipment)
+            {
+                tempEquipment.Add(e);
+            }
+            workRequest.Equipment.Clear();
+            foreach (var i in workRequest.Incidents)
+            {
+                tempIncidents.Add(i);
+            }
+            workRequest.Incidents.Clear();
+
+
+            foreach(var equipment in tempEquipment)
+            {
+                var entity = await _context.Equipment.Where(e => e.EquipmentId == equipment.EquipmentId).FirstOrDefaultAsync();
+                entity.WorkRequestId = workRequest.WorkRequestId;
+                entity.WorkRequest = workRequest;
+                _context.Equipment.Update(entity);
+                workRequest.Equipment.Add(entity);
+            }
+            foreach (var incident in tempIncidents)
+            {
+                var entity = await _context.Incident.Where(e => e.IncidentId == incident.IncidentId).FirstOrDefaultAsync();
+                entity.WorkRequestId = workRequest.WorkRequestId;
+                entity.WorkRequest = workRequest;
+                _context.Incident.Update(entity);
+                workRequest.Incidents.Add(entity);
+            }
+
+
             _context.WorkRequests.Add(workRequest);
             await _context.SaveChangesAsync();
 

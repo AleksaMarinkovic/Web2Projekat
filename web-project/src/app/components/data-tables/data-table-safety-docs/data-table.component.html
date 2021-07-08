@@ -1,33 +1,33 @@
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    <ng-container matColumnDef="safetyDocumentId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Safety document id</th>
+      <td mat-cell *matCellDef="let row">{{row.safetyDocumentId}}</td>
     </ng-container>
 
     <!-- Start date Column -->
-    <ng-container matColumnDef="start_date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Start date</th>
-      <td mat-cell *matCellDef="let row">{{row.start_date}}</td>
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+      <td mat-cell *matCellDef="let row">{{row.type}}</td>
     </ng-container>
 
     <!-- Phone number Column -->
-    <ng-container matColumnDef="phone_number">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone number</th>
-      <td mat-cell *matCellDef="let row">{{row.phone_number}}</td>
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+      <td mat-cell *matCellDef="let row">{{row.state}}</td>
     </ng-container>
 
     <!-- Status Column -->
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-      <td mat-cell *matCellDef="let row">{{row.status}}</td>
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone number</th>
+      <td mat-cell *matCellDef="let row">{{row.phoneNumber}}</td>
     </ng-container>
 
     <!-- Address Column -->
-    <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
-      <td mat-cell *matCellDef="let row">{{row.address}}</td>
+    <ng-container matColumnDef="dateCreated">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date created</th>
+      <td mat-cell *matCellDef="let row">{{row.dateCreated}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

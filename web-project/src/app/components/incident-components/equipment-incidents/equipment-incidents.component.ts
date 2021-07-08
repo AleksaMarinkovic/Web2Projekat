@@ -12,17 +12,14 @@ export class EquipmentIncidentsComponent implements OnInit {
   equipmentList : any [] = [];
   selectedEquipment: any;
   equipments = this.equipmentService.getAllEquipment();
-  equipmentGroup = this.formBuilder.group({
-    newEquipment: ""
-  });
-  constructor(private equipmentService : EquipmentService, private formBuilder: FormBuilder) { }
+
+  constructor(private equipmentService : EquipmentService) { }
 
   ngOnInit(): void {
   }
   onSubmit(){
     this.equipmentList.push(this.selectedEquipment);
     console.warn('List is now: ', this.equipmentList);
-    console.warn('Added: ', this.equipmentGroup.value);    
   }
 
 }

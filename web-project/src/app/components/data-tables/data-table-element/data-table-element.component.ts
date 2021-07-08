@@ -19,7 +19,7 @@ export class DataTableElementComponent implements AfterViewInit {
   dataSource: DataTableElementDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'type', 'name', 'address', 'coordinates', 'modify','delete'];
+  displayedColumns = ['equipmentId', 'type', 'name', 'address', 'coordinates', 'modify','delete'];
 
   constructor(private equipmentService: EquipmentService, public dialog: MatDialog) {
     this.dataSource = new DataTableElementDataSource();

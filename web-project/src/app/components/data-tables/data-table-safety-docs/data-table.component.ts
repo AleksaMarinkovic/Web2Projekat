@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { DataTableDataSource, DataTableItem } from './data-table-datasource';
-
+import { SafetyDocumentService } from 'src/app/services/safety-document.service';
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
@@ -16,23 +16,27 @@ export class DataTableComponent implements AfterViewInit {
   dataSource: DataTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'start_date', 'phone_number', 'status', 'address'];
+  displayedColumns = ['safetyDocumentId', 'type', 'state', 'phoneNumber', 'dateCreated'];
 
-  constructor() {
+  constructor(private safetyDocumentService: SafetyDocumentService) {
     this.dataSource = new DataTableDataSource();
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.refresh();
   }
 
-  modify(id : any){
-    window.alert("Modifed element " + id);
-  }
-
-  delete(id : any){
-    window.alert("Deleted element " + id);
+  refresh(){
+    this.safetyDocumentService.getAllSafetyDocuments().subscribe(
+      data => {       
+        console.log(data);
+        this.dataSource.data = data;   
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator; 
+        this.table.dataSource = this.dataSource; 
+        this.dataSource.paginator._changePageSize(this.paginator.pageSize);
+           
+      }
+    ); 
   }
 }

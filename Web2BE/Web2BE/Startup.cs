@@ -30,9 +30,10 @@ namespace BackEnd
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("Default"));
-            });
+            
+                options.UseSqlServer(Configuration.GetConnectionString("Default")),
+                ServiceLifetime.Scoped
+            );
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -49,6 +50,8 @@ namespace BackEnd
                     },
                 });
             });
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

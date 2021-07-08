@@ -12,6 +12,7 @@ namespace Web2BE.Models
         public string DateOccured { get; set; }
         public string Priority { get; set; }
         public string ETR { get; set; }
+        public string State { get; set; }
         public bool Approved { get; set; }
         public int NumberOfCalls { get; set; }
         public int Voltage { get; set; }
@@ -19,13 +20,17 @@ namespace Web2BE.Models
         public string ATA { get; set; }
         public string ScheduledTime { get; set; }
         public string Resolver { get; set; }
-        public ICollection<Call> Calls { get; set; }
         public string Cause { get; set; }
         public string Subcause { get; set; }
         public string ConstructionType { get; set; }
         public string Material { get; set; }
         public string IncidentImage { get; set; }
+        public ICollection<Call> Calls { get; set; }
         public ICollection<Equipment> Equipment { get; set; }
+
+        //FKs
+        public WorkRequest WorkRequest { get; set; }
+        public int? WorkRequestId { get; set; }
 
     }
 }

@@ -17,10 +17,10 @@
     </div>
     <div class="row text-left mb-5 mt-4 mx-3">
         <div class="col-3">
-            <label for="docState">Document state:</label>
+            <label for="state">Document state:</label>
         </div>
         <div class="col-9" [formGroup]="addSafetyDocumentForm">
-            <select id="docState" name="docState" [formControlName]="'docState'">
+            <select id="state" name="state" [formControlName]="'state'">
                 <option *ngFor="let documentState of safetyDocumentStates" [value]="documentState">
                     {{documentState}}</option>
             </select>

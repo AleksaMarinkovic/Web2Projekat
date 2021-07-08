@@ -12,16 +12,12 @@ export class IncidentsWrComponent implements OnInit {
   incidentList :any [] = [];
   selectedIncident: any;
   incidents = this.incidentService.getAllIncidents();
-  incidentsGroup = this.formBuilder.group({
-    newIncident: ""
-  })
-  constructor(private incidentService : IncidentService, private formBuilder: FormBuilder) { }
+  constructor(private incidentService : IncidentService) { }
 
   ngOnInit(): void {
   }
   onSubmit(){
     this.incidentList.push(this.selectedIncident);
-    console.warn('List is now: ', this.incidentList);
-    console.warn('Added: ', this.incidentsGroup.value);    
+    console.warn('List is now: ', this.incidentList);  
   }
 }

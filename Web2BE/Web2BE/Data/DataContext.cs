@@ -41,12 +41,16 @@ namespace Web2BE.Data
 
             modelBuilder.Entity<Equipment>().Property(c => c.EquipmentId).ValueGeneratedOnAdd();
             modelBuilder.Entity<Equipment>().HasKey(c => c.EquipmentId);
+            modelBuilder.Entity<Equipment>().HasOne(n => n.Incident).WithMany(n => n.Equipment).HasForeignKey(n => n.IncidentId).IsRequired(false);
+            modelBuilder.Entity<Equipment>().HasOne(n => n.WorkRequest).WithMany(n => n.Equipment).HasForeignKey(n => n.WorkRequestId).IsRequired(false);
+            modelBuilder.Entity<Equipment>().HasOne(n => n.SafetyDocument).WithMany(n => n.Equipment).HasForeignKey(n => n.SafetyDocumentId).IsRequired(false);
 
             modelBuilder.Entity<IconSettings>().Property(c => c.IconSettingsId).ValueGeneratedOnAdd();
             modelBuilder.Entity<IconSettings>().HasKey(c => c.IconSettingsId);
 
             modelBuilder.Entity<Incident>().Property(c => c.IncidentId).ValueGeneratedOnAdd();
             modelBuilder.Entity<Incident>().HasKey(c => c.IncidentId);
+            modelBuilder.Entity<Incident>().HasOne(n => n.WorkRequest).WithMany(n => n.Incidents).HasForeignKey(n => n.WorkRequestId).IsRequired(false);
 
             modelBuilder.Entity<Notification>().Property(c => c.NotificationId).ValueGeneratedOnAdd();
             modelBuilder.Entity<Notification>().HasKey(c => c.NotificationId);
@@ -62,6 +66,8 @@ namespace Web2BE.Data
 
             modelBuilder.Entity<WorkPlan>().Property(c => c.WorkPlanId).ValueGeneratedOnAdd();
             modelBuilder.Entity<WorkPlan>().HasKey(c => c.WorkPlanId);
+            modelBuilder.Entity<WorkPlan>().HasOne(n => n.SafetyDocument).WithMany().HasForeignKey(n => n.SafetyDocumentId).IsRequired(false);
+
 
             modelBuilder.Entity<WorkPlanEquipment>().Property(c => c.WorkPlanEquipmentId).ValueGeneratedOnAdd();
             modelBuilder.Entity<WorkPlanEquipment>().HasKey(c => c.WorkPlanEquipmentId);

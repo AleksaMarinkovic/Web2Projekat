@@ -33,5 +33,9 @@ namespace Web2BE.Models
         public ICollection<WorkPlanEquipment> Equipment { get; set; }
         //One to Many with WPSI
         public ICollection<WorkPlanSwitchingInstructions> SwitchingInstructions { get; set; }
+
+        //FKs
+        public int? SafetyDocumentId { get; set; }
+        public SafetyDocument SafetyDocument { get; set; }
     }
 }

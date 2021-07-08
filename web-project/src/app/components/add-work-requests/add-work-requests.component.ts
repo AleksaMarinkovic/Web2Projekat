@@ -24,16 +24,16 @@ export class AddWorkRequestsComponent implements OnInit {
       endDate: "",
       purpose: "",
       notes: "",
-      emergencyWork : "",
+      emergencyWork : false,
       company: "",
       phoneNumber:"",
       createdDate: "",
       lastEditor: "",
       dateEdited: "",
-      docState: workRequestStates.Issue,
+      docState: workRequestStates.Issued,
       wrImage: "",
-      incidentsList: "",
-      equipmentList : "",
+      incidents: "",
+      equipment : "",
     });  
   }
   onSubmit(workRequest: any){

@@ -5,16 +5,15 @@
                     style="vertical-align: -6px;">add_circle</i> ADD ADDITIONAL ELEMENT</a>
         </div>
     </div>
-    <form [formGroup]="equipmentGroup" (ngSubmit)="onSubmit()">
+    <form [formGroup]="addWorkRequestForm" (ngSubmit)="onSubmit()">
         <div class="row text-center mb-5 mt-4 mx-3">
             <div class="col-1">
-                <label for="newEquipment">
+                <label>
                     Choose equipment:
                 </label>
             </div>
             <div class="col-2">
-                <select id="newEquipment" name="newEquipment" formControlName="newEquipment"
-                    [(ngModel)]="selectedEquipment">
+                <select [(ngModel)]="selectedEquipment" [ngModelOptions] = "{standalone:true}">
                     <option *ngFor="let equipment of equipments | async" [ngValue]="equipment">
                         {{equipment.name}}</option>
                 </select>
@@ -23,19 +22,19 @@
                 <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             </div>
         </div>
-
-    </form>
-    <div class="row text-left mb-5 mt-4 mx-3">
-        <div class="col-5">
-            <h1>Chosen equipment: </h1>
-            <ul *ngFor="let equipment of equipmentList" class="list-group">
-                <li class="list-group-item">
-                    ID: {{equipment.equipmentId}} | Name: "{{equipment.name}}" | Type: "{{equipment.type}}" | Address:
-                    "{{equipment.address}}" | Coordinates: "{{equipment.coordinates}}"
-                </li>
-            </ul>
+        <div class="row text-left mb-5 mt-4 mx-3">
+            <div class="col-5">
+                <h1>Chosen equipment: </h1>
+                <ul *ngFor="let equipment of equipmentList" class="list-group">
+                    <li class="list-group-item">
+                        ID: {{equipment.equipmentId}} | Name: "{{equipment.name}}" | Type: "{{equipment.type}}" | Address:
+                        "{{equipment.address}}" | Coordinates: "{{equipment.coordinates}}" |
+                        <a routerLink="/dashboard" class="btn btn-secondary btn-sm"><i class="material-icons"
+                            style="vertical-align: -6px;">place</i></a>
+                    </li>
+                </ul>
+            </div>        
         </div>
-
-    </div>
-
+        <input type="hidden" [(ngModel)]="equipmentList" [formControlName]="'equipment'">
+    </form>
 </div>

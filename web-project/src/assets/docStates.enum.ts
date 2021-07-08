@@ -1,9 +1,18 @@
 export enum safetyDocumentStates {
-    Issue = "Issue",
-    Cancel = "Cancel",
+    Issued = "Issued",
+    Canceled = "Canceled",
+    Completed = "Completed",
+    Drafted = "Drafted"    
 }
 export enum workRequestStates {
-    Issue = "Issue",
-    Cancel = "Cancel",
-    Approve = "Approve"
+    Issued = "Issued",
+    Canceled = "Canceled",
+    Drafted = "Drafted",       
+    Completed = "Completed"
+}
+export enum incidentStates {
+    Issued = "Issued",
+    Canceled = "Canceled",
+    Drafted = "Drafted",       
+    Completed = "Completed"
 }

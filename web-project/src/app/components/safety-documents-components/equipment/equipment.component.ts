@@ -14,7 +14,7 @@ export class EquipmentComponent implements OnInit {
   selectedEquipment: any;
   equipments = this.equipmentService.getAllEquipment();
 
-  constructor(private equipmentService : EquipmentService, private formBuilder: FormBuilder) {}
+  constructor(private equipmentService : EquipmentService) {}
 
   ngOnInit(): void {
   }

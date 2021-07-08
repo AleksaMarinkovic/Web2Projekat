@@ -24,7 +24,6 @@ export class AddNewElementComponent implements OnInit {
   onSubmit(equipment: DataTableElementItem){
     this.equipmentService.postEquipment(equipment).subscribe();
     console.log(equipment);    
-    this.newElementForm.reset();   
     this._router.navigate(['/addElement']);
   }
 }

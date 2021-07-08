@@ -4,6 +4,7 @@ import { causeTypes, constructionType, incidentTypes, materialType, subcauseType
 import { incidentPriorities } from 'src/assets/Types.enum';
 import { IncidentService } from 'src/app/services/incident.service';
 import { Router } from '@angular/router'
+import { incidentStates } from 'src/assets/docStates.enum';
 
 @Component({
   templateUrl: './add-incident.component.html',
@@ -25,13 +26,14 @@ export class AddIncidentComponent implements OnInit {
       ATA: "",
       dateOccured : "",
       ETR: "",
+      state: incidentStates.Issued,
       affectedConsumers: "",
       numberOfCalls: "",
       voltage: "",
       scheduledTime: "",
       resolver: "",
       incidentImage: "",
-      equipmentList : "",
+      equipment : "",
       cause : causeTypes.Failure,
       subcause: subcauseTypes.Hailstorm,
       constructionType: constructionType.Surface,

@@ -81,7 +81,7 @@ export class DataTableWorkRequestsDataSource extends DataSource<DataTableWorkReq
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
         case 'startDate': return compare(a.startDate, b.startDate, isAsc);
-        case 'phoneNumber': return compare(a.phoneNumber, b.phoneNumber, isAsc);
+        case 'phoneNumber': return compare(+a.phoneNumber, +b.phoneNumber, isAsc);
         case 'docState': return compare(a.docState, b.docState, isAsc);
         case 'street': return compare(a.street, b.street, isAsc);
         case 'workRequestId': return compare(+a.workRequestId, +b.workRequestId, isAsc);

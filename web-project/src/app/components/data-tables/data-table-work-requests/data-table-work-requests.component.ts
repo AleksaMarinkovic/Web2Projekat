@@ -25,7 +25,6 @@ export class DataTableWorkRequestsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.refresh();
-
   }
 
   refresh(){

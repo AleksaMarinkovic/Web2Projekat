@@ -10,13 +10,8 @@ using Web2BE.Data;
 namespace Web2BE.Migrations
 {
     [DbContext(typeof(DataContext))]
-<<<<<<< HEAD:Web2BE/Web2BE/Migrations/20210707165647_Initial.Designer.cs
-    [Migration("20210707165647_Initial")]
+    [Migration("20210708161311_Initial")]
     partial class Initial
-=======
-    [Migration("20210707134159_init")]
-    partial class init
->>>>>>> de2d2e1779af1bfdb3de4173c205909e8ef836f4:Web2BE/Web2BE/Migrations/20210707134159_init.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -214,6 +209,9 @@ namespace Web2BE.Migrations
                     b.Property<string>("ScheduledTime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Subcause")
                         .HasColumnType("nvarchar(max)");
 
@@ -307,6 +305,12 @@ namespace Web2BE.Migrations
 
                     b.Property<bool>("AllWorkOperationsCompleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CrewId")
+                        .HasColumnType("int");
 
                     b.Property<string>("DateCreated")
                         .HasColumnType("nvarchar(max)");
@@ -437,6 +441,12 @@ namespace Web2BE.Migrations
                     b.Property<string>("Purpose")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SafetyDocumentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SafetyDocumentId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("StartWorkDate")
                         .HasColumnType("nvarchar(max)");
 
@@ -449,6 +459,12 @@ namespace Web2BE.Migrations
                     b.HasKey("WorkPlanId");
 
                     b.HasIndex("IncidentId");
+
+                    b.HasIndex("SafetyDocumentId");
+
+                    b.HasIndex("SafetyDocumentId1")
+                        .IsUnique()
+                        .HasFilter("[SafetyDocumentId1] IS NOT NULL");
 
                     b.ToTable("WorkPlan");
                 });
@@ -575,22 +591,22 @@ namespace Web2BE.Migrations
 
             modelBuilder.Entity("Web2BE.Models.Equipment", b =>
                 {
-                    b.HasOne("Web2BE.Models.Incident", null)
+                    b.HasOne("Web2BE.Models.Incident", "Incident")
                         .WithMany("Equipment")
                         .HasForeignKey("IncidentId");
 
-                    b.HasOne("Web2BE.Models.SafetyDocument", null)
+                    b.HasOne("Web2BE.Models.SafetyDocument", "SafetyDocument")
                         .WithMany("Equipment")
                         .HasForeignKey("SafetyDocumentId");
 
-                    b.HasOne("Web2BE.Models.WorkRequest", null)
+                    b.HasOne("Web2BE.Models.WorkRequest", "WorkRequest")
                         .WithMany("Equipment")
                         .HasForeignKey("WorkRequestId");
                 });
 
             modelBuilder.Entity("Web2BE.Models.Incident", b =>
                 {
-                    b.HasOne("Web2BE.Models.WorkRequest", null)
+                    b.HasOne("Web2BE.Models.WorkRequest", "WorkRequest")
                         .WithMany("Incidents")
                         .HasForeignKey("WorkRequestId");
                 });
@@ -621,6 +637,14 @@ namespace Web2BE.Migrations
                         .HasForeignKey("IncidentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Web2BE.Models.SafetyDocument", "SafetyDocument")
+                        .WithMany()
+                        .HasForeignKey("SafetyDocumentId");
+
+                    b.HasOne("Web2BE.Models.SafetyDocument", null)
+                        .WithOne("WorkPlan")
+                        .HasForeignKey("Web2BE.Models.WorkPlan", "SafetyDocumentId1");
                 });
 
             modelBuilder.Entity("Web2BE.Models.WorkPlanEquipment", b =>

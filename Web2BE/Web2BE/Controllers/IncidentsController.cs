@@ -42,6 +42,45 @@ namespace Web2BE.Controllers
             return incident;
         }
 
+        [ActionName("Drafted")]
+        [HttpGet("Drafted")]
+        public async Task<ActionResult<int>> GetDraftedIncidents()
+        {
+            var res = await _context.Incident.Where(d => d.State == "Drafted").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+        [ActionName("Completed")]
+        [HttpGet("Completed")]
+        public async Task<ActionResult<int>> GetCompletedIncidents()
+        {
+            var res = await _context.Incident.Where(d => d.State == "Completed").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+
+        [ActionName("Canceled")]
+        [HttpGet("Canceled")]
+        public async Task<ActionResult<int>> GetCanceledIncidents()
+        {
+            var res = await _context.Incident.Where(d => d.State == "Canceled").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+
+        [ActionName("Issued")]
+        [HttpGet("Issued")]
+        public async Task<ActionResult<int>> GetIssuedIncidents()
+        {
+            var res = await _context.Incident.Where(d => d.State == "Issued").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+
         // PUT: api/Incidents/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -80,6 +119,23 @@ namespace Web2BE.Controllers
         [HttpPost]
         public async Task<ActionResult<Incident>> PostIncident(Incident incident)
         {
+
+            var tempList = new List<Equipment>();
+            foreach(var e in incident.Equipment)
+            {
+                tempList.Add(e);
+            }
+            incident.Equipment.Clear();
+            foreach (var equipment in tempList)
+            {
+                var entity = await _context.Equipment.Where(e => e.EquipmentId == equipment.EquipmentId).FirstOrDefaultAsync();
+                entity.IncidentId = incident.IncidentId;
+                entity.Incident = incident;
+                _context.Equipment.Update(entity);
+                incident.Equipment.Add(entity);
+            }
+            
+
             _context.Incident.Add(incident);
             await _context.SaveChangesAsync();
 

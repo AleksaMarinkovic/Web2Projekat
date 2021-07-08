@@ -3,5 +3,5 @@ export enum elementProperty {
     ID = "ID",
     Type = "Type",
     Address = "Address",
-    Coords = "Coords"
+    Coordinates = "Coordinates"
 }

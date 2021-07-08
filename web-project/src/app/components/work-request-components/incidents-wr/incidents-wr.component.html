@@ -1,5 +1,5 @@
 <div class="container-fluid grid-border">    
-    <form [formGroup]="incidentsGroup" (ngSubmit)="onSubmit()">
+    <form [formGroup]="addWorkRequestForm" (ngSubmit)="onSubmit()">
         <div class="row text-center mb-5 mt-4 mx-3">
             <div class="col-1">
                 <label for="newIncident">
@@ -7,8 +7,7 @@
                 </label>
             </div>
             <div class="col-2">
-                <select id="newIncident" name="newIncident" formControlName="newIncident"
-                    [(ngModel)]="selectedIncident">
+                <select [(ngModel)]="selectedIncident" [ngModelOptions] = "{standalone:true}">
                     <option *ngFor="let incident of incidents | async" [ngValue]="incident">
                         {{incident.incidentId}}</option>
                 </select>
@@ -17,19 +16,17 @@
                 <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             </div>
         </div>
-
-    </form>
-    <div class="row text-left mb-5 mt-4 mx-3">
-        <div class="col-7">
-            <h1>Chosen incidents: </h1>
-            <ul *ngFor="let incident of incidentList" class="list-group">
-                <li class="list-group-item">
-                    ID: {{incident.incidentId}} | Type: "{{incident.type}}" | ETA: "{{incident.eta}}" | Priority:
-                    "{{incident.priority}}" | Cause: "{{incident.cause}}"                    
-                </li>
-            </ul>
+        <div class="row text-left mb-5 mt-4 mx-3">
+            <div class="col-7">
+                <h1>Chosen incidents: </h1>
+                <ul *ngFor="let incident of incidentList" class="list-group">
+                    <li class="list-group-item">
+                        ID: {{incident.incidentId}} | Type: "{{incident.type}}" | ETA: "{{incident.eta}}" | Priority:
+                        "{{incident.priority}}" | Cause: "{{incident.cause}}"                    
+                    </li>
+                </ul>
+            </div>
         </div>
-
-    </div>
-
+        <input type="hidden" [(ngModel)]="incidentList" [formControlName]="'incidents'">
+    </form>
 </div>

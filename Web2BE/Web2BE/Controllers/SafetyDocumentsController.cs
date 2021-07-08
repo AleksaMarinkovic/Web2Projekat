@@ -42,6 +42,44 @@ namespace Web2BE.Controllers
             return safetyDocument;
         }
 
+        [ActionName("Drafted")]
+        [HttpGet("Drafted")]
+        public async Task<ActionResult<int>> GetDraftedSafetyDocuments()
+        {
+            var res = await _context.SafetyDocument.Where(d => d.State == "Drafted").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+        [ActionName("Completed")]
+        [HttpGet("Completed")]
+        public async Task<ActionResult<int>> GetCompletedSafetyDocuments()
+        {
+            var res = await _context.SafetyDocument.Where(d => d.State == "Completed").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+
+        [ActionName("Canceled")]
+        [HttpGet("Canceled")]
+        public async Task<ActionResult<int>> GetCanceledSafetyDocuments()
+        {
+            var res = await _context.SafetyDocument.Where(d => d.State == "Canceled").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+
+        [ActionName("Issued")]
+        [HttpGet("Issued")]
+        public async Task<ActionResult<int>> GetIssuedSafetyDocuments()
+        {
+            var res = await _context.SafetyDocument.Where(d => d.State == "Issued").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
         // PUT: api/SafetyDocuments/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -80,6 +118,37 @@ namespace Web2BE.Controllers
         [HttpPost]
         public async Task<ActionResult<SafetyDocument>> PostSafetyDocument(SafetyDocument safetyDocument)
         {
+            var tempEquipment = new List<Equipment>();
+            if (safetyDocument.Equipment != null)
+            {
+                foreach (var e in safetyDocument.Equipment)
+                {
+                    tempEquipment.Add(e);
+                }
+                safetyDocument.Equipment.Clear();
+
+                foreach (var equipment in tempEquipment)
+                {
+                    var entity = await _context.Equipment.Where(e => e.EquipmentId == equipment.EquipmentId).FirstOrDefaultAsync();
+                    entity.SafetyDocumentId = safetyDocument.SafetyDocumentId;
+                    entity.SafetyDocument = safetyDocument;
+                    _context.Equipment.Update(entity);
+                    safetyDocument.Equipment.Add(entity);
+                }
+            }
+
+
+
+            if (safetyDocument.WorkPlan != null)
+            {
+                var entityWP = await _context.WorkPlan.Where(e => e.WorkPlanId == safetyDocument.WorkPlan.WorkPlanId).FirstOrDefaultAsync();
+                entityWP.SafetyDocumentId = safetyDocument.SafetyDocumentId;
+                entityWP.SafetyDocument = safetyDocument;
+                _context.WorkPlan.Update(entityWP);
+                safetyDocument.WorkPlan = entityWP;
+            }
+
+
             _context.SafetyDocument.Add(safetyDocument);
             await _context.SaveChangesAsync();
 

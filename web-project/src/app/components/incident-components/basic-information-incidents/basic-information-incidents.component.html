@@ -60,10 +60,13 @@
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            Status:
+            <label for="type">State:</label>
         </div>
-        <div class="col-3">
-            status label
+        <div class="col-3" [formGroup]="addIncidentForm">
+            <select id="state" name="state" [formControlName]="'state'">
+                <option *ngFor="let incidentState of incidentStates" [value]="incidentState">
+                    {{incidentState}}</option>
+            </select>
         </div>
         <div class="col-3">
             <label for="voltage">Voltage: </label>

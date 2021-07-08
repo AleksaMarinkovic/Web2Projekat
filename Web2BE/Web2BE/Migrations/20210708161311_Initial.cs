@@ -79,11 +79,13 @@ namespace Web2BE.Migrations
                     LastEditor = table.Column<string>(nullable: true),
                     DateEdited = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
                     DocImage = table.Column<string>(nullable: true),
                     AllWorkOperationsCompleted = table.Column<bool>(nullable: false),
                     AllTagsRemoved = table.Column<bool>(nullable: false),
                     GroundingRemoved = table.Column<bool>(nullable: false),
-                    ReadyForService = table.Column<bool>(nullable: false)
+                    ReadyForService = table.Column<bool>(nullable: false),
+                    CrewId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -149,6 +151,7 @@ namespace Web2BE.Migrations
                     DateOccured = table.Column<string>(nullable: true),
                     Priority = table.Column<string>(nullable: true),
                     ETR = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
                     Approved = table.Column<bool>(nullable: false),
                     NumberOfCalls = table.Column<int>(nullable: false),
                     Voltage = table.Column<int>(nullable: false),
@@ -215,8 +218,8 @@ namespace Web2BE.Migrations
                     Address = table.Column<string>(nullable: true),
                     Coordinates = table.Column<string>(nullable: true),
                     IncidentId = table.Column<int>(nullable: true),
-                    SafetyDocumentId = table.Column<int>(nullable: true),
-                    WorkRequestId = table.Column<int>(nullable: true)
+                    WorkRequestId = table.Column<int>(nullable: true),
+                    SafetyDocumentId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -264,7 +267,9 @@ namespace Web2BE.Migrations
                     LastEditor = table.Column<string>(nullable: true),
                     EditedDate = table.Column<string>(nullable: true),
                     DocumentState = table.Column<string>(nullable: true),
-                    Photo = table.Column<string>(nullable: true)
+                    Photo = table.Column<string>(nullable: true),
+                    SafetyDocumentId = table.Column<int>(nullable: true),
+                    SafetyDocumentId1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -275,6 +280,18 @@ namespace Web2BE.Migrations
                         principalTable: "Incident",
                         principalColumn: "IncidentId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WorkPlan_SafetyDocument_SafetyDocumentId",
+                        column: x => x.SafetyDocumentId,
+                        principalTable: "SafetyDocument",
+                        principalColumn: "SafetyDocumentId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_WorkPlan_SafetyDocument_SafetyDocumentId1",
+                        column: x => x.SafetyDocumentId1,
+                        principalTable: "SafetyDocument",
+                        principalColumn: "SafetyDocumentId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -422,6 +439,18 @@ namespace Web2BE.Migrations
                 column: "IncidentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_WorkPlan_SafetyDocumentId",
+                table: "WorkPlan",
+                column: "SafetyDocumentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkPlan_SafetyDocumentId1",
+                table: "WorkPlan",
+                column: "SafetyDocumentId1",
+                unique: true,
+                filter: "[SafetyDocumentId1] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WorkPlanEquipment_WorkPlanId",
                 table: "WorkPlanEquipment",
                 column: "WorkPlanId");
@@ -465,13 +494,13 @@ namespace Web2BE.Migrations
                 name: "Consumer");
 
             migrationBuilder.DropTable(
-                name: "SafetyDocument");
-
-            migrationBuilder.DropTable(
                 name: "WorkPlan");
 
             migrationBuilder.DropTable(
                 name: "Incident");
+
+            migrationBuilder.DropTable(
+                name: "SafetyDocument");
 
             migrationBuilder.DropTable(
                 name: "WorkRequests");
