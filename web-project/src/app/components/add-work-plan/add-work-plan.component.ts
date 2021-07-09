@@ -17,10 +17,11 @@ export class AddWorkPlanComponent implements OnInit {
 
   ngOnInit(): void {
     this.addWorkPlanForm = this.formBuilder.group({
-      workPlanDocumentType: workPlanDocumentTypes.Planned,
+      workPlanId: 0,
+      documentType: workPlanDocumentTypes.Planned,
       status: workPlanTypes.Draft,
-      WorkRequest: "",/*to be changed to workRequest */
-      incident: "",/*to be changed to Incident*/
+      workRequestId: null,//FK
+      incidentId: null,//FK
       address: "",
       startWorkDate: "",
       endWorkDate: "",
@@ -29,14 +30,12 @@ export class AddWorkPlanComponent implements OnInit {
       purpose: "",
       notes: "",
       company: "",
-      phoneNumber: "",
-      created: "",
-      workPlanImage: "",
+      phone: "",
+      creationDate: "",
+      photo: "",
       lastEditor: "",
       dateEdited: "",
-      docState: workPlanStateChange.Approve,
-      equipmentList: "",
-      instructionList: "",
+      documentState: workPlanStateChange.Approve,     
     });
   }
 

@@ -19,7 +19,6 @@ namespace Web2BE.Data
         public DbSet<Web2BE.Models.Notification> Notification { get; set; }
         public DbSet<Web2BE.Models.SafetyDocument> SafetyDocument { get; set; }
         public DbSet<Web2BE.Models.WorkPlan> WorkPlan { get; set; }
-        public DbSet<Web2BE.Models.WorkPlanEquipment> WorkPlanEquipment { get; set; }
         public DbSet<Web2BE.Models.WorkPlanSwitchingInstructions> WorkPlanSwitchingInstructions { get; set; }
         public DbSet<Web2BE.Models.NotificationTypesToDisplay> NotificationTypesToDisplay { get; set; }
         public DbSet<Web2BE.Models.Call> Call { get; set; }
@@ -66,12 +65,7 @@ namespace Web2BE.Data
 
             modelBuilder.Entity<WorkPlan>().Property(c => c.WorkPlanId).ValueGeneratedOnAdd();
             modelBuilder.Entity<WorkPlan>().HasKey(c => c.WorkPlanId);
-            modelBuilder.Entity<WorkPlan>().HasOne(n => n.SafetyDocument).WithMany().HasForeignKey(n => n.SafetyDocumentId).IsRequired(false);
-
-
-            modelBuilder.Entity<WorkPlanEquipment>().Property(c => c.WorkPlanEquipmentId).ValueGeneratedOnAdd();
-            modelBuilder.Entity<WorkPlanEquipment>().HasKey(c => c.WorkPlanEquipmentId);
-
+            
             modelBuilder.Entity<WorkPlanSwitchingInstructions>().Property(c => c.WorkPlanSwitchingInstructionstId).ValueGeneratedOnAdd();
             modelBuilder.Entity<WorkPlanSwitchingInstructions>().HasKey(c => c.WorkPlanSwitchingInstructionstId);
 

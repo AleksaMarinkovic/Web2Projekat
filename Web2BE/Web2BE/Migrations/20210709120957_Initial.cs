@@ -208,6 +208,55 @@ namespace Web2BE.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "WorkPlan",
+                columns: table => new
+                {
+                    WorkPlanId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DocumentType = table.Column<string>(nullable: true),
+                    IncidentId = table.Column<int>(nullable: true),
+                    Status = table.Column<string>(nullable: true),
+                    WorkRequestId = table.Column<int>(nullable: true),
+                    StartWorkDate = table.Column<string>(nullable: true),
+                    EndWorkDate = table.Column<string>(nullable: true),
+                    CreationDate = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    Company = table.Column<string>(nullable: true),
+                    Purpose = table.Column<string>(nullable: true),
+                    Notes = table.Column<string>(nullable: true),
+                    Crew = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    LastEditor = table.Column<string>(nullable: true),
+                    DateEdited = table.Column<string>(nullable: true),
+                    DocumentState = table.Column<string>(nullable: true),
+                    Photo = table.Column<string>(nullable: true),
+                    SafetyDocumentId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkPlan", x => x.WorkPlanId);
+                    table.ForeignKey(
+                        name: "FK_WorkPlan_Incident_IncidentId",
+                        column: x => x.IncidentId,
+                        principalTable: "Incident",
+                        principalColumn: "IncidentId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_WorkPlan_SafetyDocument_SafetyDocumentId",
+                        column: x => x.SafetyDocumentId,
+                        principalTable: "SafetyDocument",
+                        principalColumn: "SafetyDocumentId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_WorkPlan_WorkRequests_WorkRequestId",
+                        column: x => x.WorkRequestId,
+                        principalTable: "WorkRequests",
+                        principalColumn: "WorkRequestId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Equipment",
                 columns: table => new
                 {
@@ -219,7 +268,8 @@ namespace Web2BE.Migrations
                     Coordinates = table.Column<string>(nullable: true),
                     IncidentId = table.Column<int>(nullable: true),
                     WorkRequestId = table.Column<int>(nullable: true),
-                    SafetyDocumentId = table.Column<int>(nullable: true)
+                    SafetyDocumentId = table.Column<int>(nullable: true),
+                    WorkPlanId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -237,60 +287,16 @@ namespace Web2BE.Migrations
                         principalColumn: "SafetyDocumentId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_Equipment_WorkPlan_WorkPlanId",
+                        column: x => x.WorkPlanId,
+                        principalTable: "WorkPlan",
+                        principalColumn: "WorkPlanId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Equipment_WorkRequests_WorkRequestId",
                         column: x => x.WorkRequestId,
                         principalTable: "WorkRequests",
                         principalColumn: "WorkRequestId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkPlan",
-                columns: table => new
-                {
-                    WorkPlanId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DocumentType = table.Column<string>(nullable: true),
-                    IncidentId = table.Column<int>(nullable: false),
-                    Status = table.Column<string>(nullable: true),
-                    WorkRequest = table.Column<string>(nullable: true),
-                    StartWorkDate = table.Column<string>(nullable: true),
-                    EndWorkDate = table.Column<string>(nullable: true),
-                    CreationDate = table.Column<string>(nullable: true),
-                    CreatedBy = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    Company = table.Column<string>(nullable: true),
-                    Purpose = table.Column<string>(nullable: true),
-                    Notes = table.Column<string>(nullable: true),
-                    Crew = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true),
-                    LastEditor = table.Column<string>(nullable: true),
-                    EditedDate = table.Column<string>(nullable: true),
-                    DocumentState = table.Column<string>(nullable: true),
-                    Photo = table.Column<string>(nullable: true),
-                    SafetyDocumentId = table.Column<int>(nullable: true),
-                    SafetyDocumentId1 = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkPlan", x => x.WorkPlanId);
-                    table.ForeignKey(
-                        name: "FK_WorkPlan_Incident_IncidentId",
-                        column: x => x.IncidentId,
-                        principalTable: "Incident",
-                        principalColumn: "IncidentId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_WorkPlan_SafetyDocument_SafetyDocumentId",
-                        column: x => x.SafetyDocumentId,
-                        principalTable: "SafetyDocument",
-                        principalColumn: "SafetyDocumentId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_WorkPlan_SafetyDocument_SafetyDocumentId1",
-                        column: x => x.SafetyDocumentId1,
-                        principalTable: "SafetyDocument",
-                        principalColumn: "SafetyDocumentId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -340,41 +346,25 @@ namespace Web2BE.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WorkPlanEquipment",
-                columns: table => new
-                {
-                    WorkPlanEquipmentId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    EquipmentType = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    Coordinates = table.Column<string>(nullable: true),
-                    WorkPlanId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkPlanEquipment", x => x.WorkPlanEquipmentId);
-                    table.ForeignKey(
-                        name: "FK_WorkPlanEquipment_WorkPlan_WorkPlanId",
-                        column: x => x.WorkPlanId,
-                        principalTable: "WorkPlan",
-                        principalColumn: "WorkPlanId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "WorkPlanSwitchingInstructions",
                 columns: table => new
                 {
                     WorkPlanSwitchingInstructionstId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Element = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
+                    EquipmentId = table.Column<int>(nullable: true),
+                    EquipmentName = table.Column<string>(nullable: true),
                     WorkPlanId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WorkPlanSwitchingInstructions", x => x.WorkPlanSwitchingInstructionstId);
+                    table.ForeignKey(
+                        name: "FK_WorkPlanSwitchingInstructions_Equipment_EquipmentId",
+                        column: x => x.EquipmentId,
+                        principalTable: "Equipment",
+                        principalColumn: "EquipmentId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_WorkPlanSwitchingInstructions_WorkPlan_WorkPlanId",
                         column: x => x.WorkPlanId,
@@ -402,6 +392,11 @@ namespace Web2BE.Migrations
                 name: "IX_Equipment_SafetyDocumentId",
                 table: "Equipment",
                 column: "SafetyDocumentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Equipment_WorkPlanId",
+                table: "Equipment",
+                column: "WorkPlanId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Equipment_WorkRequestId",
@@ -441,19 +436,19 @@ namespace Web2BE.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_WorkPlan_SafetyDocumentId",
                 table: "WorkPlan",
-                column: "SafetyDocumentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkPlan_SafetyDocumentId1",
-                table: "WorkPlan",
-                column: "SafetyDocumentId1",
+                column: "SafetyDocumentId",
                 unique: true,
-                filter: "[SafetyDocumentId1] IS NOT NULL");
+                filter: "[SafetyDocumentId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WorkPlanEquipment_WorkPlanId",
-                table: "WorkPlanEquipment",
-                column: "WorkPlanId");
+                name: "IX_WorkPlan_WorkRequestId",
+                table: "WorkPlan",
+                column: "WorkRequestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkPlanSwitchingInstructions_EquipmentId",
+                table: "WorkPlanSwitchingInstructions",
+                column: "EquipmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WorkPlanSwitchingInstructions_WorkPlanId",
@@ -470,9 +465,6 @@ namespace Web2BE.Migrations
                 name: "Crews");
 
             migrationBuilder.DropTable(
-                name: "Equipment");
-
-            migrationBuilder.DropTable(
                 name: "IconSettings");
 
             migrationBuilder.DropTable(
@@ -485,13 +477,13 @@ namespace Web2BE.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "WorkPlanEquipment");
-
-            migrationBuilder.DropTable(
                 name: "WorkPlanSwitchingInstructions");
 
             migrationBuilder.DropTable(
                 name: "Consumer");
+
+            migrationBuilder.DropTable(
+                name: "Equipment");
 
             migrationBuilder.DropTable(
                 name: "WorkPlan");

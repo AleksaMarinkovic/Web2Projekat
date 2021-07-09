@@ -126,6 +126,9 @@ namespace Web2BE.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("WorkPlanId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("WorkRequestId")
                         .HasColumnType("int");
 
@@ -134,6 +137,8 @@ namespace Web2BE.Migrations
                     b.HasIndex("IncidentId");
 
                     b.HasIndex("SafetyDocumentId");
+
+                    b.HasIndex("WorkPlanId");
 
                     b.HasIndex("WorkRequestId");
 
@@ -409,19 +414,19 @@ namespace Web2BE.Migrations
                     b.Property<string>("Crew")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DateEdited")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("DocumentState")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DocumentType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EditedDate")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("EndWorkDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IncidentId")
+                    b.Property<int?>("IncidentId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastEditor")
@@ -442,58 +447,26 @@ namespace Web2BE.Migrations
                     b.Property<int?>("SafetyDocumentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SafetyDocumentId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("StartWorkDate")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WorkRequest")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("WorkRequestId")
+                        .HasColumnType("int");
 
                     b.HasKey("WorkPlanId");
 
                     b.HasIndex("IncidentId");
 
-                    b.HasIndex("SafetyDocumentId");
-
-                    b.HasIndex("SafetyDocumentId1")
+                    b.HasIndex("SafetyDocumentId")
                         .IsUnique()
-                        .HasFilter("[SafetyDocumentId1] IS NOT NULL");
+                        .HasFilter("[SafetyDocumentId] IS NOT NULL");
+
+                    b.HasIndex("WorkRequestId");
 
                     b.ToTable("WorkPlan");
-                });
-
-            modelBuilder.Entity("Web2BE.Models.WorkPlanEquipment", b =>
-                {
-                    b.Property<int>("WorkPlanEquipmentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Coordinates")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EquipmentType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("WorkPlanId")
-                        .HasColumnType("int");
-
-                    b.HasKey("WorkPlanEquipmentId");
-
-                    b.HasIndex("WorkPlanId");
-
-                    b.ToTable("WorkPlanEquipment");
                 });
 
             modelBuilder.Entity("Web2BE.Models.WorkPlanSwitchingInstructions", b =>
@@ -506,13 +479,18 @@ namespace Web2BE.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Element")
+                    b.Property<int?>("EquipmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EquipmentName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("WorkPlanId")
                         .HasColumnType("int");
 
                     b.HasKey("WorkPlanSwitchingInstructionstId");
+
+                    b.HasIndex("EquipmentId");
 
                     b.HasIndex("WorkPlanId");
 
@@ -597,6 +575,10 @@ namespace Web2BE.Migrations
                         .WithMany("Equipment")
                         .HasForeignKey("SafetyDocumentId");
 
+                    b.HasOne("Web2BE.Models.WorkPlan", "WorkPlan")
+                        .WithMany("Equipment")
+                        .HasForeignKey("WorkPlanId");
+
                     b.HasOne("Web2BE.Models.WorkRequest", "WorkRequest")
                         .WithMany("Equipment")
                         .HasForeignKey("WorkRequestId");
@@ -632,30 +614,23 @@ namespace Web2BE.Migrations
                 {
                     b.HasOne("Web2BE.Models.Incident", "Incident")
                         .WithMany()
-                        .HasForeignKey("IncidentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IncidentId");
 
                     b.HasOne("Web2BE.Models.SafetyDocument", "SafetyDocument")
-                        .WithMany()
-                        .HasForeignKey("SafetyDocumentId");
-
-                    b.HasOne("Web2BE.Models.SafetyDocument", null)
                         .WithOne("WorkPlan")
-                        .HasForeignKey("Web2BE.Models.WorkPlan", "SafetyDocumentId1");
-                });
+                        .HasForeignKey("Web2BE.Models.WorkPlan", "SafetyDocumentId");
 
-            modelBuilder.Entity("Web2BE.Models.WorkPlanEquipment", b =>
-                {
-                    b.HasOne("Web2BE.Models.WorkPlan", "WorkPlan")
-                        .WithMany("Equipment")
-                        .HasForeignKey("WorkPlanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Web2BE.Models.WorkRequest", "WorkRequest")
+                        .WithMany()
+                        .HasForeignKey("WorkRequestId");
                 });
 
             modelBuilder.Entity("Web2BE.Models.WorkPlanSwitchingInstructions", b =>
                 {
+                    b.HasOne("Web2BE.Models.Equipment", "Equipment")
+                        .WithMany()
+                        .HasForeignKey("EquipmentId");
+
                     b.HasOne("Web2BE.Models.WorkPlan", "WorkPlan")
                         .WithMany("SwitchingInstructions")
                         .HasForeignKey("WorkPlanId")

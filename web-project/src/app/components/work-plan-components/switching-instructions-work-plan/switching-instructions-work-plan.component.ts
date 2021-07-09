@@ -10,25 +10,25 @@ import { InstructionService } from 'src/app/services/instruction.service';
 export class SwitchingInstructionsWorkPlanComponent implements OnInit {
 
   @Input() addWorkPlanForm: FormGroup;
-  instructionsList : any [] = [];
-  selectedInstruction: any;
+ 
   instructionGroup = this.formBuilder.group({
-    instructionDescription: "",
-    element: "",
+    workPlanSwitchingInstructionsId: 0,
+    description: "",
+    equipmentName: "", //equipment name
+    workPlanId: null,
+    equipmentId: null
   });
   displayedColumns = ['id', 'start_date', 'phone_number', 'status', 'address'];
   
-  constructor(private instructionService: InstructionService, private formBuilder: FormBuilder ) { }
+  constructor(private instructionService: InstructionService, private formBuilder: FormBuilder
+    ) {
+    
+   }
 
   ngOnInit(): void {
+
   }
-  submit(instructionGroup: any){
-    window.alert("instruction Added");
+  onSubmit(instruction: any){
+    this.instructionService.postWorkPlansSW(instruction).subscribe();
   }
-}
-export interface DataTableWorkPlanSwitchingInstructionsItem{
-  workPlanSwitchingInstructionsId: number,
-  element: string,
-  description: string,
-  workPlanId: number,
 }

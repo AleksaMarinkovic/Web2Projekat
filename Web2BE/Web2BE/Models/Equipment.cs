@@ -15,14 +15,14 @@ namespace Web2BE.Models
         public string Address { get; set; }
         public string Coordinates { get; set; }
 
-        //FKs
-        public Incident Incident { get; set; }
+        //Foreign Keys
         public int? IncidentId { get; set; }
-
-        public WorkRequest WorkRequest { get; set; }
+        public Incident Incident { get; set; }
         public int? WorkRequestId { get; set; }
-
-        public SafetyDocument SafetyDocument { get; set; }
+        public WorkRequest WorkRequest { get; set; }
         public int? SafetyDocumentId { get; set; }
+        public SafetyDocument SafetyDocument { get; set; }
+        public int? WorkPlanId { get; set; }
+        public WorkPlan WorkPlan { get; set; }
     }
 }

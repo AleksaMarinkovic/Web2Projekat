@@ -3,35 +3,31 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { workPlanTypes } from 'src/assets/workPlanTypes.enum';
 
-// TODO: Replace this with your own data model type
 export interface DataTableWorkPlanItem {
-    id: number;
-    startDate: Date;
-    phoneNumber: string;
-    status: workPlanTypes;
-    address: string;
+    workPlanId: number;
+    documentType: string;
+    status: string;
+    workRequestId: string;
+    incidentId: string;
+    address: string,
+    startWorkDate: string,
+    endWorkDate: string,
+    createdBy: string,
+    crew: string,
+    purpose: string,
+    notes: string,
+    company: string,
+    phone: string,
+    creationDate: string,
+    photo: string,
+    lastEditor: string,
+    dateEdited: string,
+    documentState: string,     
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: DataTableWorkPlanItem[] = [
-  {id: 1, startDate: new Date("2020.10.10"), phoneNumber: '123121', status: workPlanTypes.Draft, address: "Kralja Petra 1"},
-  {id: 2, startDate: new Date("2020.10.10"), phoneNumber: '123121', status: workPlanTypes.Draft, address: "Kralja Petra 1"},
-  {id: 3, startDate: new Date("2010.10.10"), phoneNumber: '123121', status: workPlanTypes.Draft, address: "Kralja Petra 1"},
-  {id: 4, startDate: new Date("1020.10.4"), phoneNumber: '123121', status: workPlanTypes.Draft, address: "Blvr 13"},
-  {id: 5, startDate: new Date("2020.4.10"), phoneNumber: '123221', status: workPlanTypes.Draft, address: "Blvr 31"},
- {id: 6, startDate: new Date("2020.10.10"), phoneNumber: '123121', status: workPlanTypes.Draft, address: "Kralja Petra 13"},
- {id: 7, startDate: new Date("2020.10.10"), phoneNumber: '123121', status: workPlanTypes.Draft, address: "Kralja Petra 341"},
-  {id: 8, startDate: new Date("2020.11.10"), phoneNumber: '1212121', status: workPlanTypes.Draft, address: "Kralja Petra 122"},
-  {id: 9, startDate: new Date("2020.10.11"), phoneNumber: '123121', status: workPlanTypes.Submitted, address: "Kralja Petra 1"},
-  {id: 10, startDate: new Date("2020.10.10"), phoneNumber: '123221', status: workPlanTypes.Submitted, address: "Kralja Petra 121"},
-  {id: 11, startDate: new Date("1111.10.10"), phoneNumber: '123121', status: workPlanTypes.Submitted, address: "Kralja Petra 2"},
-  {id: 12, startDate: new Date("2020.10.10"), phoneNumber: '12423121', status: workPlanTypes.Submitted, address: "Kralja Petra 22"},
-  {id: 13, startDate: new Date("2020.10.10"), phoneNumber: '123121', status: workPlanTypes.Draft, address: "Kralja Petra 2"},
-  {id: 14, startDate: new Date("2210.10.10"), phoneNumber: '123121', status: workPlanTypes.Draft, address: "Kralja Petra 1"},
-  {id: 16, startDate: new Date("2020.10.10"), phoneNumber: '5421', status: workPlanTypes.Submitted, address: "Kralja Petra 4121"},
-  {id: 17, startDate: new Date("2020.10.10"), phoneNumber: '243121', status: workPlanTypes.Draft, address: "Blvr 1"},
+const EXAMPLE_DATA: DataTableWorkPlanItem[] = [ 
 ];
 
 
@@ -93,9 +89,9 @@ export class DataTableWorkPlanDataSource extends DataSource<DataTableWorkPlanIte
       return data.sort((a, b) => {
         const isAsc = this.sort?.direction === 'asc';
         switch (this.sort?.active) {
-          case 'startDate': return compare(a.startDate, b.startDate, isAsc);
-          case 'id': return compare(+a.id, +b.id, isAsc);
-          case 'phoneNumber': return compare(a.phoneNumber, b.phoneNumber, isAsc);
+          case 'startDate': return compare(a.startWorkDate, b.startWorkDate, isAsc);
+          case 'id': return compare(+a.workPlanId, +b.workPlanId, isAsc);
+          case 'phoneNumber': return compare(a.phone, b.phone, isAsc);
           case 'status': return compare(a.status, b.status, isAsc);
           case 'address': return compare(a.address, b.address, isAsc);
 

@@ -1,36 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { handleError } from 'src/assets/errorHandler';
-import { workPlan } from 'src/assets/workPlan';
+import { DataTableWorkPlanItem } from '../components/data-tables/data-table-work-plan/data-table-work-plan-datasource';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkPlanService {
-
+ 
   url = "https://localhost:44358/api/WorkPlans";
   constructor(private httpClient: HttpClient) { }
 
   getAllWorkPlans(){
-    return this.httpClient.get<workPlan[]>(this.url).pipe(
+    return this.httpClient.get<DataTableWorkPlanItem[]>(this.url).pipe(
       catchError(handleError)
     );;
   }
 
   postWorkPlans(WorkPlan: any){
-    return this.httpClient.post<workPlan>(this.url, WorkPlan).pipe(
+    return this.httpClient.post<DataTableWorkPlanItem>(this.url, WorkPlan).pipe(
       catchError(handleError)
     );   
   }
 
-  getWorkPlans(WorkPlanId: number){
-    return this.httpClient.get<workPlan>(this.url + "/" + WorkPlanId).pipe(
+  getWorkPlan(WorkPlanId: number){
+    return this.httpClient.get<DataTableWorkPlanItem>(this.url + "/" + WorkPlanId).pipe(
       catchError(handleError)
     );;
   }
   putWorkPlans(WorkPlans: any, WorkPlanId: number){
-    return this.httpClient.put<workPlan>(this.url + "/" + WorkPlanId, WorkPlans).pipe(
+    return this.httpClient.put<DataTableWorkPlanItem>(this.url + "/" + WorkPlanId, WorkPlans).pipe(
       catchError(handleError)
     );;
   }

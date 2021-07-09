@@ -4,27 +4,27 @@
             <form [formGroup] = "instructionGroup">
                 <div class="row justify-content-center buffer">
                     <div class="col-3">
-                        <label class="padding" for="element">
+                        <label class="padding" for="equipmentName">
                             Element
                         </label>
                     </div>
-                    <div class="col-3">
-                        <input class="form-control" id="element" type="element" formControlName="element">
+                    <div class="col-3" [formGroup]="instructionGroup">
+                        <input class="form-control" id="equipmentName" type="equipmentName" [formControlName]="'equipmentName'">
                     </div>
                 </div>
                 <div class="row justify-content-center buffer">
                     <div class="col-3">
-                        <label class="padding" for="InstructionDescription">
+                        <label class="padding" for="description">
                             Instruction Description:
                         </label>
                     </div>
-                    <div class="col-3">
-                        <input class="form-control" id="InstructionDescription" type="InstructionDescription" formControlName="instructionDescription">
+                    <div class="col-3" [formGroup]="instructionGroup">
+                        <input class="form-control" id="description" type="description" [formControlName]="'description'">
                     </div>
                 </div>
                 <div class="row justify-content-center buffer">                   
                     <div class="col-3">
-                        <button type="submit(instructionGroup)" class="btn btn-primary">Validate & Submit</button>
+                        <button (click)="onSubmit(instructionGroup.value)" class="btn btn-primary">Add Instruction</button>
                     </div>
                 </div>
             </form>

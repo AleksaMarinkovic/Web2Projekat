@@ -8,7 +8,7 @@ import { workPlanDocumentTypes } from 'src/assets/workPlantDocumentTypes.enum';
   styleUrls: ['./basic-information-work-plan.component.css']
 })
 export class BasicInformationWorkPlanComponent implements OnInit {
-  @Input() addWorkPlanForm!: FormGroup;
+  @Input() addWorkPlanForm: FormGroup;
   public workPlanTypes = Object.values(workPlanDocumentTypes);
   public dateTimeCreated = Date.now();
 

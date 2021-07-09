@@ -4,16 +4,16 @@
             <label for="workPlanDocumentType">Document Type:</label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
-            <select id="workPlanDocumentType" name="workPlanDocumentType" [formControlName]="'workPlanDocumentType'">
-                <option *ngFor="let workPlanDocType of workPlanTypes" [value]="workPlanDocType">
-                    {{workPlanDocType}}</option>
+            <select id="documentType" name="documentType" [formControlName]="'documentType'">
+                <option *ngFor="let documentType of workPlanTypes" [value]="documentType">
+                    {{documentType}}</option>
             </select>
         </div>
         <div class="col-3">
             Date created:
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">            
-            Created Label
+            Created Label-creationDate
         </div>
     </div>
    
@@ -32,10 +32,10 @@
             created by label
         </div>
         <div class="col-3">
-            <label for="workRequest">Work Request: </label>
+            <label for="workRequestId">Work Request: </label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
-            <input class="form-control" id="workRequest" name="workRequest" type="text" [formControlName]="'workRequest'">
+            <input class="form-control" id="workRequestId" name="workRequestId" type="text" [formControlName]="'workRequestId'">
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
@@ -54,11 +54,11 @@
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="incident">Incident:</label>
+            <label for="incidentId">Incident:</label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
-            <input class="form-control" id="incident" name="incident" type="text"
-                [formControlName]="'incident'">
+            <input class="form-control" id="incidentId" name="incidentId" type="text"
+                [formControlName]="'incidentId'">
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
@@ -91,10 +91,10 @@
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="phoneNumber">Phone Number: </label>
+            <label for="phone">Phone Number: </label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
-            <input class="form-control" id="company" name="company" type="text" [formControlName]="'company'">
+            <input class="form-control" id="phone" name="phone" type="text" [formControlName]="'phone'">
         </div>
         <div class="col-3">
             <label for="crew">Crew: </label>

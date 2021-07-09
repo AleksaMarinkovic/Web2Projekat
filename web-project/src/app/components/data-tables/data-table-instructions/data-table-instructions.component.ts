@@ -3,7 +3,8 @@ import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { InstructionService } from 'src/app/services/instruction.service';
 import { DataTableItem } from '../data-table-safety-docs/data-table-datasource';
 
 @Component({
@@ -13,24 +14,31 @@ import { DataTableItem } from '../data-table-safety-docs/data-table-datasource';
 })
 export class DataTableInstructionsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<DataTableItem>;
+  dataSource = new MatTableDataSource<DataTableWorkPlanSwitchingInstructionsItem>(EXAMPLE_DATA);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'element', 'description', 'modify', 'delete'];
+  displayedColumns = ['id', 'element', 'description', 'delete'];
   
-  constructor() { }
+  constructor(private instructionsService: InstructionService) { }
   ngAfterViewInit(): void {
-    //this.dataSource.sort = this.sort;
-    //this.dataSource.paginator = this.paginator;
-    //this.table.dataSource = this.dataSource;  
+    this.dataSource.paginator = this.paginator;
   }
-
+  refresh(){
+    this.instructionsService.getAllWorkPlansSW().subscribe(
+      data => {       
+        EXAMPLE_DATA = data;   
+        this.dataSource.data = EXAMPLE_DATA;
+        this.dataSource.paginator = this.paginator; 
+        this.dataSource.paginator._changePageSize(this.paginator.pageSize);
+      }
+    ); 
+  }
  
 }
 export interface DataTableWorkPlanSwitchingInstructionsItem{
   workPlanSwitchingInstructionsId: number,
-  element: string,
   description: string,
   workPlanId: number,
+  equipmentName: string,
+  equipmentId: number,
 }
-const EXAMPLE_DATA: DataTableWorkPlanSwitchingInstructionsItem[] =[]
+let EXAMPLE_DATA: DataTableWorkPlanSwitchingInstructionsItem[] =[]
