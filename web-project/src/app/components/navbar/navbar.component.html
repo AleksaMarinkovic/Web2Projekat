@@ -51,7 +51,7 @@
     <a class="nav-link separator" [routerLink]="['/userProfile']" title="Profile">
       <img class="medium-icon" [src]="this.iconMap.get('Profile')" alt="Profile">
     </a>
-    <a class="nav-link separator" [routerLink]="['/']" title="Sign out">
+    <a class="nav-link separator" (click)="logOut()" title="Sign out">
       <img class="medium-icon" [src]="this.iconMap.get('Sign out')" alt="Sign out">
     </a>
   </div>

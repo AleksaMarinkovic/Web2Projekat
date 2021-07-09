@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IconService } from 'src/app/services/icon.service';
 import { DataTableIconSettingsComponent, DataTableIconSettingsItem } from '../data-tables/data-table-icon-settings/data-table-icon-settings.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { DataTableIconSettingsComponent, DataTableIconSettingsItem } from '../da
 })
 export class NavbarComponent implements OnInit {
   public navbarCollapsed = true;
-  constructor(private iconSettingService: IconService) { }
+  constructor(private iconSettingService: IconService, private _router: Router) { }
   images: DataTableIconSettingsItem[];
   iconMap = new Map();
   ngOnInit(): void {
@@ -25,5 +26,9 @@ export class NavbarComponent implements OnInit {
         });
       }
     )
+  }
+  logOut(){
+    localStorage.removeItem("jwt");
+    this._router.navigate(['/']);
   }
 }

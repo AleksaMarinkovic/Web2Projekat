@@ -384,7 +384,7 @@ namespace Web2BE.Migrations
                     b.Property<string>("UserTypes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Userame")
+                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");

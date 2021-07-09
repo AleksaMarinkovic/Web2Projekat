@@ -98,7 +98,7 @@ namespace Web2BE.Migrations
                 {
                     UserId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Userame = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),

@@ -10,7 +10,7 @@ using Web2BE.Data;
 namespace Web2BE.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210709120957_Initial")]
+    [Migration("20210709153718_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -386,7 +386,7 @@ namespace Web2BE.Migrations
                     b.Property<string>("UserTypes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Userame")
+                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");

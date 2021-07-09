@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Web2BE.Data;
 using Web2BE.Models;
 
@@ -15,9 +20,10 @@ namespace Web2BE.Controllers
     public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
-
-        public UsersController(DataContext context)
+        private readonly IOptions<JWTSettings> config;
+        public UsersController(DataContext context, IOptions<JWTSettings> config)
         {
+            this.config = config;
             _context = context;
         }
 
@@ -78,7 +84,8 @@ namespace Web2BE.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [Route ("Register")]
+        public async Task<ActionResult> PostUser([FromBody]User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -86,6 +93,46 @@ namespace Web2BE.Controllers
             return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
 
+        [HttpPost]
+        [Route ("Login")]
+        public async Task<IActionResult> Login([FromBody]UserLoginInfo loginInfo)
+        {   
+            if(loginInfo == null)
+            {
+                return BadRequest("Invalid client request");
+            }
+            var userList = await _context.Users.ToListAsync();
+            foreach(var user in userList)
+            {
+                if (user.Email == loginInfo.Email && user.Password == loginInfo.Password)
+                {
+                    //var tokenDescriptor = new SecurityTokenDescriptor
+                    //{
+                    //    Subject = new System.Security.Claims.ClaimsIdentity(new Claim[] {
+                    //        new Claim("UserId", user.UserId.ToString())
+                    //    }),
+                    //    Expires = DateTime.UtcNow.AddMinutes(5),
+                    //    SigningCredentials = new SigningCredentials(new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.Value.SecretKey))), SecurityAlgorithms.HmacSha256Signature)
+                    //};
+                    //var tokenHandler = new JwtSecurityTokenHandler();
+                    //var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    //var token = tokenHandler.WriteToken(securityToken);
+                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.Value.SecretKey));
+                    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+                    var tokenOptions = new JwtSecurityToken(
+                        issuer: config.Value.Issuer,
+                        audience: config.Value.Audience,
+                        claims: new List<Claim>(),
+                        expires: DateTime.UtcNow.AddMinutes(5),
+                        signingCredentials: signinCredentials
+                        );
+                    var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                    return Ok(new { token = tokenString });
+                }
+            }
+            return BadRequest(new { message = "An error occured." });
+        }
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(int id)

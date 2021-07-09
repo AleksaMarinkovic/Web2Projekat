@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,14 +23,14 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/Incidents
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<Incident>>> GetIncident()
         {
             return await _context.Incident.ToListAsync();
         }
 
         // GET: api/Incidents/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<Incident>> GetIncident(int id)
         {
             var incident = await _context.Incident.FindAsync(id);
@@ -43,18 +44,20 @@ namespace Web2BE.Controllers
         }
 
         [ActionName("Drafted")]
-        [HttpGet("Drafted")]
+        [HttpGet("Drafted"), Authorize]
         public async Task<ActionResult<int>> GetDraftedIncidents()
         {
+            var a = Request.Headers;
             var res = await _context.Incident.Where(d => d.State == "Drafted").ToListAsync();
             var retVal = res.Count;
             return retVal;
         }
 
         [ActionName("Completed")]
-        [HttpGet("Completed")]
+        [HttpGet("Completed"), Authorize]
         public async Task<ActionResult<int>> GetCompletedIncidents()
         {
+            var a = Request.Headers;
             var res = await _context.Incident.Where(d => d.State == "Completed").ToListAsync();
             var retVal = res.Count;
             return retVal;
@@ -62,9 +65,10 @@ namespace Web2BE.Controllers
 
 
         [ActionName("Canceled")]
-        [HttpGet("Canceled")]
+        [HttpGet("Canceled"), Authorize]
         public async Task<ActionResult<int>> GetCanceledIncidents()
         {
+            var a = Request.Headers;
             var res = await _context.Incident.Where(d => d.State == "Canceled").ToListAsync();
             var retVal = res.Count;
             return retVal;
@@ -72,9 +76,10 @@ namespace Web2BE.Controllers
 
 
         [ActionName("Issued")]
-        [HttpGet("Issued")]
+        [HttpGet("Issued"), Authorize]
         public async Task<ActionResult<int>> GetIssuedIncidents()
         {
+            var a = Request.Headers;
             var res = await _context.Incident.Where(d => d.State == "Issued").ToListAsync();
             var retVal = res.Count;
             return retVal;
@@ -84,7 +89,7 @@ namespace Web2BE.Controllers
         // PUT: api/Incidents/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutIncident(int id, Incident incident)
         {
             if (id != incident.IncidentId)
@@ -116,10 +121,9 @@ namespace Web2BE.Controllers
         // POST: api/Incidents
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<Incident>> PostIncident(Incident incident)
         {
-
             var tempList = new List<Equipment>();
             foreach(var e in incident.Equipment)
             {
@@ -143,7 +147,7 @@ namespace Web2BE.Controllers
         }
 
         // DELETE: api/Incidents/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<Incident>> DeleteIncident(int id)
         {
             var incident = await _context.Incident.FindAsync(id);

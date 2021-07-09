@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   templateUrl: './login-form.component.html',
@@ -11,12 +14,38 @@ export class LoginFormComponent implements OnInit {
     email :"",
     password: ""
   });
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private _router: Router, private jwtHelper: JwtHelperService) { }
 
   ngOnInit(): void {
-  }
-  onSubmit(): void{
-    //window.alert("Login!");
     
   }
+  onSubmit(form: any): void{
+    this.userService.login(form.value).subscribe(
+      (res: any) => {
+        console.log(res.token)
+        localStorage.setItem('jwt', res.token);
+        this._router.navigate(['/dashboard']);
+      },
+      err => {
+        if(err.status == 400){
+          window.alert('Incorrect username or password.');
+        }
+        else{
+          window.alert('Incorrect username or password.');
+          console.log(err);
+        }
+      }
+    );
+    
+  }
+  isUserAuthenticated(){
+    const token: string = localStorage.getItem("jwt");
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  
 }

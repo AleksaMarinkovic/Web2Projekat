@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { OutageReportComponent } from './components/outage-report/outage-report.component';
@@ -89,6 +90,11 @@ import { ModifyElementComponent } from './components/modify-element/modify-eleme
 import { ModifyCrewComponent } from './components/modify-crew/modify-crew.component';
 import { IncidentsWrComponent } from './components/work-request-components/incidents-wr/incidents-wr.component';
 import { DataTableIconSettingsComponent } from './components/data-tables/data-table-icon-settings/data-table-icon-settings.component';
+import { AuthGuardGuard } from './guards/auth-guard.guard';
+
+export function tokenGetter(){
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -176,30 +182,36 @@ import { DataTableIconSettingsComponent } from './components/data-tables/data-ta
       { path: "", component: LoginFormComponent },
       { path: "passwordRecovery", component: PasswordRecoveryComponent },
       { path: "createAccount", component: RegistrationComponent },
-      { path: "dashboard", component: DashboardComponent },
-      { path: "safetyDocuments", component: SafetyDocumentsComponent },
-      { path: "addSafetyDocuments", component: AddSafetyDocumentComponent },
-      { path: "workRequests", component: WorkRequestsComponent },
-      { path: "addWorkRequest", component: AddWorkRequestsComponent },
-      { path: "incidents", component: IncidentsComponent },
-      { path: "addIncident", component: AddIncidentComponent },
-      { path: "addElement", component: AddElementComponent },
-      { path: "addNewElement", component: AddNewElementComponent },
-      { path: "map", component: MapComponent },
-      { path: "addCrew", component: AddCrewComponent },
-      { path: "addNewCrew", component: AddNewCrewComponent },
-
-      { path: "search", component: SearchComponent },
-      { path: "userProfile", component: UserProfileComponent},
-      { path: "notifications", component: NotificationsComponent},
-      { path: "settings", component: SettingsComponent},
-      { path: "addConsumer", component: AddConsumerComponent},
-      { path: "addWorkPlan", component: AddWorkPlanComponent},
-      { path: "addNewConsumer", component: AddNewConsumerComponent},
-      { path: "work-plans", component: WorkPlansComponent},
-      { path: "calls", component:CallsComponent},
-      { path: "addNewCall", component:AddNewCallComponent}
+      { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuardGuard]},
+      { path: "safetyDocuments", component: SafetyDocumentsComponent, canActivate: [AuthGuardGuard] },
+      { path: "addSafetyDocuments", component: AddSafetyDocumentComponent, canActivate: [AuthGuardGuard] },
+      { path: "workRequests", component: WorkRequestsComponent, canActivate: [AuthGuardGuard] },
+      { path: "addWorkRequest", component: AddWorkRequestsComponent, canActivate: [AuthGuardGuard] },
+      { path: "incidents", component: IncidentsComponent, canActivate: [AuthGuardGuard] },
+      { path: "addIncident", component: AddIncidentComponent , canActivate: [AuthGuardGuard]},
+      { path: "addElement", component: AddElementComponent , canActivate: [AuthGuardGuard]},
+      { path: "addNewElement", component: AddNewElementComponent , canActivate: [AuthGuardGuard]},
+      { path: "map", component: MapComponent, canActivate: [AuthGuardGuard] },
+      { path: "addCrew", component: AddCrewComponent , canActivate: [AuthGuardGuard]},
+      { path: "addNewCrew", component: AddNewCrewComponent, canActivate: [AuthGuardGuard] },
+      { path: "search", component: SearchComponent , canActivate: [AuthGuardGuard]},
+      { path: "userProfile", component: UserProfileComponent, canActivate: [AuthGuardGuard]},
+      { path: "notifications", component: NotificationsComponent, canActivate: [AuthGuardGuard]},
+      { path: "settings", component: SettingsComponent, canActivate: [AuthGuardGuard]},
+      { path: "addConsumer", component: AddConsumerComponent, canActivate: [AuthGuardGuard]},
+      { path: "addWorkPlan", component: AddWorkPlanComponent, canActivate: [AuthGuardGuard]},
+      { path: "addNewConsumer", component: AddNewConsumerComponent, canActivate: [AuthGuardGuard]},
+      { path: "work-plans", component: WorkPlansComponent, canActivate: [AuthGuardGuard]},
+      { path: "calls", component:CallsComponent, canActivate: [AuthGuardGuard]},
+      { path: "addNewCall", component:AddNewCallComponent, canActivate: [AuthGuardGuard]}
     ]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter, 
+        allowedDomains: ['localhost:4200'],
+        disallowedRoutes:[]
+      }
+    }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAN3C1PGzRuOlC5cismR2Bb1V91MFY-b_Y'
     }),

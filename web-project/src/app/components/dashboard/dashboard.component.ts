@@ -45,8 +45,8 @@ export class DashboardComponent implements OnInit {
     this.safetyDocumentService.getNumberOfCompletedSafetyDocuments().subscribe(data => {this.completedSafetyDocuments = data; this.checkIfReady()});    
   }
 
-  checkIfReady(){
-    if(this.draftedIncidents && this.canceledIncidents && this.issuedIncidents && this.completedIncidents && this.draftedWorkRequests && this.canceledWorkRequests && this.issuedWorkRequests && this.completedWorkRequests && this.draftedSafetyDocuments && this.canceledSafetyDocuments && this.issuedSafetyDocuments && this.completedSafetyDocuments){
+  checkIfReady(){    
+    if(this.draftedIncidents >= 0 && this.canceledIncidents >= 0  && this.issuedIncidents >= 0  && this.completedIncidents >= 0  && this.draftedWorkRequests >= 0  && this.canceledWorkRequests >= 0  && this.issuedWorkRequests >= 0  && this.completedWorkRequests >= 0  && this.draftedSafetyDocuments >= 0  && this.canceledSafetyDocuments >= 0  && this.issuedSafetyDocuments >= 0  && this.completedSafetyDocuments >= 0 ){
       for(var idx in cards_info){
       
         switch(cards_info[idx].id){
