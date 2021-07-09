@@ -23,6 +23,31 @@ export class IncidentService {
     );   
   }
 
+  //get canceled
+  getNumberOfCanceledIncidents(){
+    return this.httpClient.get<number>(this.url + "/Canceled").pipe(
+      catchError(handleError)
+    );;
+  }
+  //get issued
+  getNumberOfIssuedIncidents(){
+    return this.httpClient.get<number>(this.url + "/Issued").pipe(
+      catchError(handleError)
+    );;
+  }
+  //get completed
+  getNumberOfCompletedIncidents(){
+    return this.httpClient.get<number>(this.url + "/Completed").pipe(
+      catchError(handleError)
+    );;
+  }
+  //get drafted
+  getNumberOfDraftedIncidents(){
+    return this.httpClient.get<number>(this.url + "/Drafted").pipe(
+      catchError(handleError)
+    );;
+  }
+
   getIncident(incidentId: number){
     return this.httpClient.get<DataTableIncidentsItem>(this.url + "/" + incidentId).pipe(
       catchError(handleError)

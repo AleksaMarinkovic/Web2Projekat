@@ -28,6 +28,30 @@ export class WorkRequestService {
       catchError(handleError)
     );;
   }
+  //get canceled
+  getNumberOfCanceledWorkRequests(){
+    return this.httpClient.get<number>(this.url + "/Canceled").pipe(
+      catchError(handleError)
+    );;
+  }
+  //get issued
+  getNumberOfIssuedWorkRequests(){
+    return this.httpClient.get<number>(this.url + "/Issued").pipe(
+      catchError(handleError)
+    );;
+  }
+  //get completed
+  getNumberOfCompletedWorkRequests(){
+    return this.httpClient.get<number>(this.url + "/Completed").pipe(
+      catchError(handleError)
+    );;
+  }
+  //get drafted
+  getNumberOfDraftedWorkRequests(){
+    return this.httpClient.get<number>(this.url + "/Drafted").pipe(
+      catchError(handleError)
+    );;
+  }
 
   putWorkRequest(workRequest: any, workRequestId: number){
     return this.httpClient.put<DataTableWorkRequestsItem>(this.url + "/" + workRequestId, workRequest).pipe(

@@ -16,6 +16,30 @@ export class SafetyDocumentService {
       catchError(handleError)
     );;
   }
+  //get canceled
+  getNumberOfCanceledSafetyDocuments(){
+    return this.httpClient.get<number>(this.url + "/Canceled").pipe(
+      catchError(handleError)
+    );;
+  }
+  //get issued
+  getNumberOfIssuedSafetyDocuments(){
+    return this.httpClient.get<number>(this.url + "/Issued").pipe(
+      catchError(handleError)
+    );;
+  }
+  //get completed
+  getNumberOfCompletedSafetyDocuments(){
+    return this.httpClient.get<number>(this.url + "/Completed").pipe(
+      catchError(handleError)
+    );;
+  }
+  //get drafted
+  getNumberOfDraftedSafetyDocuments(){
+    return this.httpClient.get<number>(this.url + "/Drafted").pipe(
+      catchError(handleError)
+    );;
+  }
 
   postSafetyDocument(safetyDocument: any){
     return this.httpClient.post<DataTableItem>(this.url, safetyDocument).pipe(
