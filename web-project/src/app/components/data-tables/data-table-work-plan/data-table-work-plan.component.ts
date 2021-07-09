@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { WorkPlanService } from 'src/app/services/work-plan.service';
 import { DataTableWorkPlanDataSource, DataTableWorkPlanItem } from './data-table-work-plan-datasource';
 @Component({
   selector: 'app-data-table-work-plan',
@@ -14,9 +15,9 @@ export class DataTableWorkPlanComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<DataTableWorkPlanItem>;
   dataSource: DataTableWorkPlanDataSource;
 
-  displayedColumns = ['id', 'startDate', 'phoneNumber', 'status', 'address'];
+  displayedColumns = ['id', 'startDate', 'phoneNumber', 'status', 'address', 'modify', 'delete'];
 
-  constructor() { 
+  constructor(private workPlanService: WorkPlanService, ) { 
     this.dataSource = new DataTableWorkPlanDataSource();
 
   }
@@ -25,11 +26,24 @@ export class DataTableWorkPlanComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+    this.refresh();
   }
-  modify(rowId:any){
-    window.alert("temp, should modify element with id: " + rowId);
-  }
-  delete(rowId:any){
-    window.alert("temp, should delete element with id: " + rowId);
+ 
+  delete(row:any){
+    this.workPlanService.deleteWorkPlans(row.workPlanId).subscribe(
+      () =>  this.refresh()
+    )
   }  
+
+  refresh() {
+    this.workPlanService.getAllWorkPlans().subscribe(
+      data => {
+        this.dataSource.data = data;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator._changePageSize(this.paginator.pageSize);  
+        this.table.dataSource = this.dataSource;
+      }
+    )
+  }
 }

@@ -11,10 +11,11 @@ namespace Web2BE.Models
     {
         public int WorkPlanId { get; set; }
         public string DocumentType { get; set; }
-        public int IncidentId { get; set; }
+        public int? IncidentId { get; set; }
         public Incident Incident{ get; set; }
         public string Status { get; set; }
-        public string WorkRequest { get; set; }
+        public int? WorkRequestId { get; set; }
+        public WorkRequest WorkRequest { get; set; }
         public string StartWorkDate { get; set; }
         public string EndWorkDate { get; set; }
         public string CreationDate { get; set; }
@@ -26,11 +27,11 @@ namespace Web2BE.Models
         public string Crew { get; set; }
         public string Phone { get; set; }
         public string LastEditor { get; set; }
-        public string EditedDate { get; set; }
+        public string DateEdited { get; set; }
         public string DocumentState { get; set; }
         public string Photo { get; set; }
         //One to Many with WPEq
-        public ICollection<WorkPlanEquipment> Equipment { get; set; }
+        public ICollection<Equipment> Equipment { get; set; }
         //One to Many with WPSI
         public ICollection<WorkPlanSwitchingInstructions> SwitchingInstructions { get; set; }
 

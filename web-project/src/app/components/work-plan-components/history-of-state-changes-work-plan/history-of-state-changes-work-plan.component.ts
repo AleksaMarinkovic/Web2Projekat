@@ -8,7 +8,7 @@ import { workPlanStateChange } from 'src/assets/workPlanStateChange.enum';
   styleUrls: ['./history-of-state-changes-work-plan.component.css']
 })
 export class HistoryOfStateChangesWorkPlanComponent implements OnInit {
-  @Input() addWorkPlanForm!: FormGroup;
+  @Input() addWorkPlanForm: FormGroup;
   public workPlanStateChange = Object.values(workPlanStateChange);
   constructor() { }
 

@@ -319,3 +319,6 @@ E:\Faks\web2\web-project-repo\Web2Projekat\Web2BE\Web2BE\obj\Debug\netcoreapp3.1
 E:\Faks\web2\web-project-repo\Web2Projekat\Web2BE\Web2BE\obj\Debug\netcoreapp3.1\Web2BE.dll
 E:\Faks\web2\web-project-repo\Web2Projekat\Web2BE\Web2BE\obj\Debug\netcoreapp3.1\Web2BE.pdb
 E:\Faks\web2\web-project-repo\Web2Projekat\Web2BE\Web2BE\obj\Debug\netcoreapp3.1\Web2BE.genruntimeconfig.cache
+C:\Users\David\Documents\Veb2Repo\Web2Projekat\Web2BE\Web2BE\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\David\Documents\Veb2Repo\Web2Projekat\Web2BE\Web2BE\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\David\Documents\Veb2Repo\Web2Projekat\Web2BE\Web2BE\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

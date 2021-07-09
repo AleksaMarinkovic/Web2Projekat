@@ -49,9 +49,8 @@ export class DataTableCrewComponent implements AfterViewInit {
         this.dataSource.data = data;   
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator; 
-        this.table.dataSource = this.dataSource; 
         this.dataSource.paginator._changePageSize(this.paginator.pageSize);
-           
+        this.table.dataSource = this.dataSource; 
       }
     ); 
   }
