@@ -20,10 +20,10 @@ export class NotificationsComponent implements AfterViewInit  {
   dataSource = new MatTableDataSource<DataTableNotificationsItem>(EXAMPLE_DATA);
   elementProperties = Object.values(notificationTypesDisplayed);
   imgUrl = "";
-  errorImg = "web-project/src/assets/images/Error.png";
-  warrningImg = "web-project/srca/ssets/images/Warning.png";
-  successImg ="web-project/src/assets/images/Logo.png";
-  infoImg = "web-project/src/assets/images/NOTIFICATION.png";
+  errorImg = "../../../assets/images/Error.png";
+  warrningImg = "../../../assets/images/Warning.png";
+  successImg ="../../../assets/images/logo.png";
+  infoImg = "../../../assets/images/NOTIFICATION.png";
 
   public selectedFilter : string = "All";
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -53,7 +53,8 @@ export class NotificationsComponent implements AfterViewInit  {
         this.dataSource.paginator._changePageSize(this.paginator.pageSize);  
         this.dataSource.filterPredicate = function (data, filter: string): boolean {     
           return data.type.toLowerCase().includes(filter);
-        }    
+        }
+        console.log(this.dataSource.data);    
       }
     ); 
   }
@@ -89,9 +90,18 @@ export class NotificationsComponent implements AfterViewInit  {
   }
   AllRead(){
     alert("read All");
+    this.dataSource.data.forEach(element => {
+      element.read = notificationTypesDisplayed.Read;
+      this.notificationService.putNotification(element, element.notificationId).subscribe();
+    });
+    this.refresh();
   }
   MarkAsRead(element : any){
-    alert("read " + element)
+    alert("read " + element);
+    element.read = notificationTypesDisplayed.Read;
+    this.notificationService.putNotification(element,element.notificationId).subscribe(
+      () => this.refresh()
+    );
   }
   getPath(notifType: any) : string {
     switch(notifType){

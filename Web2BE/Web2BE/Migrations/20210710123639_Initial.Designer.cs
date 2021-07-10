@@ -10,7 +10,7 @@ using Web2BE.Data;
 namespace Web2BE.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210709153718_Initial")]
+    [Migration("20210710123639_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -252,16 +252,16 @@ namespace Web2BE.Migrations
                     b.Property<int?>("IncidentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("NotificationType")
+                    b.Property<string>("Read")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Read")
-                        .HasColumnType("bit");
 
                     b.Property<int?>("SafetyDocumentId")
                         .HasColumnType("int");
 
                     b.Property<string>("TimeStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("WorkPlanId")

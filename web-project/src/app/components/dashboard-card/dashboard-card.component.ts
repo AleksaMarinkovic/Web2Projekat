@@ -17,6 +17,7 @@ export class DashboardCardComponent implements OnInit {
   drafts = 0;
   completed = 0;
   cancelled = 0;
+  issued = 0;
 
   constructor(private route: ActivatedRoute, private workPlansService: WorkPlanService) { }
 
@@ -54,12 +55,15 @@ export class DashboardCardComponent implements OnInit {
         break;
       }
       case "Executing":{
-        this.executing = this.executing + 1;
+        this.issued = this.issued + 1;
         break;
       }
       case "Cancelled":{
         this.cancelled = this.cancelled + 1;
         break;
+      }
+      case "Issued":{
+        this.issued = this.issued + 1;
       }
     }
   }
