@@ -23,4 +23,15 @@ export class UserService {
     );;
   }
 
+  getUser(id: any){
+    return this.httpClient.get(this.url + "/" + id.toString()).pipe(
+      catchError(handleError)
+    );;
+  }
+  putUser(id: any, user: any){
+    return this.httpClient.put(this.url + "/" + id.toString(), user).pipe(
+      catchError(handleError)
+    );;
+  }
+
 }

@@ -24,6 +24,7 @@ export class LoginFormComponent implements OnInit {
       (res: any) => {
         console.log(res.token)
         localStorage.setItem('jwt', res.token);
+        localStorage.setItem('id', res.id)
         this._router.navigate(['/dashboard']);
       },
       err => {

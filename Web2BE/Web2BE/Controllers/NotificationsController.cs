@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/Notifications
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<Notification>>> GetNotification()
         {
             return await _context.Notification.ToListAsync();
@@ -30,7 +31,7 @@ namespace Web2BE.Controllers
 
         // GET: api/Notifications
         /*
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<Notification>>> GetNotificationByType(string NotificationType)
         {
             var sql = _context.Notification.FromSqlRaw("SELECT * FROM  [dbo].[Notifications]({0})", NotificationType);
@@ -38,7 +39,7 @@ namespace Web2BE.Controllers
         }
         */
         // GET: api/Notifications/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<Notification>> GetNotification(int id)
         {
             var notification = await _context.Notification.FindAsync(id);
@@ -53,7 +54,7 @@ namespace Web2BE.Controllers
         // PUT: api/Notifications/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutNotification(int id, Notification notification)
         {
             if (id != notification.NotificationId)
@@ -85,7 +86,7 @@ namespace Web2BE.Controllers
         // POST: api/Notifications
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<Notification>> PostNotification(Notification notification)
         {
             _context.Notification.Add(notification);
@@ -95,7 +96,7 @@ namespace Web2BE.Controllers
         }
 
         // DELETE: api/Notifications/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<Notification>> DeleteNotification(int id)
         {
             var notification = await _context.Notification.FindAsync(id);

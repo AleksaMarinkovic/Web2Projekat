@@ -23,14 +23,14 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/WorkPlans
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<WorkPlan>>> GetWorkPlan()
         {
             return await _context.WorkPlan.ToListAsync();
         }
 
         // GET: api/WorkPlans/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<WorkPlan>> GetWorkPlan(int id)
         {
             var workPlan = await _context.WorkPlan.FindAsync(id);
@@ -55,7 +55,7 @@ namespace Web2BE.Controllers
         // PUT: api/WorkPlans/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutWorkPlan(int id, WorkPlan workPlan)
         {
             if (id != workPlan.WorkPlanId)
@@ -87,7 +87,7 @@ namespace Web2BE.Controllers
         // POST: api/WorkPlans
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<WorkPlan>> PostWorkPlan(WorkPlan workPlan)
         {
             _context.WorkPlan.Add(workPlan);
@@ -97,7 +97,7 @@ namespace Web2BE.Controllers
         }
 
         // DELETE: api/WorkPlans/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<WorkPlan>> DeleteWorkPlan(int id)
         {
             var workPlan = await _context.WorkPlan.FindAsync(id);

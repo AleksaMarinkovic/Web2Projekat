@@ -23,7 +23,7 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="username" type="text" formControlName="username">
+              <input class="form-control" id="username" type="text" formControlName="username" [ngModel]="this.user.username">
             </div>
           </div>
     
@@ -34,18 +34,18 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="email" type="email" formControlName="email">
+              <input class="form-control" id="email" type="email" formControlName="email" [ngModel]=this.user.email>
             </div>
           </div>
-    
-          <div class="row mb-2">
+          <div formGroupName="passwords">
+          <div class="row mb-2" >
             <div class="col-lg-3">
               <label class="padding" for="password">
                 Password:
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="password" type="password" formControlName="password">
+              <input class="form-control" id="password" type="password" formControlName="password" [ngModel]=this.user.password>
             </div>
           </div>
     
@@ -56,10 +56,13 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="passwordRepeat" type="password" formControlName="passwordRepeat">
+              <input class="form-control" id="passwordRepeat" type="password" formControlName="passwordRepeat" [ngModel]=this.user.password>
             </div>
+            <label class="text-danger" *ngIf="userProfileForm.hasError('notSame','passwords')">
+              Passwords do not match.
+            </label>
           </div>
-    
+        </div>
           <div class="row mb-2">
             <div class="col-lg-3">
               <label class="padding" for="firstName">
@@ -67,7 +70,7 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="firstName" type="text" formControlName="firstName">
+              <input class="form-control" id="firstName" type="text" formControlName="firstName" [ngModel]="this.user.firstName">
             </div>
           </div>
     
@@ -78,7 +81,7 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="lastName" type="text" formControlName="lastName">
+              <input class="form-control" id="lastName" type="text" formControlName="lastName" [ngModel]="this.user.lastName">
             </div>
           </div>
     
@@ -89,7 +92,7 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="dateOfBirth" type="date" formControlName="dateOfBirth">
+              <input class="form-control" id="dateOfBirth" type="date" formControlName="dateOfBirth" [ngModel]="this.user.dateOfBirth">
             </div>
           </div>
     
@@ -100,7 +103,7 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="address" type="text" formControlName="address">
+              <input class="form-control" id="address" type="text" formControlName="address" [ngModel]="this.user.address">
             </div>
           </div>
     
@@ -112,7 +115,7 @@
             </div>
             <div class="col-lg-3">
               <select>
-                <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>
+                <option *ngFor="let userType of userTypes" [value]="this.user.address">{{userType}}</option>
               </select>
             </div>
           </div>
@@ -126,8 +129,11 @@
               </label>
             </div>
             <div class="col-lg-4">
-              <app-picture-upload>
-              </app-picture-upload>
+                <input type="file" accept="image/*" (change)="showPreview($event)" id="photo" name="photo"
+                [formControlName]="'photo'"/>          
+              <div class="imagePreview">
+                <img width="150" height="150" [src]="this.user.photo" />
+              </div>
             </div>
           </div>
     

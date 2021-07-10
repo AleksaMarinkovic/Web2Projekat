@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,14 +23,14 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/Consumers
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<Consumer>>> GetConsumer()
         {
             return await _context.Consumer.ToListAsync();
         }
 
         // GET: api/Consumers/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<Consumer>> GetConsumer(int id)
         {
             var consumer = await _context.Consumer.FindAsync(id);
@@ -45,7 +46,7 @@ namespace Web2BE.Controllers
         // PUT: api/Consumers/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutConsumer(int id, Consumer consumer)
         {
             if (id != consumer.ConsumerId)
@@ -77,7 +78,7 @@ namespace Web2BE.Controllers
         // POST: api/Consumers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<Consumer>> PostConsumer(Consumer consumer)
         {
             _context.Consumer.Add(consumer);
@@ -87,7 +88,7 @@ namespace Web2BE.Controllers
         }
 
         // DELETE: api/Consumers/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<Consumer>> DeleteConsumer(int id)
         {
             var consumer = await _context.Consumer.FindAsync(id);

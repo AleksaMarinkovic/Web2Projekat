@@ -13,7 +13,8 @@
             Date created:
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">            
-            Created Label-creationDate
+            {{this.currDate}}
+            <input type="hidden" [formControlName]="'creationDate'" [ngModel]="this.currDate" />
         </div>
     </div>
    
@@ -22,14 +23,16 @@
         <div class="col-3">
             Status:
         </div>
-        <div class="col-3">
-            status label
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            Drafted
+            <input type="hidden" [formControlName]="'status'">
         </div>
         <div class="col-3">
             Created by:
         </div>
-        <div class="col-3">
-            created by label
+        <div class="col-3" [formGroup]="addWorkPlanForm">
+            {{this.user.username}}
+            <input type="hidden" [formControlName]="'createdBy'" [ngModel]="this.user.username">
         </div>
         <div class="col-3">
             <label for="workRequestId">Work Request: </label>
@@ -100,8 +103,11 @@
             <label for="crew">Crew: </label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
-            <input class="form-control" id="crew" name="crew" type="text" [formControlName]="'crew'">
-        </div>
+            <select id="crew" name="crew" [formControlName]="'crew'">
+                <option *ngFor="let c of this.crews" [value]="c">
+                    {{c.crewName}}</option>
+            </select>
+        </div>    
     </div>
 
 </div>

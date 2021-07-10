@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,14 +23,14 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/Calls
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<Call>>> GetCall()
         {
             return await _context.Call.ToListAsync();
         }
 
         // GET: api/Calls/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<Call>> GetCall(int id)
         {
             var call = await _context.Call.FindAsync(id);
@@ -45,7 +46,7 @@ namespace Web2BE.Controllers
         // PUT: api/Calls/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutCall(int id, Call call)
         {
             if (id != call.CallId)
@@ -77,7 +78,7 @@ namespace Web2BE.Controllers
         // POST: api/Calls
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<Call>> PostCall(Call call)
         {
             _context.Call.Add(call);
@@ -87,7 +88,7 @@ namespace Web2BE.Controllers
         }
 
         // DELETE: api/Calls/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<Call>> DeleteCall(int id)
         {
             var call = await _context.Call.FindAsync(id);
