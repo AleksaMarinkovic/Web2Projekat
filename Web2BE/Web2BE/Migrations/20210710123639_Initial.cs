@@ -306,9 +306,9 @@ namespace Web2BE.Migrations
                 {
                     NotificationId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NotificationType = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Read = table.Column<bool>(nullable: false),
+                    Read = table.Column<string>(nullable: true),
                     TimeStamp = table.Column<string>(nullable: true),
                     IncdidentId = table.Column<int>(nullable: true),
                     IncidentId = table.Column<int>(nullable: true),

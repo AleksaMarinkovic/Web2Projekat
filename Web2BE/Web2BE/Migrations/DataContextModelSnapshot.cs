@@ -250,16 +250,16 @@ namespace Web2BE.Migrations
                     b.Property<int?>("IncidentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("NotificationType")
+                    b.Property<string>("Read")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Read")
-                        .HasColumnType("bit");
 
                     b.Property<int?>("SafetyDocumentId")
                         .HasColumnType("int");
 
                     b.Property<string>("TimeStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("WorkPlanId")

@@ -15,7 +15,7 @@ export class DataTableWorkPlanComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<DataTableWorkPlanItem>;
   dataSource: DataTableWorkPlanDataSource;
 
-  displayedColumns = ['id', 'startDate', 'phoneNumber', 'status', 'address', 'modify', 'delete'];
+  displayedColumns = ['id', 'startDate', 'phoneNumber', 'status', 'address', 'delete'];
 
   constructor(private workPlanService: WorkPlanService, ) { 
     this.dataSource = new DataTableWorkPlanDataSource();

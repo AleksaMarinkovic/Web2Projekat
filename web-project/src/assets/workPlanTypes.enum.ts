@@ -1,4 +1,6 @@
 export enum workPlanTypes {
     Draft = "Draft",
-    Submitted = "Submitted",
+    Completed = "Completed",
+    Cancelled = "Cancelled",
+    Executing = "Executing"
 }

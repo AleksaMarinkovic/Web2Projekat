@@ -20,7 +20,7 @@
             <label for="docState">Document state:</label>
         </div>
         <div class="col-9" [formGroup]="addWorkPlanForm">
-            <select id="docState" name="docState" [formControlName]="'docState'">
+            <select id="docState" name="documentState" [formControlName]="'documentState'">
                 <option *ngFor="let documentState of workPlanStateChange" [value]="documentState">
                     {{documentState}}</option>
             </select>
