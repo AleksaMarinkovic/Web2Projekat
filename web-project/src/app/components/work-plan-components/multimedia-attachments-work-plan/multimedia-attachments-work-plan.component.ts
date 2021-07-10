@@ -11,7 +11,7 @@ import { DataTableWorkPlanItem } from '../../data-tables/data-table-work-plan/da
 export class MultimediaAttachmentsWorkPlanComponent implements OnInit {
   @Input() addWorkPlanForm!: FormGroup;
   imageURL: string = "../../../assets/images/PROFILE.png"; 
-  constructor(private workPlanService: WorkPlanService) { }
+  constructor() { }
  
   ngOnInit(): void {
   }
@@ -24,19 +24,5 @@ export class MultimediaAttachmentsWorkPlanComponent implements OnInit {
       this.imageURL = reader.result as string;
     }
     reader.readAsDataURL(file)
-  }
-  onSubmit(workPlan: any){
-          
-    if(workPlan.workPlanId != 0){
-      this.workPlanService.putWorkPlans(workPlan, workPlan.workPlanId).subscribe();
-    }else{
-      this.workPlanService.postWorkPlans(workPlan).subscribe(
-        () => {
-          this.addWorkPlanForm.reset();
-        }
-      );
-    }
-      
-    
   }
 }

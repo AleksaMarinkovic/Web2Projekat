@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web2BE.Data;
 
 namespace Web2BE.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210709144737_notifUpdate")]
+    partial class notifUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,8 +252,8 @@ namespace Web2BE.Migrations
                     b.Property<int?>("IncidentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Read")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Read")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("SafetyDocumentId")
                         .HasColumnType("int");
@@ -384,7 +386,7 @@ namespace Web2BE.Migrations
                     b.Property<string>("UserTypes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("Userame")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");

@@ -25,13 +25,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
         <td mat-cell *matCellDef="let row">{{row.address}}</td>
       </ng-container>    
-
-      <ng-container matColumnDef="modify">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let row">
-          <a routerLink="/addWorkPlan" class="btn btn-primary btn-sm">Modify</a></td>
-      </ng-container>
-  
+      
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">

@@ -19,14 +19,19 @@ export class NotificationsComponent implements AfterViewInit  {
 
   dataSource = new MatTableDataSource<DataTableNotificationsItem>(EXAMPLE_DATA);
   elementProperties = Object.values(notificationTypesDisplayed);
-  
+  imgUrl = "";
+  errorImg = "web-project/src/assets/images/Error.png";
+  warrningImg = "web-project/srca/ssets/images/Warning.png";
+  successImg ="web-project/src/assets/images/Logo.png";
+  infoImg = "web-project/src/assets/images/NOTIFICATION.png";
+
   public selectedFilter : string = "All";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  columnsToDisplay = ['notificationId', 'type', 'description', 'timestamp', 'read'];
+  columnsToDisplay = ['notificationId', 'description', 'timestamp', 'read', 'icon'];
 
-  constructor(private _notificationService: NotificationService) {
+  constructor(private notificationService: NotificationService) {
   }
 
   ngAfterViewInit(): void {  
@@ -35,7 +40,24 @@ export class NotificationsComponent implements AfterViewInit  {
     this.dataSource.filterPredicate = function (data, filter: string): boolean {     
       return data.type.toLowerCase().includes(filter);
     }    
-  };
+    this.refresh();
+  }
+  
+  refresh() {
+    this.notificationService.getAllNotifications().subscribe(
+      data =>{
+        EXAMPLE_DATA = data;
+        this.dataSource.data = EXAMPLE_DATA;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator; 
+        this.dataSource.paginator._changePageSize(this.paginator.pageSize);  
+        this.dataSource.filterPredicate = function (data, filter: string): boolean {     
+          return data.type.toLowerCase().includes(filter);
+        }    
+      }
+    ); 
+  }
+;
   applyFilter(filterValue: string) {   
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
@@ -71,28 +93,30 @@ export class NotificationsComponent implements AfterViewInit  {
   MarkAsRead(element : any){
     alert("read " + element)
   }
+  getPath(notifType: any) : string {
+    switch(notifType){
+      case notificationTypes.Error:
+        this.imgUrl = this.errorImg;
+        break;
+      case notificationTypes.Warning:
+        this.imgUrl = this.warrningImg;
+        break;
+      case notificationTypes.SuccessfulAction:
+        this.imgUrl = this.successImg;
+        break;
+      case notificationTypes.Information:
+        this.imgUrl = this.infoImg;
+    }
+    return this.imgUrl;
+  }
 }
 export interface DataTableNotificationsItem {
   notificationId: number;
   description: string;
   type: notificationTypes;
-  timestamp: number;
+  timestamp: string;
   read: notificationTypesDisplayed;
 }
 
 // TODO: replace this with real data from your application
-export const EXAMPLE_DATA: DataTableNotificationsItem[] = [
-  { notificationId: 1, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread},
-  { notificationId: 2, type: notificationTypes.Warning, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { notificationId: 3, type: notificationTypes.Warning, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { notificationId: 4, type: notificationTypes.SuccessfulAction, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { notificationId: 5, type: notificationTypes.SuccessfulAction, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { notificationId: 6, type: notificationTypes.SuccessfulAction, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread },
-  { notificationId: 7, type: notificationTypes.Information, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { notificationId: 8, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread },
-  { notificationId: 9, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Read },
-  { notificationId: 11, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread},
-  { notificationId: 21, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread},
-  { notificationId: 12, type: notificationTypes.Error, description: "Description 1", timestamp: Date.now(), read: notificationTypesDisplayed.Unread},
-  
-];
+let EXAMPLE_DATA: DataTableNotificationsItem[] = [];
