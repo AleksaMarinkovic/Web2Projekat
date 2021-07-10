@@ -86,6 +86,96 @@ namespace Web2BE.Controllers
         }
 
 
+        [ActionName("GetPlannedIncidents")]
+        [HttpGet("GetPlannedIncidents"), Authorize]
+        public async Task<ActionResult<int[]>> GetPlannedIncidents()
+        {
+            var a = Request.Headers;
+            int[] retVal = new int[4];
+            var res = await _context.Incident.Where(d => d.Type == "Planned incident").ToListAsync();            
+            var now = DateTime.UtcNow;
+            var week1 = DateTime.UtcNow.AddDays(-7);
+            var week2 = DateTime.UtcNow.AddDays(-14);
+            var week3 = DateTime.UtcNow.AddDays(-21);
+            var week4 = DateTime.UtcNow.AddDays(-28);
+            int week1Incidents = 0;
+            int week2Incidents = 0;
+            int week3Incidents = 0;
+            int week4Incidents = 0;
+
+            foreach (var incident in res)
+            {
+                var dateOccured = DateTime.Parse(incident.DateOccured);
+                if (dateOccured >= week4 && dateOccured < week3)
+                {
+                    week4Incidents++;
+                }
+                if (dateOccured >= week3 && dateOccured < week2)
+                {
+                    week3Incidents++;
+                }
+                if (dateOccured >= week2 && dateOccured < week1)
+                {
+                    week2Incidents++;
+                }
+                if (dateOccured >= week1 && dateOccured < now)
+                {
+                    week1Incidents++;
+                }
+            }
+            retVal[0] = week4Incidents;
+            retVal[1] = week3Incidents;
+            retVal[2] = week2Incidents;
+            retVal[3] = week1Incidents;
+
+            return retVal;
+        }
+
+        [ActionName("GetUnplannedIncidents")]
+        [HttpGet("GetUnplannedIncidents"), Authorize]
+        public async Task<ActionResult<int[]>> GetUnplannedIncidents()
+        {
+            var a = Request.Headers;
+            int[] retVal = new int[4];
+            var res = await _context.Incident.Where(d => d.Type == "Unplanned incident").ToListAsync();
+            var now = DateTime.UtcNow;
+            var week1 = DateTime.UtcNow.AddDays(-7);
+            var week2 = DateTime.UtcNow.AddDays(-14);
+            var week3 = DateTime.UtcNow.AddDays(-21);
+            var week4 = DateTime.UtcNow.AddDays(-28);
+            int week1Incidents = 0;
+            int week2Incidents = 0;
+            int week3Incidents = 0;
+            int week4Incidents = 0;
+
+            foreach (var incident in res)
+            {
+                var dateOccured = DateTime.Parse(incident.DateOccured);
+                if (dateOccured >= week4 && dateOccured < week3)
+                {
+                    week4Incidents++;
+                }
+                if (dateOccured >= week3 && dateOccured < week2)
+                {
+                    week3Incidents++;
+                }
+                if (dateOccured >= week2 && dateOccured < week1)
+                {
+                    week2Incidents++;
+                }
+                if (dateOccured >= week1 && dateOccured < now)
+                {
+                    week1Incidents++;
+                }
+            }
+            retVal[0] = week4Incidents;
+            retVal[1] = week3Incidents;
+            retVal[2] = week2Incidents;
+            retVal[3] = week1Incidents;
+
+            return retVal;
+        }
+
         // PUT: api/Incidents/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

@@ -89,6 +89,28 @@ export class IncidentService {
     );;
   }
 
+  getUnplannedIncidents(){
+    return this.httpClient.get<[number,number,number,number]>(this.url + "/GetUnplannedIncidents", {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(
+      catchError(handleError)
+    );;
+  }
+
+  getPlannedIncidents(){
+    return this.httpClient.get<[number,number,number,number]>(this.url + "/GetPlannedIncidents", {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(
+      catchError(handleError)
+    );;
+  }
+
   putIncident(incident: any, incidentId: number){
     return this.httpClient.put<DataTableIncidentsItem>(this.url + "/" + incidentId, incident, {
       headers: new HttpHeaders({

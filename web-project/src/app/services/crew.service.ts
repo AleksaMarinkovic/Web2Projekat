@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { throwError } from 'rxjs';
 import { catchError, retry} from 'rxjs/operators';
 import { handleError } from 'src/assets/errorHandler';
@@ -15,30 +15,55 @@ export class CrewService {
 
 
   getAllCrews() {
-    return this.httpClient.get<DataTableCrewItem[]>(this.url).pipe(
+    return this.httpClient.get<DataTableCrewItem[]>(this.url, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(
       catchError(handleError)
     );;
   }
 
   postCrew(crew: any){
-    return this.httpClient.post<DataTableCrewItem>(this.url, crew).pipe(
+    return this.httpClient.post<DataTableCrewItem>(this.url, crew, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(
       catchError(handleError)
     );   
   }
 
   getCrew(crewId: number){
-    return this.httpClient.get<DataTableCrewItem>(this.url + "/" + crewId).pipe(
+    return this.httpClient.get<DataTableCrewItem>(this.url + "/" + crewId, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(
       catchError(handleError)
     );;
   }
 
   putCrew(crew: any, crewId: number){
-    return this.httpClient.put<DataTableCrewItem>(this.url + "/" + crewId, crew).pipe(
+    return this.httpClient.put<DataTableCrewItem>(this.url + "/" + crewId, crew, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(
       catchError(handleError)
     );;
   }
   deleteCrew(crewId: number){
-    return this.httpClient.delete(this.url + "/" + crewId).pipe(
+    return this.httpClient.delete(this.url + "/" + crewId, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(
      catchError(handleError)
    );;    
    }

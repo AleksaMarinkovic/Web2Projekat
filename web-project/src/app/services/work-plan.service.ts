@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -30,6 +30,17 @@ export class WorkPlanService {
       catchError(handleError)
     );;
   }
+
+  getNumberOfWorkPlans(){
+    return this.httpClient.get<number>(this.url + "/NumberOf", {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(
+      catchError(handleError));;
+  }
+  
   putWorkPlans(WorkPlans: any, WorkPlanId: number){
     return this.httpClient.put<DataTableWorkPlanItem>(this.url + "/" + WorkPlanId, WorkPlans).pipe(
       catchError(handleError)

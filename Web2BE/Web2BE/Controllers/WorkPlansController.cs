@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,15 @@ namespace Web2BE.Controllers
             }
 
             return workPlan;
+        }
+
+        [ActionName("NumberOf")]
+        [HttpGet("NumberOf"), Authorize]
+        public async Task<ActionResult<int>> GetNumberOfWorkPlans()
+        {
+            var res = await _context.WorkPlan.ToListAsync();
+            var retVal = res.Count;
+            return retVal;
         }
 
         // PUT: api/WorkPlans/5

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,14 +23,14 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/Crews
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<Crew>>> GetCrews()
         {
             return await _context.Crews.ToListAsync();
         }
 
         // GET: api/Crews/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<Crew>> GetCrew(int id)
         {
             var crew = await _context.Crews.FindAsync(id);
@@ -45,7 +46,7 @@ namespace Web2BE.Controllers
         // PUT: api/Crews/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutCrew(int id, Crew crew)
         {
             if (id != crew.CrewId)
@@ -77,7 +78,7 @@ namespace Web2BE.Controllers
         // POST: api/Crews
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<Crew>> PostCrew(Crew crew)
         {
             _context.Crews.Add(crew);
@@ -87,7 +88,7 @@ namespace Web2BE.Controllers
         }
 
         // DELETE: api/Crews/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<Crew>> DeleteCrew(int id)
         {
             var crew = await _context.Crews.FindAsync(id);

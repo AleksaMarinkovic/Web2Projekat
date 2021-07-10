@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-line-chart',
@@ -6,22 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent implements OnInit {
-  chartData = [
-    {
-      data: [330, 600, 260, 700],
-      label: 'Planned incident'
-    },
-    {
-      data: [120, 455, 100, 340],
-      label: 'Unplanned incident'
-    }
-    
-  ];
+  @Input() lineChartData :any;
   chartLabels = [
-    'Temp1',
-    'Temp2',
-    'Temp3',
-    'Temp4'
+    'Week before',
+    'Week before',
+    'Last week',
+    'Now'
   ];
   chartOptions = {
     responsive: true

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,14 +23,14 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/Equipments
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<Equipment>>> GetEquipment()
         {
             return await _context.Equipment.ToListAsync();
         }
 
         // GET: api/Equipments/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<Equipment>> GetEquipment(int id)
         {
             var equipment = await _context.Equipment.FindAsync(id);
@@ -45,7 +46,7 @@ namespace Web2BE.Controllers
         // PUT: api/Equipments/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutEquipment(int id, Equipment equipment)
         {
             if (id != equipment.EquipmentId)
@@ -77,7 +78,7 @@ namespace Web2BE.Controllers
         // POST: api/Equipments
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<Equipment>> PostEquipment(Equipment equipment)
         {
             _context.Equipment.Add(equipment);
@@ -87,7 +88,7 @@ namespace Web2BE.Controllers
         }
 
         // DELETE: api/Equipments/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<Equipment>> DeleteEquipment(int id)
         {
             var equipment = await _context.Equipment.FindAsync(id);

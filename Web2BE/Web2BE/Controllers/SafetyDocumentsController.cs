@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,14 +23,14 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/SafetyDocuments
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<SafetyDocument>>> GetSafetyDocument()
         {
             return await _context.SafetyDocument.ToListAsync();
         }
 
         // GET: api/SafetyDocuments/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<SafetyDocument>> GetSafetyDocument(int id)
         {
             var safetyDocument = await _context.SafetyDocument.FindAsync(id);
@@ -43,7 +44,7 @@ namespace Web2BE.Controllers
         }
 
         [ActionName("Drafted")]
-        [HttpGet("Drafted")]
+        [HttpGet("Drafted"), Authorize]
         public async Task<ActionResult<int>> GetDraftedSafetyDocuments()
         {
             var res = await _context.SafetyDocument.Where(d => d.State == "Drafted").ToListAsync();
@@ -52,7 +53,7 @@ namespace Web2BE.Controllers
         }
 
         [ActionName("Completed")]
-        [HttpGet("Completed")]
+        [HttpGet("Completed"), Authorize]
         public async Task<ActionResult<int>> GetCompletedSafetyDocuments()
         {
             var res = await _context.SafetyDocument.Where(d => d.State == "Completed").ToListAsync();
@@ -62,7 +63,7 @@ namespace Web2BE.Controllers
 
 
         [ActionName("Canceled")]
-        [HttpGet("Canceled")]
+        [HttpGet("Canceled"), Authorize]
         public async Task<ActionResult<int>> GetCanceledSafetyDocuments()
         {
             var res = await _context.SafetyDocument.Where(d => d.State == "Canceled").ToListAsync();
@@ -72,7 +73,7 @@ namespace Web2BE.Controllers
 
 
         [ActionName("Issued")]
-        [HttpGet("Issued")]
+        [HttpGet("Issued"), Authorize]
         public async Task<ActionResult<int>> GetIssuedSafetyDocuments()
         {
             var res = await _context.SafetyDocument.Where(d => d.State == "Issued").ToListAsync();
@@ -80,10 +81,19 @@ namespace Web2BE.Controllers
             return retVal;
         }
 
+        [ActionName("NumberOf")]
+        [HttpGet("NumberOf"), Authorize]
+        public async Task<ActionResult<int>> GetNumberOfSafetyDocuments()
+        {
+            var res = await _context.SafetyDocument.ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
         // PUT: api/SafetyDocuments/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutSafetyDocument(int id, SafetyDocument safetyDocument)
         {
             if (id != safetyDocument.SafetyDocumentId)
@@ -115,7 +125,7 @@ namespace Web2BE.Controllers
         // POST: api/SafetyDocuments
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<SafetyDocument>> PostSafetyDocument(SafetyDocument safetyDocument)
         {
             var tempEquipment = new List<Equipment>();
@@ -156,7 +166,7 @@ namespace Web2BE.Controllers
         }
 
         // DELETE: api/SafetyDocuments/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<SafetyDocument>> DeleteSafetyDocument(int id)
         {
             var safetyDocument = await _context.SafetyDocument.FindAsync(id);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,14 +23,14 @@ namespace Web2BE.Controllers
         }
 
         // GET: api/WorkRequests
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<WorkRequest>>> GetWorkRequests()
         {
             return await _context.WorkRequests.ToListAsync();
         }
 
         // GET: api/WorkRequests/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<WorkRequest>> GetWorkRequest(int id)
         {
             var workRequest = await _context.WorkRequests.FindAsync(id);
@@ -43,7 +44,7 @@ namespace Web2BE.Controllers
         }
 
         [ActionName("Drafted")]
-        [HttpGet("Drafted")]
+        [HttpGet("Drafted"), Authorize]
         public async Task<ActionResult<int>> GetDraftedWorkRequests()
         {
             var res = await _context.WorkRequests.Where(d => d.DocState == "Drafted").ToListAsync();
@@ -52,7 +53,7 @@ namespace Web2BE.Controllers
         }
 
         [ActionName("Completed")]
-        [HttpGet("Completed")]
+        [HttpGet("Completed"), Authorize]
         public async Task<ActionResult<int>> GetCompletedWorkRequests()
         {
             var res = await _context.WorkRequests.Where(d => d.DocState == "Completed").ToListAsync();
@@ -62,7 +63,7 @@ namespace Web2BE.Controllers
 
 
         [ActionName("Canceled")]
-        [HttpGet("Canceled")]
+        [HttpGet("Canceled"), Authorize]
         public async Task<ActionResult<int>> GetCanceledWorkRequests()
         {
             var res = await _context.WorkRequests.Where(d => d.DocState == "Canceled").ToListAsync();
@@ -72,7 +73,7 @@ namespace Web2BE.Controllers
 
 
         [ActionName("Issued")]
-        [HttpGet("Issued")]
+        [HttpGet("Issued"), Authorize]
         public async Task<ActionResult<int>> GetIssuedWorkRequests()
         {
             var res = await _context.WorkRequests.Where(d => d.DocState == "Issued").ToListAsync();
@@ -80,10 +81,19 @@ namespace Web2BE.Controllers
             return retVal;
         }
 
+        [ActionName("NumberOf")]
+        [HttpGet("NumberOf"), Authorize]
+        public async Task<ActionResult<int>> GetNumberOfWorkRequests()
+        {
+            var res = await _context.WorkRequests.ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
         // PUT: api/WorkRequests/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutWorkRequest(int id, WorkRequest workRequest)
         {
             if (id != workRequest.WorkRequestId)
@@ -115,7 +125,7 @@ namespace Web2BE.Controllers
         // POST: api/WorkRequests
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<WorkRequest>> PostWorkRequest(WorkRequest workRequest)
         {
             var tempEquipment = new List<Equipment>();
@@ -157,7 +167,7 @@ namespace Web2BE.Controllers
         }
 
         // DELETE: api/WorkRequests/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<WorkRequest>> DeleteWorkRequest(int id)
         {
             var workRequest = await _context.WorkRequests.FindAsync(id);
@@ -171,6 +181,8 @@ namespace Web2BE.Controllers
 
             return workRequest;
         }
+
+
 
         private bool WorkRequestExists(int id)
         {
