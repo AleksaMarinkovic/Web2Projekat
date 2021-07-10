@@ -23,14 +23,23 @@ export class AddNewConsumerComponent implements OnInit {
   })
   constructor(private formBuilder : FormBuilder, private consumerService: ConsumerService, 
     @Inject(MAT_DIALOG_DATA) public data: {consumer: DataTableConsumerItem}) {  
-     
+     if(data){
+       this.newConsumerForm = this.formBuilder.group({
+          consumerId: data.consumer.consumerId,
+          firstName: data.consumer.firstName,
+          lastName: data.consumer.lastName,
+          location: data.consumer.location,
+          priority: data.consumer.priority,
+          phone: data.consumer.phone,
+          consumerType: data.consumer.consumerType
+       })
+     }
    }
 
   ngOnInit(): void {   
   }
   onSubmit(consumer:any){   
     if(this.data){
-      consumer.consumerId = this.data.consumer.consumerId;
       this.consumerService.putConsumer(consumer, consumer.consumerId).subscribe();    
     }
     else{
