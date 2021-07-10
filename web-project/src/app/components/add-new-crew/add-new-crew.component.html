@@ -12,31 +12,38 @@
         <div class="row justify-content-center buffer">
             <div class="col-3">
                 <label class="padding" for="crewName">
-                    Name:
+                    <span style="color: red;">*</span> Name:
                 </label>
             </div>
             <div class="col-3">
                 <input class="form-control" id="crewName" type="text" formControlName="crewName">
+                <label class="text-danger" *ngIf="newCrewForm.get('crewName').touched && newCrewForm.get('crewName').errors?.required">
+                    This field is mandatory.
+                </label>
             </div>
         </div>
         <div class="row justify-content-center buffer">
             <div class="col-3">
                 <label class="padding" for="members">
-                    Members:
+                    <span style="color: red;">*</span> Members:
                 </label>
             </div>
             <div class="col-3">
                 <input class="form-control" id="members" type="text" formControlName="members">
+                <label class="text-danger" *ngIf="newCrewForm.get('members').touched && newCrewForm.get('members').errors?.required">
+                    This field is mandatory.
+                </label>
             </div>
         </div>
         <div class="row justify-content-center buffer">
             <div class="col-3">
-                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newCrewForm.value)">ADD CREW</button>
+                <button class="btn btn-sm-4 btn-primary" [disabled]="newCrewForm.invalid" (click)="onSubmit(newCrewForm.value)">ADD CREW</button>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <pre class="temp_pre"><h1>TEMPORARY</h1>{{newCrewForm.value | json}}</pre>
+        
+        <div class="row text-center mb-5 mx-3">
+            <div class="col-12">
+                <label>Fields marked with <span style="color: red;">*</span> are mandatory.</label>
             </div>
         </div>
     </div>

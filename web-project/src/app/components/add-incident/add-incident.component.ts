@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { causeTypes, constructionType, incidentTypes, materialType, subcauseTypes } from 'src/assets/Types.enum';
 import { incidentPriorities } from 'src/assets/Types.enum';
 import { IncidentService } from 'src/app/services/incident.service';
@@ -30,16 +30,16 @@ export class AddIncidentComponent implements OnInit {
       type : incidentTypes.PlannedIncident,
       priority: incidentPriorities.Important,
       approved: false,
-      ETA: "",
-      ATA: "",
-      dateOccured : "",
-      ETR: "",
+      ETA: ['', Validators.required],
+      ATA: ['', Validators.required],
+      dateOccured : ['', Validators.required],
+      ETR: ['', Validators.required],
       state: incidentStates.Issued,
-      affectedConsumers: "",
-      numberOfCalls: "",
-      voltage: "",
-      scheduledTime: "",
-      resolver: "",
+      affectedConsumers: 0,
+      numberOfCalls: 0,
+      voltage: 0,
+      scheduledTime: ['', Validators.required],
+      resolver: ['', Validators.required],
       incidentImage: "",
       equipment : "",
       cause : causeTypes.Failure,

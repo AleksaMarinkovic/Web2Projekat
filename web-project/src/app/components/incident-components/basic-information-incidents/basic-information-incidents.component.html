@@ -19,11 +19,14 @@
             </select>
         </div>
         <div class="col-3">
-            <label for="dateOccured">Date occured:</label>
+            <label for="dateOccured"><span style="color: red;">*</span> Date occured:</label>
         </div>
         <div class="col-3" [formGroup]="addIncidentForm">
             <input class="form-control" id="dateOccured" type="date" name="dateOccured"
                 [formControlName]="'dateOccured'">
+                <label class="text-danger" *ngIf="addIncidentForm.get('dateOccured').touched && addIncidentForm.get('dateOccured').errors?.required">
+                    This field is mandatory.
+                </label>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
@@ -37,10 +40,13 @@
             </select>
         </div>
         <div class="col-3">
-            <label for="ETR">ETR:</label>
+            <label for="ETR"><span style="color: red;">*</span> ETR:</label>
         </div>
         <div class="col-3" [formGroup]="addIncidentForm">
             <input class="form-control" id="ETR" type="date" name="ETR" [formControlName]="'ETR'">
+            <label class="text-danger" *ngIf="addIncidentForm.get('ETR').touched && addIncidentForm.get('ETR').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
@@ -77,35 +83,51 @@
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="ETA">ETA:</label>
+            <label for="ETA"><span style="color: red;">*</span> ETA:</label>
         </div>
         <div class="col-3" [formGroup]="addIncidentForm">
             <input class="form-control" id="ETA" name="ETA" type="date" [formControlName]="'ETA'">
+            <label class="text-danger" *ngIf="addIncidentForm.get('ETA').touched && addIncidentForm.get('ETA').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
         <div class="col-3">
-            <label for="ATA">ATA:</label>
+            <label for="ATA"><span style="color: red;">*</span> ATA:</label>
         </div>
         <div class="col-3" [formGroup]="addIncidentForm">
             <input class="form-control" id="ATA" name="ATA" type="date" [formControlName]="'ATA'">
+            <label class="text-danger" *ngIf="addIncidentForm.get('ATA').touched && addIncidentForm.get('ATA').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="scheduledTime">Scheduled time:</label>
+            <label for="scheduledTime"><span style="color: red;">*</span> Scheduled time:</label>
         </div>
         <div class="col-3" [formGroup]="addIncidentForm">
             <input class="form-control" id="scheduledTime" name="scheduledTime" type="date"
                 [formControlName]="'scheduledTime'">
+            <label class="text-danger" *ngIf="addIncidentForm.get('scheduledTime').touched && addIncidentForm.get('scheduledTime').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="resolver">Resolver: </label>
+            <label for="resolver"><span style="color: red;">*</span> Resolver: </label>
         </div>
         <div class="col-3" [formGroup]="addIncidentForm">
             <input class="form-control" id="resolver" name="resolver" type="text" [formControlName]="'resolver'">
+            <label class="text-danger" *ngIf="addIncidentForm.get('resolver').touched && addIncidentForm.get('resolver').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
-
+    </div>
+    <div class="row text-center mb-5 mx-3">
+        <div class="col-12">
+            <label>Fields marked with <span style="color: red;">*</span> are mandatory.</label>
+        </div>
     </div>
 
 </div>

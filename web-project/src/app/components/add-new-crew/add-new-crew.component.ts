@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import { CrewService } from 'src/app/services/crew.service';
 import { DataTableCrewItem } from '../data-tables/data-table-crew/data-table-crew-datasource';
 import { Router } from '@angular/router'
@@ -11,8 +11,8 @@ import { Router } from '@angular/router'
 })
 export class AddNewCrewComponent implements OnInit {
   newCrewForm = this.formBuilder.group({
-    crewName: "",
-    members: "",
+    crewName: ['',Validators.required],
+    members: ['',Validators.required],
   })
   constructor(private formBuilder : FormBuilder, private crewService: CrewService, private _router: Router) { }
 

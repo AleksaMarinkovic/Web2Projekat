@@ -18,60 +18,83 @@
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            Company:
+            <label for="company"><span style="color: red;">*</span> Company: </label>
         </div>
         <div class="col-3" [formGroup]="addWorkRequestForm">
             <input class="form-control" id="company" name="company" type="text" [formControlName]="'company'">
+            <label class="text-danger" *ngIf="addWorkRequestForm.get('company').touched && addWorkRequestForm.get('company').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
         <div class="col-3">
-            <label for="dateCreated">Created date:</label>
+            <label for="dateCreated"><span style="color: red;">*</span> Created date:</label>
         </div>
         <div class="col-3" [formGroup]="addWorkRequestForm">
             <input class="form-control" id="createdDate" type="date" name="createdDate" [formControlName]="'createdDate'">
+            <label class="text-danger" *ngIf="addWorkRequestForm.get('createdDate').touched && addWorkRequestForm.get('createdDate').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="dateCreated">Start date:</label>
+            <label for="startDate"><span style="color: red;">*</span> Start date:</label>
         </div>
         <div class="col-3" [formGroup]="addWorkRequestForm">
             <input class="form-control" id="startDate" type="date" name="startDate" [formControlName]="'startDate'">
+            <label class="text-danger" *ngIf="addWorkRequestForm.get('startDate').touched && addWorkRequestForm.get('startDate').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
         <div class="col-3">
-            <label for="dateCreated">End date:</label>
+            <label for="endDate"><span style="color: red;">*</span> End date:</label>
         </div>
         <div class="col-3" [formGroup]="addWorkRequestForm">
             <input class="form-control" id="endDate" type="date" name="endDate" [formControlName]="'endDate'">
+            <label class="text-danger" *ngIf="addWorkRequestForm.get('endDate').touched && addWorkRequestForm.get('endDate').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
+        
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            Street:
+            <label for="street"><span style="color: red;">*</span> Street:</label>            
         </div>
         <div class="col-3" [formGroup]="addWorkRequestForm">
             <input class="form-control" id="street" name="street" type="text" [formControlName]="'street'">
+            <label class="text-danger" *ngIf="addWorkRequestForm.get('street').touched && addWorkRequestForm.get('street').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
         <div class="col-3">
-            Phone number:
+            <label for="phoneNumber"><span style="color: red;">*</span> Phone number:</label>
         </div>
         <div class="col-3" [formGroup]="addWorkRequestForm">
             <input class="form-control" id="phoneNumber" name="phoneNumber" type="text" [formControlName]="'phoneNumber'">
+            <label class="text-danger" *ngIf="addWorkRequestForm.get('phoneNumber').touched && addWorkRequestForm.get('phoneNumber').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            Created by:
+            <label for="createdBy">Created by:</label>            
         </div>
         <div class="col-3">
+            <!--TODO when logged in user is implemented-->
             Logged in user
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="purpose">Purpose:</label>
+            <label for="purpose"><span style="color: red;">*</span> Purpose:</label>
         </div>
         <div class="col-9" [formGroup]="addWorkRequestForm">
             <input class="form-control" id="purpose" name ="purpose" type="text" [formControlName]="'purpose'">
+            <label class="text-danger" *ngIf="addWorkRequestForm.get('purpose').touched && addWorkRequestForm.get('purpose').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
@@ -82,5 +105,9 @@
             <input class="form-control" id="notes" name ="notes" type="text" [formControlName]="'notes'">
         </div>
     </div>
-
+    <div class="row text-center mb-5 mx-3">
+        <div class="col-12">
+            <label>Fields marked with <span style="color: red;">*</span> are mandatory.</label>
+        </div>
+    </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { workRequestStates } from 'src/assets/docStates.enum';
 import { workReqTypes } from 'src/assets/Types.enum';
 import { WorkRequestService } from 'src/app/services/work-request.service';
@@ -23,17 +23,18 @@ export class AddWorkRequestsComponent implements OnInit {
     this.addWorkRequestForm = this.formBuilder.group({
       
       type : workReqTypes.PlannedWork,
-      street: "",
-      startDate: "",
-      endDate: "",
-      purpose: "",
+      street: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      purpose: ['', Validators.required],
       notes: "",
       emergencyWork : false,
-      company: "",
-      phoneNumber:"",
-      createdDate: "",
-      lastEditor: "",
-      dateEdited: "",
+      company: ['', Validators.required],
+      createdBy: "",
+      phoneNumber: ['', Validators.required],
+      createdDate: ['', Validators.required],
+      lastEditor: ['', Validators.required],
+      dateEdited: ['', Validators.required],
       docState: workRequestStates.Issued,
       wrImage: "",
       incidents: "",

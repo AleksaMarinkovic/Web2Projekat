@@ -1,18 +1,24 @@
 <div class="container-fluid grid-border">
     <div class="row text-left mb-5 mt-4 mx-3">
         <div class="col">
-            <label for="lastEditor">Last editor:</label>
+            <label for="lastEditor"><span style="color: red;">*</span> Last editor:</label>
         </div>
         <div class="col" [formGroup]="addWorkRequestForm">
             <input class="form-control" id="lastEditor" name="lastEditor" type="text" [formControlName]="'lastEditor'">
+            <label class="text-danger" *ngIf="addWorkRequestForm.get('lastEditor').touched && addWorkRequestForm.get('lastEditor').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mt-4 mx-3">
         <div class="col">
-            <label for="dateEdited">Edited:</label>
+            <label for="dateEdited"><span style="color: red;">*</span> Edited:</label>
         </div>
         <div class="col" [formGroup]="addWorkRequestForm">
             <input class="form-control" id="dateEdited" type="date" name="dateEdited" [formControlName]="'dateEdited'">
+            <label class="text-danger" *ngIf="addWorkRequestForm.get('dateEdited').touched && addWorkRequestForm.get('dateEdited').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mt-4 mx-3">
@@ -26,5 +32,9 @@
             </select>
         </div>
     </div>
-
+    <div class="row text-center mb-5 mx-3">
+        <div class="col-12">
+            <label>Fields marked with <span style="color: red;">*</span> are mandatory.</label>
+        </div>
+    </div>
 </div>

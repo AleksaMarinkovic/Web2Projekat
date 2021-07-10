@@ -8,12 +8,12 @@
                     style="vertical-align: -6px;">arrow_back_ios</i>INCIDENTS</a>
         </div>
         <div class="col-6 text-right">
-            <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(addIncidentForm.value)">ADD INCIDENT</button>
+            <button class="btn btn-sm-4 btn-primary" [disabled]="!addIncidentForm.valid" (click)="onSubmit(addIncidentForm.value)">ADD INCIDENT</button>
         </div>
     </div>
     <div class="row justify-content-center buffer">
         <div class="col text-left">
-            <form [formGroup]="addIncidentForm">
+            <form [formGroup]="addIncidentForm" autocomplete="off">
                 <mat-tab-group>
                     <mat-tab label=" Basic information">
                         <app-basic-information-incidents [addIncidentForm]="addIncidentForm"></app-basic-information-incidents>
@@ -28,8 +28,7 @@
                     <mat-tab label="Multimedia attatchments"> <app-multimedia-attachments-incidents [addIncidentForm]="addIncidentForm"></app-multimedia-attachments-incidents> </mat-tab>                    
                     <mat-tab label="Equipment"> <app-equipment-incidents [addIncidentForm]="addIncidentForm"></app-equipment-incidents> </mat-tab> 
                     
-                </mat-tab-group>
-                <pre class="temp_pre"><h1>TEMPORARY</h1>>{{addIncidentForm.value | json}}</pre>
+                </mat-tab-group>                
             </form>
         </div>
     </div>

@@ -2,5 +2,15 @@
 <br>
 <br>
 <agm-map [latitude]='startLatitude' [longitude]='startLongitude' [zoom]="14">
-    <agm-marker *ngFor='let equipment of allEquipment | async' latitude="{{equipment.coords | split: ',' : 0 }}" longitude="{{equipment.coords | split: ',' : 1}}"></agm-marker>>
+    <agm-marker *ngFor='let equipment of allEquipment | async' latitude="{{equipment.coordinates | split: ',' : 0 }}" longitude="{{equipment.coordinates | split: ',' : 1}}">
+        <agm-info-window>      
+            <label style="font-weight:bold">Id:  {{equipment.equipmentId}}</label>    
+            <br>
+            <label>Name:  {{equipment.name}}</label>      
+            <br> 
+            <label>Type:  {{equipment.type}}</label>   
+            <br>
+            <label>Coordinates:  {{equipment.coordinates}}</label>         
+        </agm-info-window>
+    </agm-marker>
 </agm-map>

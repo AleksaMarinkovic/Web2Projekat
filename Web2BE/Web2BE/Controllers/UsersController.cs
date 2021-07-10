@@ -124,7 +124,7 @@ namespace Web2BE.Controllers
                         issuer: config.Value.Issuer,
                         audience: config.Value.Audience,
                         claims: new List<Claim>(),
-                        expires: DateTime.UtcNow.AddMinutes(5),
+                        expires: DateTime.UtcNow.AddMinutes(60),
                         signingCredentials: signinCredentials
                         );
                     var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);

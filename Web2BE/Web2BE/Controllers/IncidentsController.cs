@@ -85,7 +85,6 @@ namespace Web2BE.Controllers
             return retVal;
         }
 
-
         [ActionName("GetPlannedIncidents")]
         [HttpGet("GetPlannedIncidents"), Authorize]
         public async Task<ActionResult<int[]>> GetPlannedIncidents()

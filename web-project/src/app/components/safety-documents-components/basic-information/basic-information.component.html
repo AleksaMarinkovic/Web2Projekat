@@ -10,18 +10,24 @@
             </select>
         </div>
         <div class="col-3">
-            <label for="phoneNumber">Phone number: </label>
+            <label for="phoneNumber"><span style="color: red;">*</span> Phone number: </label>
         </div>
         <div class="col-3" [formGroup]="addSafetyDocumentForm">
             <input class="form-control" id="phoneNumber" name="phoneNumber" type="text" [formControlName]="'phoneNumber'">
+            <label class="text-danger" *ngIf="addSafetyDocumentForm.get('phoneNumber').touched && addSafetyDocumentForm.get('phoneNumber').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="dateCreated">Date created:</label>
+            <label for="dateCreated"><span style="color: red;">*</span> Date created:</label>
         </div>
         <div class="col-3" [formGroup]="addSafetyDocumentForm">
             <input class="form-control" id="dateCreated" type="date" name="dateCreated" [formControlName]="'dateCreated'">
+            <label class="text-danger" *ngIf="addSafetyDocumentForm.get('dateCreated').touched && addSafetyDocumentForm.get('dateCreated').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
@@ -38,6 +44,11 @@
         </div>
         <div class="col-9" [formGroup]="addSafetyDocumentForm">
             <input class="form-control" id="notes" name ="notes" type="text" [formControlName]="'notes'">
+        </div>
+    </div>
+    <div class="row text-center mb-5 mx-3">
+        <div class="col-12">
+            <label>Fields marked with <span style="color: red;">*</span> are mandatory.</label>
         </div>
     </div>
 

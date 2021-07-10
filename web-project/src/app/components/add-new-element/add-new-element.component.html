@@ -25,42 +25,54 @@
         <div class="row justify-content-center buffer">
             <div class="col-3">
                 <label class="padding" for="name">
-                    Name:
+                    <span style="color: red;">*</span> Name:
                 </label>
             </div>
             <div class="col-3">
                 <input class="form-control" id="name" type="text" formControlName="name">
+                <label class="text-danger" *ngIf="newElementForm.get('name').touched && newElementForm.get('name').errors?.required">
+                    This field is mandatory.
+                </label>
             </div>
         </div>
         <div class="row justify-content-center buffer">
             <div class="col-3">
                 <label class="padding" for="address">
-                    Address:
+                    <span style="color: red;">*</span> Address:
                 </label>
             </div>
             <div class="col-3">
                 <input class="form-control" id="address" type="text" formControlName="address">
+                <label class="text-danger" *ngIf="newElementForm.get('address').touched && newElementForm.get('address').errors?.required">
+                    This field is mandatory.
+                </label>
             </div>
         </div>
         <div class="row justify-content-center buffer">
             <div class="col-3">
                 <label class="padding" for="coordinates">
-                    Coordinates:
+                    <span style="color: red;">*</span> Coordinates:
                 </label>
             </div>
             <div class="col-3">
                 <input class="form-control" id="coordinates" type="text" formControlName="coordinates">
+                <label class="text-danger" *ngIf="newElementForm.get('coordinates').touched && newElementForm.get('coordinates').errors?.required">
+                    This field is mandatory.
+                </label>
+                <label class="text-danger" *ngIf="newElementForm.get('coordinates').invalid">
+                    Invalid coordinates.
+                  </label>
             </div>
         </div>
         <div class="row justify-content-center buffer">
             <div class="col-3">
-                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newElementForm.value)">ADD ELEMENT</button>
+                <button class="btn btn-sm-4 btn-primary" [disabled] = "!newElementForm.valid" (click)="onSubmit(newElementForm.value)">ADD ELEMENT</button>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <pre class="temp_pre"><h1>TEMPORARY</h1>{{newElementForm.value | json}}</pre>
-            </div>
+    </div>
+    <div class="row text-center mb-5 mx-3">
+        <div class="col-12">
+            <label>Fields marked with <span style="color: red;">*</span> are mandatory.</label>
         </div>
     </div>
 </form>

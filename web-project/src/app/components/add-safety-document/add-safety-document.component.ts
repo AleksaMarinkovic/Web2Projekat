@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {safetyDocumentStates} from "../../../assets/docStates.enum";
 import {safetyDocTypes} from "../../../assets/Types.enum";
 import { SafetyDocumentService } from 'src/app/services/safety-document.service';
@@ -22,12 +22,12 @@ export class AddSafetyDocumentComponent implements OnInit {
   ngOnInit(): void {
     this.addSafetyDocumentForm = this.formBuilder.group({
       type : safetyDocTypes.PlannedWork,
-      phoneNumber: "",
-      dateCreated: "",
+      phoneNumber: ['', Validators.required],
+      dateCreated: ['', Validators.required],
       details: "",
       notes: "",   
-      lastEditor: "",
-      dateEdited: "",
+      lastEditor: ['', Validators.required],
+      dateEdited: ['', Validators.required],
       state: safetyDocumentStates.Issued,
       createdBy: "",
       docImage: "",
