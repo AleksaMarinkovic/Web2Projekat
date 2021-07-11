@@ -64,7 +64,7 @@ export class AddWorkRequestsComponent implements OnInit {
       safetyDocumentId: null
     };    
     switch(workRequest.docState){
-      case "Draft":{//info
+      case "Drafted":{//info
         notification.description = "New Work request created";
         notification.type = notificationTypes.Information;
         break;

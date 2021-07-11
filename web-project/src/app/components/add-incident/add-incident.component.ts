@@ -71,7 +71,7 @@ export class AddIncidentComponent implements OnInit {
       safetyDocumentId: null
     };    
     switch(incident.state){
-      case "Draft":{//info
+      case "Drafted":{//info
         notification.description = "New Incident created";
         notification.type = notificationTypes.Information;
         break;
