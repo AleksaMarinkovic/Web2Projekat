@@ -10,7 +10,7 @@ using Web2BE.Data;
 namespace Web2BE.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210710123639_Initial")]
+    [Migration("20210711113732_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -187,6 +187,9 @@ namespace Web2BE.Migrations
                     b.Property<string>("ConstructionType")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
                     b.Property<string>("DateOccured")
                         .HasColumnType("nvarchar(max)");
 
@@ -311,8 +314,8 @@ namespace Web2BE.Migrations
                     b.Property<bool>("AllWorkOperationsCompleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
 
                     b.Property<int>("CrewId")
                         .HasColumnType("int");
@@ -407,8 +410,8 @@ namespace Web2BE.Migrations
                     b.Property<string>("Company")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreationDate")
                         .HasColumnType("nvarchar(max)");
@@ -509,8 +512,8 @@ namespace Web2BE.Migrations
                     b.Property<string>("Company")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedDate")
                         .HasColumnType("nvarchar(max)");

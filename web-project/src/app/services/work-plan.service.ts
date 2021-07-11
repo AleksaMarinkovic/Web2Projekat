@@ -19,6 +19,15 @@ export class WorkPlanService {
     );;
   }
 
+  getAllWorkPlansCreatedByUser(userId: any){
+    return this.httpClient.get<DataTableWorkPlanItem[]>(this.url+"/GetAllWorkPlansCreatedByUser/" + userId, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(catchError(handleError));;
+  }
+
   postWorkPlans(WorkPlan: any){
     return this.httpClient.post<DataTableWorkPlanItem>(this.url, WorkPlan).pipe(
       catchError(handleError)

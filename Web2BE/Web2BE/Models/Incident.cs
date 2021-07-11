@@ -15,6 +15,7 @@ namespace Web2BE.Models
         public string State { get; set; }
         public bool Approved { get; set; }
         public int NumberOfCalls { get; set; }
+        public int CreatedBy { get; set; }
         public int Voltage { get; set; }
         public string ETA { get; set; }
         public string ATA { get; set; }

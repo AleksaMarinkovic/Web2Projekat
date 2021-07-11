@@ -19,7 +19,7 @@ namespace Web2BE.Models
         public string StartWorkDate { get; set; }
         public string EndWorkDate { get; set; }
         public string CreationDate { get; set; }
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
         public string Address { get; set; }
         public string Company { get; set; }
         public string Purpose { get; set; }

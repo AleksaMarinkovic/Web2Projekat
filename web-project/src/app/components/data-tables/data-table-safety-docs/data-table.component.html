@@ -1,3 +1,10 @@
+<div class="col-12 text-right">
+  <mat-button-toggle-group #group="matButtonToggleGroup">
+      <mat-button-toggle value="All" (change)="onValChange($event.value)">All</mat-button-toggle>
+      <mat-button-toggle value="Mine" (change)="onValChange($event.value)">Mine</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<br>
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- Id Column -->

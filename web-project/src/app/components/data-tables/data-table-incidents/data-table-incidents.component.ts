@@ -40,4 +40,33 @@ export class DataTableIncidentsComponent implements AfterViewInit {
       }
     ); 
   }
+  
+  onValChange(value: any) {
+    if(value == "All"){
+      this.incidentService.getAllIncidents().subscribe(
+        data => {       
+          console.log(data);
+          this.dataSource.data = data;   
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator; 
+          this.table.dataSource = this.dataSource; 
+          this.dataSource.paginator._changePageSize(this.paginator.pageSize);
+             
+        }
+      ); 
+    }
+    if(value == "Mine"){
+      this.incidentService.getAllIncidentsCreatedByUser(localStorage.getItem("id")).subscribe(
+        data => {       
+          console.log(data);
+          this.dataSource.data = data;   
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator; 
+          this.table.dataSource = this.dataSource; 
+          this.dataSource.paginator._changePageSize(this.paginator.pageSize);
+             
+        }
+      ); 
+    }
+  }
 }

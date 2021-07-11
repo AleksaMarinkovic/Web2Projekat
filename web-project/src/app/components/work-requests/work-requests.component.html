@@ -6,13 +6,7 @@
         <div class="col-6 text-left">
             <a routerLink="/addWorkRequest" class="btn btn-primary btn-sm"><i class="material-icons"
                     style="vertical-align: -6px;">add_circle</i> ADD WORK REQUEST</a>
-        </div>
-        <div class="col-6 text-right">
-            <mat-button-toggle-group #group="matButtonToggleGroup">
-                <mat-button-toggle value="All" (change)="onValChange($event.value)">All</mat-button-toggle>
-                <mat-button-toggle value="Mine" (change)="onValChange($event.value)">Mine</mat-button-toggle>
-            </mat-button-toggle-group>
-        </div>
+        </div>        
     </div>
     <div class="row justify-content-center buffer">
         <div class="col text-left">

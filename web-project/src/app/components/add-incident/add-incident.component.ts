@@ -33,6 +33,7 @@ export class AddIncidentComponent implements OnInit {
       ETA: ['', Validators.required],
       ATA: ['', Validators.required],
       dateOccured : ['', Validators.required],
+      createdBy : localStorage.getItem("id"),
       ETR: ['', Validators.required],
       state: incidentStates.Issued,
       affectedConsumers: 0,

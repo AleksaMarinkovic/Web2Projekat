@@ -43,6 +43,13 @@ namespace Web2BE.Controllers
             return workPlan;
         }
 
+        [HttpGet("GetAllWorkPlansCreatedByUser/{id}"), Authorize]
+        public async Task<ActionResult<IEnumerable<WorkPlan>>> GetAllWorkPlansCreatedByUser(int id)
+        {
+            var res = await _context.WorkPlan.Where(d => d.CreatedBy == id).ToListAsync();
+            return res;
+        }
+
         [ActionName("NumberOf")]
         [HttpGet("NumberOf"), Authorize]
         public async Task<ActionResult<int>> GetNumberOfWorkPlans()

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {userTypes} from "../../../assets/userTypes.enum";
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './registration.component.html',
@@ -30,7 +31,7 @@ export class RegistrationComponent implements OnInit {
     type: userTypes.CrewMember,     
     photo: ""
   });
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -47,6 +48,8 @@ export class RegistrationComponent implements OnInit {
       photo : this.registrationForm.value.photo,
     }
     this.userService.register(user).subscribe();
+    this._router.navigate(['/']);
+    
   }
   showPreview(event: any) {
     const file = (event.target as HTMLInputElement).files[0];

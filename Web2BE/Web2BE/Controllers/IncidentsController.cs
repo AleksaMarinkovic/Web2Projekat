@@ -29,6 +29,15 @@ namespace Web2BE.Controllers
             return await _context.Incident.ToListAsync();
         }
 
+        // GET: api/GetAllIncidentsCreatedByUser/5
+        [HttpGet("GetAllIncidentsCreatedByUser/{id}"), Authorize]
+        public async Task<ActionResult<IEnumerable<Incident>>> GetAllIncidentsCreatedByUser(int id)
+        {
+            var res = await _context.Incident.Where(d => d.CreatedBy == id).ToListAsync();
+            return res;
+        }
+
+
         // GET: api/Incidents/5
         [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<Incident>> GetIncident(int id)

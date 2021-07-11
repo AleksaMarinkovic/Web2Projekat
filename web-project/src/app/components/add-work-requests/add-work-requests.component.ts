@@ -30,7 +30,7 @@ export class AddWorkRequestsComponent implements OnInit {
       notes: "",
       emergencyWork : false,
       company: ['', Validators.required],
-      createdBy: "",
+      createdBy : localStorage.getItem("id"),
       phoneNumber: ['', Validators.required],
       createdDate: ['', Validators.required],
       lastEditor: ['', Validators.required],

@@ -43,6 +43,13 @@ namespace Web2BE.Controllers
             return safetyDocument;
         }
 
+        [HttpGet("GetAllSafetyDocumentsCreatedByUser/{id}"), Authorize]
+        public async Task<ActionResult<IEnumerable<SafetyDocument>>> GetAllSafetyDocumentsCreatedByUser(int id)
+        {
+            var res = await _context.SafetyDocument.Where(d => d.CreatedBy == id).ToListAsync();
+            return res;
+        }
+
         [ActionName("Drafted")]
         [HttpGet("Drafted"), Authorize]
         public async Task<ActionResult<int>> GetDraftedSafetyDocuments()

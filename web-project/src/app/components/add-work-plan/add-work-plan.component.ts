@@ -33,7 +33,7 @@ export class AddWorkPlanComponent implements OnInit {
       address: "",
       startWorkDate: "",
       endWorkDate: "",
-      createdBy: "", /*to be changed to current User*/ 
+      createdBy : localStorage.getItem("id"), 
       crew: "",/*to be changed to chosing crew*/ 
       purpose: "",
       notes: "",

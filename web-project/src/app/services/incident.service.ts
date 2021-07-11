@@ -22,6 +22,15 @@ export class IncidentService {
     );;
   }
 
+  getAllIncidentsCreatedByUser(userId: any){
+    return this.httpClient.get<DataTableIncidentsItem[]>(this.url+"/GetAllIncidentsCreatedByUser/" + userId, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(catchError(handleError));;
+  }
+
   postIncident(incident: any){
     return this.httpClient.post<DataTableIncidentsItem>(this.url, incident, {
       headers: new HttpHeaders({

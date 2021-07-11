@@ -29,7 +29,7 @@ export class AddSafetyDocumentComponent implements OnInit {
       lastEditor: ['', Validators.required],
       dateEdited: ['', Validators.required],
       state: safetyDocumentStates.Issued,
-      createdBy: "",
+      createdBy : localStorage.getItem("id"),
       docImage: "",
       equipment: "",
       allWorkOperationsCompleted: false,

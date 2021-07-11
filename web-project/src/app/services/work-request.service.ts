@@ -23,6 +23,15 @@ export class WorkRequestService {
     );;
   }
 
+  getAllWorkRequestsCreatedByUser(userId: any){
+    return this.httpClient.get<DataTableWorkRequestsItem[]>(this.url+"/GetAllWorkRequestsCreatedByUser/" + userId, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(catchError(handleError));;
+  }
+
   postWorkRequest(workRequest: any){
     return this.httpClient.post<DataTableWorkRequestsItem>(this.url, workRequest, {
       headers: new HttpHeaders({

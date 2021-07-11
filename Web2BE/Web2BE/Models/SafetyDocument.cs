@@ -15,7 +15,7 @@ namespace Web2BE.Models
         public string LastEditor { get; set; }
         public string DateEdited { get; set; }
         public string State { get; set; }
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
         public string DocImage { get; set; }
         public ICollection<Equipment> Equipment { get; set; }
         public bool AllWorkOperationsCompleted { get; set; }

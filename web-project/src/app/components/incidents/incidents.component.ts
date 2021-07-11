@@ -10,8 +10,4 @@ export class IncidentsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onValChange(value: any) {
-    window.alert(value)
-    //change what we pass as data in datatable
-  }
 }

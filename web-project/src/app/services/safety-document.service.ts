@@ -21,6 +21,15 @@ export class SafetyDocumentService {
       catchError(handleError)
     );;
   }
+
+  getAllSafetyDocumentsCreatedByUser(userId: any){
+    return this.httpClient.get<DataTableItem[]>(this.url+"/GetAllSafetyDocumentsCreatedByUser/" + userId, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(catchError(handleError));;
+  }
   //get canceled
   getNumberOfCanceledSafetyDocuments(){
     return this.httpClient.get<number>(this.url + "/Canceled", {

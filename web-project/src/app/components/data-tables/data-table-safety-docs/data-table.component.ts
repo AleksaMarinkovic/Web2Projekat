@@ -39,4 +39,32 @@ export class DataTableComponent implements AfterViewInit {
       }
     ); 
   }
+  onValChange(value:any){
+    if(value == "All"){
+      this.safetyDocumentService.getAllSafetyDocuments().subscribe(
+        data => {       
+          console.log(data);
+          this.dataSource.data = data;   
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator; 
+          this.table.dataSource = this.dataSource; 
+          this.dataSource.paginator._changePageSize(this.paginator.pageSize);
+             
+        }
+      ); 
+    }
+    if(value == "Mine"){
+      this.safetyDocumentService.getAllSafetyDocumentsCreatedByUser(localStorage.getItem("id")).subscribe(
+        data => {       
+          console.log(data);
+          this.dataSource.data = data;   
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator; 
+          this.table.dataSource = this.dataSource; 
+          this.dataSource.paginator._changePageSize(this.paginator.pageSize);
+             
+        }
+      ); 
+    }
+  }
 }
