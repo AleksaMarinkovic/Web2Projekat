@@ -29,8 +29,8 @@
                     <li class="list-group-item">
                         ID: {{equipment.equipmentId}} | Name: "{{equipment.name}}" | Type: "{{equipment.type}}" | Address:
                         "{{equipment.address}}" | Coordinates: "{{equipment.coordinates}}" | 
-                        <a routerLink="/dashboard" class="btn btn-secondary btn-sm"><i class="material-icons"
-                            style="vertical-align: -6px;">place</i></a>
+                        <button type="button" class="btn btn-secondary btn-sm" (click)="openMap(equipment)"><i class="material-icons"
+                            style="vertical-align: -6px;">place</i></button>
                     </li>
                 </ul>
             </div>    

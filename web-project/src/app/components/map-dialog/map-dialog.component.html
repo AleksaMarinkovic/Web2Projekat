@@ -1,0 +1,13 @@
+<agm-map id="map" [latitude]="+_lat" [longitude]="+_lng" [zoom]="10" styles="agm-map">
+    <agm-marker [latitude]="+_lat" [longitude]="+_lng">
+        <agm-info-window>      
+            <label style="font-weight:bold">Id:  {{equipment.equipmentId}}</label>    
+            <br>
+            <label>Name:  {{equipment.name}}</label>      
+            <br> 
+            <label>Type:  {{equipment.type}}</label>   
+            <br>
+            <label>Coordinates:  {{equipment.coordinates}}</label>         
+        </agm-info-window>
+    </agm-marker>
+</agm-map>

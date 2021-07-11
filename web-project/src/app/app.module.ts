@@ -91,6 +91,7 @@ import { ModifyCrewComponent } from './components/modify-crew/modify-crew.compon
 import { IncidentsWrComponent } from './components/work-request-components/incidents-wr/incidents-wr.component';
 import { DataTableIconSettingsComponent } from './components/data-tables/data-table-icon-settings/data-table-icon-settings.component';
 import { AuthGuardGuard } from './guards/auth-guard.guard';
+import { MapDialogComponent } from './components/map-dialog/map-dialog.component';
 
 export function tokenGetter(){
   return localStorage.getItem("jwt");
@@ -162,6 +163,7 @@ export function tokenGetter(){
     ModifyCrewComponent,
     IncidentsWrComponent,
     DataTableIconSettingsComponent,
+    MapDialogComponent,
 
   ],
   imports: [

@@ -6,7 +6,7 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface DataTableWorkRequestsItem {  
-  workRequestId: string;
+  workRequestId: number;
   startDate : string;
   phoneNumber: number;
   docState: string;
