@@ -42,21 +42,26 @@ export class AddWorkRequestsComponent implements OnInit {
     });  
   }
   onSubmit(workRequest: any){
-    this.workRequestService.postWorkRequest(workRequest).subscribe();
-    this.addNotification(workRequest)
+    this.workRequestService.postWorkRequest(workRequest).subscribe(
+      data =>  this.addNotification(workRequest, data.workRequestId)
+    );
     console.log(workRequest);    
     this.addWorkRequestForm.reset();   
     this._router.navigate(['/workRequests']);
   }
 
-  addNotification(workRequest: any) {
+  addNotification(workRequest: any, id: number) {
     let notification: DataTableNotificationsItem =
     {
       timestamp: Date.now().toString(),
       read: notificationTypesDisplayed.Unread,
       notificationId: 0,
       description: "",
-      type: notificationTypes.Information
+      type: notificationTypes.Information,
+      incdidentId: null,
+      workPlanId: null,
+      workRequestId: id,
+      safetyDocumentId: null
     };    
     switch(workRequest.docState){
       case "Draft":{//info

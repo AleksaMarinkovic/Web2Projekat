@@ -9997,23 +9997,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Aleksa\\.nuget\\packages\\": {},
+    "C:\\Users\\David\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Faks\\web2\\web-project-repo\\Web2Projekat\\Web2BE\\Web2BE\\Web2BE.csproj",
+      "projectUniqueName": "C:\\Users\\David\\Documents\\Web2Projekat\\Web2BE\\Web2BE\\Web2BE.csproj",
       "projectName": "Web2BE",
-      "projectPath": "E:\\Faks\\web2\\web-project-repo\\Web2Projekat\\Web2BE\\Web2BE\\Web2BE.csproj",
-      "packagesPath": "C:\\Users\\Aleksa\\.nuget\\packages\\",
-      "outputPath": "E:\\Faks\\web2\\web-project-repo\\Web2Projekat\\Web2BE\\Web2BE\\obj\\",
+      "projectPath": "C:\\Users\\David\\Documents\\Web2Projekat\\Web2BE\\Web2BE\\Web2BE.csproj",
+      "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\David\\Documents\\Web2Projekat\\Web2BE\\Web2BE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Aleksa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10025,7 +10025,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -10037,7 +10036,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.Google": {
             "target": "Package",
@@ -10124,7 +10122,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

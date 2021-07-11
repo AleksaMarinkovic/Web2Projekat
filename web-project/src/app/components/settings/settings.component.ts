@@ -1,8 +1,10 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { FormBuilder } from "@angular/forms";
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 import { IconService } from 'src/app/services/icon.service';
+import { UserService } from 'src/app/services/user.service';
 import { notificationTypesDisplayed } from 'src/assets/notificationTypesDisplayed.enum';
 import { DataTableIconSettingsComponent, DataTableIconSettingsItem } from '../data-tables/data-table-icon-settings/data-table-icon-settings.component';
+import { User } from '../user-profile/user-profile.component';
 
 @Component({
   selector: 'app-settings',
@@ -11,19 +13,31 @@ import { DataTableIconSettingsComponent, DataTableIconSettingsItem } from '../da
 })
 export class SettingsComponent implements OnInit {
 
-  public notificationTypesDisplayed = Object.values(notificationTypesDisplayed);  
-  settingsForm = this.formBuilder.group({    
-    oldPassword: "",
-    password: "",
-    passwordRepeat: "",
-    streetPriority: "",
-    iconDisplay: "",
-    hideUnnecesaryDocumentInfo: "",
-    notificationTypesDisplayed: notificationTypesDisplayed,
-  });
+  public notificationTypesDisplayed = Object.values(notificationTypesDisplayed); 
+  
+  comparePasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
+    let pass = group.get('password').value;
+    let passwordRepeat = group.get('passwordRepeat').value;
+    return pass === passwordRepeat ? null : { notSame: true}
+  }
+  passwordsForm = this.formBuilder.group({
+    oldPassword: '',
+    passwords: this.formBuilder.group({
+      password: ['',[Validators.minLength(4)]],
+      passwordRepeat: '',
+    }, {validator: this.comparePasswords}), 
+    settings: this.formBuilder.group({
+      hideUnnecesaryFields: false,
+      notificationDisplay: notificationTypesDisplayed.All
+    }),
+  });   
+
+  id: any;
   icons: Map<number, DataTableIconSettingsItem>;
-  constructor(private formBuilder: FormBuilder, private iconSettingsService: IconService) {
+
+  constructor(private formBuilder: FormBuilder, private iconSettingsService: IconService, private userService: UserService) {
     this.icons = new Map<number, DataTableIconSettingsItem>();
+    this.id = localStorage.getItem('id');
    }
 
   ngOnInit(): void {
@@ -31,14 +45,32 @@ export class SettingsComponent implements OnInit {
   AddStreetPriority(){
     alert("street prio alert");
   }
-  onSubmit(settings: any){
+  onSubmit(){
     this.icons.forEach(icon => {
       this.iconSettingsService.putIconSettings(icon,icon.iconSettingsId)
       .subscribe();
     });
-
+    if( this.passwordsForm.value.passwords.password != ""){
+      // let pw: PasswordUpdate = {
+      //   oldPassword: this.passwordsForm.value.oldPassword,
+      //   newPassword: this.passwordsForm.value.password,
+      //   confirmPassword: this.passwordsForm.value.passwordRepeat,
+      //   userId: this.id
+      //}
+      //this.userService.passwordUpdate(pw).subscribe();
+      let user: any;
+      this.userService.getUser(this.id).subscribe(data => {
+        user=data;
+        user.password = this.passwordsForm.value.passwords.password;
+        this.userService.putUser(this.id, user).subscribe();
+      });
+    }
+    localStorage.setItem('displayUnnecesaryFields', this.passwordsForm.value.settings.hideUnnecesaryFields);
+    localStorage.setItem('notificationDisplay', this.passwordsForm.value.settings.notificationDisplay);
+   
     
   }
+
   iconSettingsEmmiter(event: any) {
     console.warn(event.icon);
     //loads icon data to be submited, if a previous version exists,it delets it.
@@ -49,6 +81,11 @@ export class SettingsComponent implements OnInit {
   }
 
   resetSettingsForm(){
-    this.settingsForm.reset();
   }
+}
+export interface PasswordUpdate{
+  oldPassword: string,
+  newPassword: string,
+  confirmPassword: string,
+  userId: number
 }

@@ -88,12 +88,15 @@
             </label>
         </div>
     </div>
-    <div class="row text-left mb-5 mx-3">
-        <div class="col-3">
-            <label for="notes">Notes:</label>
-        </div>
-        <div class="col-9" [formGroup]="addWorkRequestForm">
-            <input class="form-control" id="notes" name ="notes" type="text" [formControlName]="'notes'">
+
+    <div *ngIf="this.displayUnnecesaryFields == 'false'">
+        <div class="row text-left mb-5 mx-3">
+            <div class="col-3">
+                <label for="notes">Notes:</label>
+            </div>
+            <div class="col-9" [formGroup]="addWorkRequestForm">
+                <input class="form-control" id="notes" name ="notes" type="text" [formControlName]="'notes'">
+            </div>
         </div>
     </div>
     <div class="row text-center mb-5 mx-3">

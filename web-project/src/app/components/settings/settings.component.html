@@ -2,7 +2,7 @@
 <br />
 <br />
 <div class="containter-fluid background">
-    <form [formGroup]="settingsForm" (ngSubmit)="onSubmit(settingsForm)">  
+    <form [formGroup]="passwordsForm" (ngSubmit)="onSubmit()">  
         <div class="containter">
           <div class="row align-items-center">
             <div class="col-lg-12">
@@ -23,19 +23,24 @@
                 Old password:
               </label>
             </div>
-            <div class="col-lg-3">
-              <input class="form-control" id="oldPassword" type="password" formControlName="oldPassword">
+            <div class="col-lg-3" [formGroup]="passwordsForm"> 
+              <input class="form-control" id="oldPassword" type="password" [formControlName]="'oldPassword'">
             </div>
           </div>
 
+
+          <div formGroupName = "passwords">
           <div class="row mb-2">
             <div class="col-lg-3">
               <label class="padding" for="password">
                 New password:
               </label>
             </div>
-            <div class="col-lg-3">
-              <input class="form-control" id="password" type="password" formControlName="password">
+            <div class="col-lg-3" >
+              <input class="form-control" id="password" type="password" [formControlName]="'password'">
+              <label class="text-danger" *ngIf="passwordsForm.get('passwords.password').touched && passwordsForm.get('passwords.password').errors?.minlength">
+                Password must be over 3 characters.
+              </label>
             </div>
           </div>
     
@@ -45,11 +50,14 @@
                 Confirm password:
               </label>
             </div>
-            <div class="col-lg-3">
-              <input class="form-control" id="passwordRepeat" type="password" formControlName="passwordRepeat">
+            <div class="col-lg-3" >
+              <input class="form-control" id="passwordRepeat" type="password" [formControlName]="'passwordRepeat'">
+              <label class="text-danger" *ngIf="passwordsForm.hasError('notSame','passwords')">
+                Passwords do not match.
+              </label>
             </div>
           </div>
-
+        </div>
               <!--div *ngIf=user == admin, i tako do kraja-->
           <div class="row mb-2">
             <div class="col-lg-3">
@@ -58,10 +66,11 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="streetPriority" type="text" formControlName="streetPriority">              
+              <input class="form-control" id="streetPriority" type="text">              
             </div>
           </div>              
     
+          <div formGroupName = "settings">
           <div class="row mb-2">
             <div class="col-lg-3">
               <label class="padding" for="hideUnnecesaryDocumentInfo">
@@ -69,7 +78,7 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="hideUnnecesaryDocumentInfo" type="checkbox" formControlName="hideUnnecesaryDocumentInfo">
+              <input class="form-control" id="hideUnnecesaryDocumentInfo" type="checkbox" [formControlName]="'hideUnnecesaryFields'">
             </div>
           </div>
     
@@ -80,12 +89,12 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <select>
+              <select [formControlName]="'notificationDisplay'"> 
                 <option *ngFor="let notification of notificationTypesDisplayed" [value]="notification">{{notification}}</option>
               </select>
             </div>
           </div>                     
-    
+        </div>
           <div class="row mb-2">
             <div class="col-lg-3">
               <label class="padding" for="iconDisplay">
@@ -96,15 +105,14 @@
               <app-data-table-icon-settings (iconSettingsEmmiter)="iconSettingsEmmiter($event)"></app-data-table-icon-settings>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="iconDisplay" type="text" formControlName="iconDisplay">
-              <button class="btn btn-sm-4 btn-primary" type="text" formControlName="streetPriority">Add Street</button>
+              <button class="btn btn-sm-4 btn-primary" type="text">Add Street</button>
             </div>
           </div>        
 
           <div class="row mb-2">
             <div class="col-lg-4">
               <div class="d-flex justify-content-center">
-                <button class="btn btn-sm-4 btn-primary" type="submit">Submit changes</button>
+                <button class="btn btn-sm-4 btn-primary" type="submit"  [disabled] = "!passwordsForm.valid">Submit changes</button>
                 <button class="btn btn-sm-4 btn-primary" type="button" (click)="resetSettingsForm()">Reset settings</button>
               </div>
             </div>

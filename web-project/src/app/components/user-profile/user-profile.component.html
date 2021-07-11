@@ -23,7 +23,10 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="username" type="text" formControlName="username" [ngModel]="this.user.username">
+              <input class="form-control" id="username" type="text" formControlName="username" >
+              <label class="text-danger" *ngIf="userProfileForm.get('username').touched && userProfileForm.get('username').errors?.required">
+                This field is mandatory.
+              </label>
             </div>
           </div>
     
@@ -34,35 +37,13 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="email" type="email" formControlName="email" [ngModel]=this.user.email>
-            </div>
-          </div>
-          <div formGroupName="passwords">
-          <div class="row mb-2" >
-            <div class="col-lg-3">
-              <label class="padding" for="password">
-                Password:
+              <input class="form-control" id="email" type="email" formControlName="email" >
+              <label class="text-danger" *ngIf="userProfileForm.get('email').touched && userProfileForm.get('email').errors?.email">
+                Invalid email address.
               </label>
             </div>
-            <div class="col-lg-3">
-              <input class="form-control" id="password" type="password" formControlName="password" [ngModel]=this.user.password>
-            </div>
           </div>
-    
-          <div class="row mb-2">
-            <div class="col-lg-3">
-              <label class="padding" for="passwordRepeat">
-                Confirm password:
-              </label>
-            </div>
-            <div class="col-lg-3">
-              <input class="form-control" id="passwordRepeat" type="password" formControlName="passwordRepeat" [ngModel]=this.user.password>
-            </div>
-            <label class="text-danger" *ngIf="userProfileForm.hasError('notSame','passwords')">
-              Passwords do not match.
-            </label>
-          </div>
-        </div>
+          
           <div class="row mb-2">
             <div class="col-lg-3">
               <label class="padding" for="firstName">
@@ -70,7 +51,10 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="firstName" type="text" formControlName="firstName" [ngModel]="this.user.firstName">
+              <input class="form-control" id="firstName" type="text" formControlName="firstName" >
+              <label class="text-danger" *ngIf="userProfileForm.get('firstName').touched && userProfileForm.get('firstName').errors?.required">
+                This field is mandatory.
+              </label>
             </div>
           </div>
     
@@ -81,7 +65,10 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="lastName" type="text" formControlName="lastName" [ngModel]="this.user.lastName">
+              <input class="form-control" id="lastName" type="text" formControlName="lastName" >
+              <label class="text-danger" *ngIf="userProfileForm.get('lastName').touched && userProfileForm.get('lastName').errors?.required">
+                This field is mandatory.
+              </label>
             </div>
           </div>
     
@@ -92,7 +79,10 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="dateOfBirth" type="date" formControlName="dateOfBirth" [ngModel]="this.user.dateOfBirth">
+              <input class="form-control" id="dateOfBirth" type="date" formControlName="dateOfBirth" >
+              <label class="text-danger" *ngIf="userProfileForm.get('dateOfBirth').touched && userProfileForm.get('dateOfBirth').errors?.required">
+                This field is mandatory.
+              </label>
             </div>
           </div>
     
@@ -103,7 +93,10 @@
               </label>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" id="address" type="text" formControlName="address" [ngModel]="this.user.address">
+              <input class="form-control" id="address" type="text" formControlName="address" >
+              <label class="text-danger" *ngIf="userProfileForm.get('address').touched && userProfileForm.get('address').errors?.required">
+                This field is mandatory.
+              </label>
             </div>
           </div>
     
@@ -113,9 +106,9 @@
                 Type of user:
               </label>
             </div>
-            <div class="col-lg-3">
-              <select>
-                <option *ngFor="let userType of userTypes" [value]="this.user.address">{{userType}}</option>
+            <div class="col-lg-3" [formGroup]="userProfileForm">
+              <select  [formControlName]="'userTypes'">
+                <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>
               </select>
             </div>
           </div>
@@ -128,11 +121,11 @@
                 Upload profile picture:
               </label>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4" [formGroup]="userProfileForm">
                 <input type="file" accept="image/*" (change)="showPreview($event)" id="photo" name="photo"
-                [formControlName]="'photo'"/>          
+                />          
               <div class="imagePreview">
-                <img width="150" height="150" [src]="this.user.photo" />
+                <img width="150" height="150" [src]="this.imgUrl"/>
               </div>
             </div>
           </div>
@@ -140,7 +133,7 @@
           <div class="row mb-2">
             <div class="col-lg-4">
               <div class="d-flex justify-content-center">
-                <button class="btn btn-sm-4 btn-primary" type="submit">Submit changes</button>
+                <button class="btn btn-sm-4 btn-primary" type="submit" [disabled]="!userProfileForm.valid">Submit changes</button>
               </div>
             </div>
           </div>

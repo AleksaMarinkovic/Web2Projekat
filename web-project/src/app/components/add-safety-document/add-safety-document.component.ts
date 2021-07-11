@@ -41,21 +41,27 @@ export class AddSafetyDocumentComponent implements OnInit {
     });  
   }
   onSubmit(safetyDocument: any){
-    this.safetyDocumentService.postSafetyDocument(safetyDocument).subscribe();
-    this.addNotification(safetyDocument);
+    this.safetyDocumentService.postSafetyDocument(safetyDocument).subscribe(
+      data => this.addNotification(safetyDocument, data.safetyDocumentId)
+    );
+    
     console.log(safetyDocument);
     this.addSafetyDocumentForm.reset();   
     this._router.navigate(['/safetyDocuments']);
   }
 
-  addNotification(safetyDocument: any) {
+  addNotification(safetyDocument: any, id: number) {
     let notification: DataTableNotificationsItem =
     {
       timestamp: Date.now().toString(),
       read: notificationTypesDisplayed.Unread,
       notificationId: 0,
       description: "",
-      type: notificationTypes.Information
+      type: notificationTypes.Information,
+      incdidentId: null,
+      workPlanId: null,
+      workRequestId: null,
+      safetyDocumentId: id
     };    
     switch(safetyDocument.state){
       case "Draft":{//info

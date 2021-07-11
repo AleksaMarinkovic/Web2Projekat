@@ -10,7 +10,13 @@ import { safetyDocTypes } from "../../../../assets/Types.enum";
 export class BasicInformationComponent implements OnInit {
   @Input() addSafetyDocumentForm: FormGroup;
   public safetyDocTypes = Object.values(safetyDocTypes);
-  constructor() { }
+  displayUnnecesaryFields = "true";
+
+  constructor() {
+    if(localStorage.getItem("displayUnnecesaryFields").length != 0){
+      this.displayUnnecesaryFields = localStorage.getItem("displayUnnecesaryFields");
+    }
+   }
 
   ngOnInit(): void {
   }

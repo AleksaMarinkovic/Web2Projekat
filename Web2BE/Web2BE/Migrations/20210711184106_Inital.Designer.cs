@@ -10,8 +10,8 @@ using Web2BE.Data;
 namespace Web2BE.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210711113732_Initial")]
-    partial class Initial
+    [Migration("20210711184106_Inital")]
+    partial class Inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

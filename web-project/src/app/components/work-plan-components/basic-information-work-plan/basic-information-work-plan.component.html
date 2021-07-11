@@ -32,7 +32,7 @@
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
             {{this.user.username}}
-            <input type="hidden" [formControlName]="'createdBy'" [ngModel]="this.user.username">
+            <input type="hidden" [formControlName]="'createdBy'" [ngModel]="this.user.userId">
         </div>
         <div class="col-3">
             <label for="workRequestId">Work Request: </label>

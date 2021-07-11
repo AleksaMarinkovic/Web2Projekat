@@ -10,7 +10,13 @@ import { workReqTypes } from "../../../../assets/Types.enum";
 export class BasicInformationWrComponent implements OnInit {
   @Input() addWorkRequestForm: FormGroup;
   public workReqTypes = Object.values(workReqTypes);
-  constructor() { }
+  displayUnnecesaryFields = "true";
+
+  constructor() {
+    if(localStorage.getItem("displayUnnecesaryFields").length != 0){
+      this.displayUnnecesaryFields = localStorage.getItem("displayUnnecesaryFields");
+    }
+   }
 
   ngOnInit(): void {
   }

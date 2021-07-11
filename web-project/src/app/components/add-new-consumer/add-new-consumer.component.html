@@ -9,6 +9,9 @@
             </div>            
             <div class="col-3">
                 <input class="form-control" id="name" type="text" formControlName="firstName">
+                <label class="text-danger" *ngIf="newConsumerForm.get('firstName').touched && newConsumerForm.get('firstName').errors?.required">
+                    This field is mandatory.
+                </label>
             </div>
         </div>
         <div class="row justify-content-center buffer">
@@ -19,6 +22,9 @@
             </div>
             <div class="col-3">
                 <input class="form-control" id="lastname" type="text" formControlName="lastName">
+                <label class="text-danger" *ngIf="newConsumerForm.get('lastName').touched && newConsumerForm.get('lastName').errors?.required">
+                    This field is mandatory.
+                </label>
             </div>
         </div>
 
@@ -31,6 +37,9 @@
             </div>
             <div class="col-3">
                 <input class="form-control" id="location" type="text" formControlName="location">
+                <label class="text-danger" *ngIf="newConsumerForm.get('location').touched && newConsumerForm.get('location').errors?.required">
+                    This field is mandatory.
+                </label>
             </div>
         </div>
         <div class="row justify-content-center buffer">
@@ -71,7 +80,7 @@
         <input type="hidden" formControlName="consumerId">
         <div class="row justify-content-center buffer">
             <div class="col-3">
-                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newConsumerForm.value)">CONFIRM</button>
+                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newConsumerForm.value)" [disabled]="newConsumerForm.invalid">CONFIRM</button>
             </div>
         </div>     
     </div>

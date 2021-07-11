@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError} from 'rxjs/operators';
 import { handleError } from 'src/assets/errorHandler';
+import { User } from '../components/user-profile/user-profile.component';
+import { PasswordUpdate } from '../components/settings/settings.component';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +31,21 @@ export class UserService {
     );;
   }
   putUser(id: any, user: any){
-    return this.httpClient.put(this.url + "/" + id.toString(), user).pipe(
+    return this.httpClient.put<User>(this.url + "/" + id, user, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    }).pipe(
       catchError(handleError)
     );;
   }
-
+  passwordUpdate(passwordUpdate: any){
+    return this.httpClient.post<PasswordUpdate>(this.url + "/UserPasswordUpdate", passwordUpdate, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "bearer " + localStorage.getItem("jwt")
+      })
+    });
+  }
 }

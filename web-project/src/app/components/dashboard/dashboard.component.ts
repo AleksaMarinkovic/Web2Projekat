@@ -44,6 +44,12 @@ export class DashboardComponent implements OnInit {
   completedSafetyDocuments: number;
   issuedSafetyDocuments: number;
 
+  draftedWorkPlan: number;
+  canceledWorkPlan: number;
+  completedWorkPlan: number;
+  issuedWorkPlan: number;
+
+
   constructor(private workPlanService: WorkPlanService, private incidentService : IncidentService, private workRequestService: WorkRequestService, private safetyDocumentService: SafetyDocumentService) { }
 
   ngOnInit(): void {    
@@ -69,6 +75,11 @@ export class DashboardComponent implements OnInit {
     this.incidentService.getPlannedIncidents().subscribe(data=>{this.lineChartData[0].data = data; this.checkIfReady(); console.log(this.lineChartData[0].data + "Planned numbers")})
     this.incidentService.getUnplannedIncidents().subscribe(data=>{this.lineChartData[1].data = data; this.checkIfReady(); console.log(this.lineChartData[1].data + "Unplanned numbers")})
 
+    this.workPlanService.getNumberOfDraftedWorkPlans().subscribe(data => {this.draftedWorkPlan = data; this.checkIfReady()});
+    this.workPlanService.getNumberOfCanceledWorkPlans().subscribe(data => {this.canceledWorkPlan = data; this.checkIfReady()});
+    this.workPlanService.getNumberOfIssuedWorkPlans().subscribe(data => {this.issuedWorkPlan = data; this.checkIfReady()});
+    this.workPlanService.getNumberOfCompletedWorkPlans().subscribe(data => {this.completedWorkPlan = data; this.checkIfReady()});
+
   }
 
   checkIfReady(){    
@@ -81,6 +92,13 @@ export class DashboardComponent implements OnInit {
             cards_info[idx].canceled = this.canceledIncidents;
             cards_info[idx].issued = this.issuedIncidents;
             cards_info[idx].completed = this.completedIncidents;
+            break;
+          }
+          case 2:{
+            cards_info[idx].drafted = this.draftedWorkPlan;
+            cards_info[idx].canceled = this.canceledWorkPlan;
+            cards_info[idx].issued = this.issuedWorkPlan;
+            cards_info[idx].completed = this.completedWorkPlan;
             break;
           }
           case 3:{

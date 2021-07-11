@@ -18,7 +18,6 @@ import { notificationTypes } from 'src/assets/notificationTypes.enum';
 export class AddIncidentComponent implements OnInit {
 
   addIncidentForm: FormGroup;
-  
 
   constructor(private formBuilder: FormBuilder, private incidentService: IncidentService, private _router: Router, private notificationService: NotificationService) {
    
@@ -50,20 +49,26 @@ export class AddIncidentComponent implements OnInit {
     });  
   }
   onSubmit(incident: any){
-    this.incidentService.postIncident(incident).subscribe();
-    this.addNotification(incident);    
+    this.incidentService.postIncident(incident).subscribe(
+      data => this.addNotification(incident, data.incidentId)
+    );
+   
     console.log(incident);    
     this.addIncidentForm.reset();   
     this._router.navigate(['/incidents']);
   }
-  addNotification(incident: any) {
+  addNotification(incident: any, id: number) {
     let notification: DataTableNotificationsItem =
     {
       timestamp: Date.now().toString(),
       read: notificationTypesDisplayed.Unread,
       notificationId: 0,
       description: "",
-      type: notificationTypes.Information
+      type: notificationTypes.Information,
+      incdidentId: id,
+      workPlanId: null,
+      workRequestId: null,
+      safetyDocumentId: null
     };    
     switch(incident.state){
       case "Draft":{//info

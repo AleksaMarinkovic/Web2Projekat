@@ -47,19 +47,24 @@ export class AddWorkPlanComponent implements OnInit {
     });
   }
   onSubmit(workPlan: any){
-    this.workPlanService.postWorkPlans(workPlan).subscribe();
-    this.addNotification(workPlan);
+    this.workPlanService.postWorkPlans(workPlan).subscribe(
+      data =>  this.addNotification(workPlan, data.workPlanId)
+    );
     this.addWorkPlanForm.reset();
     this._router.navigate(['/work-plans']);
   }      
-  addNotification(workPlan: any) {
+  addNotification(workPlan: any, id: number) {
     let notification: DataTableNotificationsItem =
     {
       timestamp: Date.now().toString(),
       read: notificationTypesDisplayed.Unread,
       notificationId: 0,
       description: "",
-      type: notificationTypes.Information
+      type: notificationTypes.Information,
+      incdidentId: null,
+      workPlanId: id,
+      workRequestId: null,
+      safetyDocumentId: null
     };   
     switch(workPlan.status){
       case "Draft":{//info

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import { MatDialog } from '@angular/material/dialog';
 import { CallService } from 'src/app/services/call.service';
 import { reasonTypes } from 'src/assets/reasonTypes.enum';
@@ -16,8 +16,8 @@ export class AddNewCallComponent implements OnInit {
   newCallForm = this.formBuilder.group({
     callId: 0,
     reason: "",
-    hazardName: "",
-    hazardPriority: "",
+    hazardName: ['',Validators.required],
+    hazardPriority: ['',Validators.required],
     comment: "",
     consumerId: null, //Sends the id to act as a foreign key of the consumer
   });

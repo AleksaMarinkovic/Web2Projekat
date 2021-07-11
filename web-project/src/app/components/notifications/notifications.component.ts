@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/services/notification.service';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
+import { MatTableDataSource } from '@angular/material/table';
 import { notificationTypes } from 'src/assets/notificationTypes.enum';
-import { SelectionModel } from '@angular/cdk/collections';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { notificationTypesDisplayed } from 'src/assets/notificationTypesDisplayed.enum';
+import { MatDialog } from '@angular/material/dialog';
+import { NotificationDialogComponent } from '../notification-dialog/notification-dialog.component';
 
 @Component({
   selector: 'app-notifications',
@@ -31,7 +31,11 @@ export class NotificationsComponent implements AfterViewInit  {
 
   columnsToDisplay = ['notificationId', 'description', 'timestamp', 'read', 'icon'];
 
-  constructor(private notificationService: NotificationService) {
+  constructor(private notificationService: NotificationService, public dialog: MatDialog) {
+    if(localStorage.getItem("notificationDisplay").length!=0 && localStorage.getItem("notificationDisplay") != "All"){     
+      this.selectedFilter = localStorage.getItem("notificationDisplay");    
+      this.applyFilter(this.selectedFilter);
+    }
   }
 
   ngAfterViewInit(): void {  
@@ -41,7 +45,7 @@ export class NotificationsComponent implements AfterViewInit  {
       return data.type.toLowerCase().includes(filter);
     }    
     this.refresh();
-  }
+  } 
   
   refresh() {
     this.notificationService.getAllNotifications().subscribe(
@@ -65,8 +69,9 @@ export class NotificationsComponent implements AfterViewInit  {
     this.dataSource.filter = filterValue;
   }
   onChange(elementValue: any){
-    this.selectedFilter = elementValue.value;
-    console.log(elementValue.value);
+    if(localStorage.getItem("notificationDisplay").length==0 || localStorage.getItem("notificationDisplay") == "All"){
+      this.selectedFilter = elementValue.value;
+    }
     
     if(this.selectedFilter == "Unread"){
       this.dataSource.filterPredicate = function (data, filter: string): boolean {     
@@ -97,11 +102,16 @@ export class NotificationsComponent implements AfterViewInit  {
     this.refresh();
   }
   MarkAsRead(element : any){
-    alert("read " + element);
-    element.read = notificationTypesDisplayed.Read;
-    this.notificationService.putNotification(element,element.notificationId).subscribe(
-      () => this.refresh()
-    );
+    if(element.read == notificationTypesDisplayed.Unread){
+      element.read = notificationTypesDisplayed.Read;
+      this.notificationService.putNotification(element,element.notificationId).subscribe(
+        () => this.refresh()
+      );  
+  
+      this.dialog.open(NotificationDialogComponent, {
+        data: {notification: element}
+      });   
+    }   
   }
   getPath(notifType: any) : string {
     switch(notifType){
@@ -126,6 +136,10 @@ export interface DataTableNotificationsItem {
   type: notificationTypes;
   timestamp: string;
   read: notificationTypesDisplayed;
+  incdidentId: number,
+  workRequestId: number,
+  workPlanId: number,
+  safetyDocumentId: number
 }
 
 // TODO: replace this with real data from your application

@@ -24,12 +24,12 @@ namespace Web2BE.Controllers
 
         // GET: api/WorkPlans
         [HttpGet, Authorize]
-        public async Task<ActionResult<IEnumerable<WorkPlan>>> GetWorkPlan()
+        public async Task<ActionResult<IEnumerable<WorkPlan>>> GetWorkPlans()
         {
             return await _context.WorkPlan.ToListAsync();
         }
 
-        // GET: api/WorkPlans/5
+        // GET: api/WorkPlan/5
         [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<WorkPlan>> GetWorkPlan(int id)
         {
@@ -91,7 +91,7 @@ namespace Web2BE.Controllers
             return NoContent();
         }
 
-        // POST: api/WorkPlans
+        // POST: api/WorkPlan
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost, Authorize]
@@ -101,6 +101,45 @@ namespace Web2BE.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetWorkPlan", new { id = workPlan.WorkPlanId }, workPlan);
+        }
+
+
+        [ActionName("Drafted")]
+        [HttpGet("Drafted"), Authorize]
+        public async Task<ActionResult<int>> GetDraftedWorkPlans()
+        {
+            var res = await _context.WorkPlan.Where(d => d.Status == "Draft").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+        [ActionName("Completed")]
+        [HttpGet("Completed"), Authorize]
+        public async Task<ActionResult<int>> GetCompletedWorkPlans()
+        {
+            var res = await _context.WorkPlan.Where(d => d.Status == "Completed").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+
+        [ActionName("Canceled")]
+        [HttpGet("Canceled"), Authorize]
+        public async Task<ActionResult<int>> GetCanceledWorkPlans()
+        {
+            var res = await _context.WorkPlan.Where(d => d.Status == "Canceled").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
+        }
+
+
+        [ActionName("Issued")]
+        [HttpGet("Issued"), Authorize]
+        public async Task<ActionResult<int>> GetIssuedWorkPlans()
+        {
+            var res = await _context.WorkPlan.Where(d => d.Status == "Issued").ToListAsync();
+            var retVal = res.Count;
+            return retVal;
         }
 
         // DELETE: api/WorkPlans/5

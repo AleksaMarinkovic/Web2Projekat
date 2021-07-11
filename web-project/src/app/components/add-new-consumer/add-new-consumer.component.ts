@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControlName } from '@angular/forms';
+import { FormBuilder, FormControlName, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ConsumerService } from 'src/app/services/consumer.service';
 import { accountTypes } from 'src/assets/accountTypes.enum';
@@ -14,9 +14,9 @@ export class AddNewConsumerComponent implements OnInit {
   public accountTypes = Object.values(accountTypes);  
   newConsumerForm = this.formBuilder.group({
     consumerId: 0,
-    firstName: "",
-    lastName: "",
-    location: "",
+    firstName: ['',Validators.required],
+    lastName: ['',Validators.required],
+    location: ['',Validators.required],
     priority: "",
     phone: "",
     consumerType: "",

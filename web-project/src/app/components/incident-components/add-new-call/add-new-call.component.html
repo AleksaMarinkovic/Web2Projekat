@@ -1,14 +1,5 @@
-<app-navbar></app-navbar>
-<br />
-<br />
 <form [formGroup]="newCallForm">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-6 text-left">
-                <a routerLink="/calls" class="btn btn-primary btn-sm"><i class="material-icons"
-                        style="vertical-align: -6px;">arrow_back_ios</i>CALLS</a>
-            </div>
-        </div>
+    <div class="container-fluid">       
         <div class="row justify-content-center buffer">
             <div class="col-3">
                 <label class="padding" for="reason">
@@ -31,6 +22,9 @@
             </div>
             <div class="col-3">
                 <input class="form-control" id="hazardName" type="text" formControlName="hazardName">
+                <label class="text-danger" *ngIf="newCallForm.get('hazardName').touched && newCallForm.get('hazardName').errors?.required">
+                    This field is mandatory.
+                </label>
             </div>
         </div>
         <div class="row justify-content-center buffer">
@@ -41,6 +35,9 @@
             </div>
             <div class="col-3">
                 <input class="form-control" id="hazardPriority" type="text" formControlName="hazardPriority">
+                <label class="text-danger" *ngIf="newCallForm.get('hazardPriority').touched && newCallForm.get('hazardPriority').errors?.required">
+                    This field is mandatory.
+                </label>
             </div>
         </div>
 
@@ -52,6 +49,7 @@
             </div>
             <div class="col-3">
                 <input class="form-control" type="text" formControlName="comment">
+               
             </div>
         </div>
         <mat-divider ></mat-divider>
@@ -114,7 +112,7 @@
         <mat-divider></mat-divider>
         <div class="row justify-content-center buffer">
             <div class="col-3">
-                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newCallForm.value)">ADD CALL</button>
+                <button class="btn btn-sm-4 btn-primary" (click)="onSubmit(newCallForm.value)" [disabled]="newCallForm.invalid">ADD CALL</button>
             </div>
         </div>    
     </div>
