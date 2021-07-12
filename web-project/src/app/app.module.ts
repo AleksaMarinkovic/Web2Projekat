@@ -92,6 +92,7 @@ import { IncidentsWrComponent } from './components/work-request-components/incid
 import { DataTableIconSettingsComponent } from './components/data-tables/data-table-icon-settings/data-table-icon-settings.component';
 import { AuthGuardGuard } from './guards/auth-guard.guard';
 import { MapDialogComponent } from './components/map-dialog/map-dialog.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 export function tokenGetter(){
   return localStorage.getItem("jwt");
@@ -224,7 +225,8 @@ export function tokenGetter(){
     MatButtonModule,
     MatRadioModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule
   ],
   providers: [EquipmentService],
   bootstrap: [AppComponent],

@@ -34,83 +34,108 @@
             {{this.user.username}}
             <input type="hidden" [formControlName]="'createdBy'" [ngModel]="this.user.userId">
         </div>
-        <div class="col-3">
+        <!--div class="col-3">
             <label for="workRequestId">Work Request: </label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
             <input class="form-control" id="workRequestId" name="workRequestId" type="text" [formControlName]="'workRequestId'">
-        </div>
+        </div-->
     </div>
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="startWorkDate">Start work:</label>
+            <label for="startWorkDate"><span style="color: red;">*</span>Start work:</label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
             <input class="form-control" id="startWorkDate" name="startWorkDate" type="date" [formControlName]="'startWorkDate'">
+            <label class="text-danger" *ngIf="addWorkPlanForm.get('startWorkDate').touched && addWorkPlanForm.get('startWorkDate').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
         <div class="col-3">
-            <label for="endWorkDate">Finish work:</label>
+            <label for="endWorkDate"><span style="color: red;">*</span>Finish work:</label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
             <input class="form-control" id="endWorkDate" name="endWorkDate" type="date" [formControlName]="'endWorkDate'">
+            <label class="text-danger" *ngIf="addWorkPlanForm.get('endWorkDate').touched && addWorkPlanForm.get('endWorkDate').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
+    <div *ngIf="this.displayUnnecesaryFields == 'false'">
+        <div class="row text-left mb-5 mx-3">
+            <div class="col-3">
+                <label for="incidentId">Incident:</label>
+            </div>
+            <div class="col-3" [formGroup]="addWorkPlanForm">
+                <select id="incidents" name="incidents" [formControlName]="'incidentId'">
+                    <option *ngFor="let incident of this.incidents" [value]="incident.incidentId">
+                        {{incident.incidentId}}</option>
+                </select>
+            </div>
+        </div>
+    </div>  
     <div class="row text-left mb-5 mx-3">
         <div class="col-3">
-            <label for="incidentId">Incident:</label>
-        </div>
-        <div class="col-3" [formGroup]="addWorkPlanForm">
-            <select id="incidents" name="incidents" [formControlName]="'incidentId'">
-                <option *ngFor="let incident of this.incidents" [value]="incident.incidentId">
-                    {{incident.incidentId}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="row text-left mb-5 mx-3">
-        <div class="col-3">
-            <label for="address">Address: </label>
+            <label for="address"><span style="color: red;">*</span>Address: </label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
             <input class="form-control" id="address" name="address" type="text" [formControlName]="'address'">
+            <label class="text-danger" *ngIf="addWorkPlanForm.get('address').touched && addWorkPlanForm.get('address').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
         <div class="col-3">
-            <label for="purpose">Purpose: </label>
+            <label for="purpose"><span style="color: red;">*</span>Purpose: </label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
-            <input class="form-control" id="purpose" name="purpose" type="text" [formControlName]="'purpose'">
+            <input class="form-control" id="purpose" name="purpose" type="text" [formControlName]="'purpose'" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            <label class="text-danger" *ngIf="addWorkPlanForm.get('purpose').touched && addWorkPlanForm.get('purpose').errors?.required">
+                This field is mandatory.
+            </label>
         </div>
     </div>
-    <div class="row text-left mb-5 mx-3">
-        <div class="col-3">
-            <label for="company">Company: </label>
-        </div>
-        <div class="col-3" [formGroup]="addWorkPlanForm">
-            <input class="form-control" id="company" name="company" type="text" [formControlName]="'company'">
-        </div>
-        <div class="col-3">
-            <label for="notes">Notes: </label>
-        </div>
-        <div class="col-3" [formGroup]="addWorkPlanForm">
-            <input class="form-control" id="notes" name="notes" type="text" [formControlName]="'notes'">
-        </div>
-    </div>
-    <div class="row text-left mb-5 mx-3">
-        <div class="col-3">
-            <label for="phone">Phone Number: </label>
-        </div>
-        <div class="col-3" [formGroup]="addWorkPlanForm">
-            <input class="form-control" id="phone" name="phone" type="text" [formControlName]="'phone'">
-        </div>
-        <div class="col-3">
-            <label for="crew">Crew: </label>
-        </div>
-        <div class="col-3" [formGroup]="addWorkPlanForm">
-            <select id="crew" name="crew" [formControlName]="'crew'">
-                <option *ngFor="let c of this.crews" [value]="c">
-                    {{c.crewName}}</option>
-            </select>
-        </div>    
-        
-    </div>
+    <div *ngIf="this.displayUnnecesaryFields == 'false'">
 
+        <div class="row text-left mb-5 mx-3">
+            <div class="col-3">
+                <label for="company">Company: </label>
+            </div>
+            <div class="col-3" [formGroup]="addWorkPlanForm">
+                <input class="form-control" id="company" name="company" type="text" [formControlName]="'company'">
+            </div>
+            <div class="col-3">
+                <label for="notes">Notes: </label>
+            </div>
+            <div class="col-3" [formGroup]="addWorkPlanForm">
+                <input class="form-control" id="notes" name="notes" type="text" [formControlName]="'notes'">
+            </div>
+        </div>
+        <div class="row text-left mb-5 mx-3">
+            <div class="col-3">
+                <label for="phone">Phone Number: </label>
+            </div>
+            <div class="col-3" [formGroup]="addWorkPlanForm">
+                <input class="form-control" id="phone" name="phone" type="text" [formControlName]="'phone'">
+            </div>
+            <div class="col-3">
+                <label for="crew">Crew: </label>
+            </div>
+            <div class="col-3" [formGroup]="addWorkPlanForm">
+                <select id="crew" name="crew" [formControlName]="'crew'">
+                    <option *ngFor="let c of this.crews" [value]="c">
+                        {{c.crewName}}</option>
+                </select>
+            </div>    
+        </div>
+    </div>
+    <div class="row text-center mb-5 mx-3">
+        <div class="col-12">
+            <label>Fields marked with <span style="color: red;">*</span> are mandatory.</label>
+        </div>
+    </div>
 </div>

@@ -58,9 +58,9 @@
             </div>
           </div>
         </div>
-              <!--div *ngIf=user == admin, i tako do kraja-->
 
-             
+        <div *ngIf="userType=='Administrator'">
+
           <div formGroupName = "settings">
           <div class="row mb-2">
             <div class="col-lg-3">
@@ -121,13 +121,13 @@
               <app-data-table-icon-settings (iconSettingsEmmiter)="iconSettingsEmmiter($event)"></app-data-table-icon-settings>
             </div>            
           </div>        
-
-          <div class="row mb-2">
-            <div class="col-lg-4">
-              <div class="d-flex justify-content-center">
-                <button class="btn btn-sm-4 btn-primary" type="submit"  [disabled] = "!passwordsForm.valid">Submit changes</button>
-                <button class="btn btn-sm-4 btn-primary" type="button" (click)="resetSettingsForm()">Reset settings</button>
-              </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-lg-4">
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-sm-4 btn-primary" type="submit"  [disabled] = "!passwordsForm.valid">Submit changes</button>
+              <button class="btn btn-sm-4 btn-primary" type="button" (click)="resetSettingsForm()">Reset settings</button>
             </div>
           </div>
         </div>

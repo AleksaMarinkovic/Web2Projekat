@@ -15,7 +15,7 @@ import { User } from '../user-profile/user-profile.component';
 export class SettingsComponent implements OnInit {
 
   public notificationTypesDisplayed = Object.values(notificationTypesDisplayed); 
-  
+  userType: string = "";
   comparePasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
     let pass = group.get('password').value;
     let passwordRepeat = group.get('passwordRepeat').value;
@@ -39,11 +39,12 @@ export class SettingsComponent implements OnInit {
 
   id: any;
   icons: Map<number, DataTableIconSettingsItem>;
-
+  korisnik: any;
   constructor(private formBuilder: FormBuilder, private iconSettingsService: IconService, private userService: UserService
     ,private addressService: AddressService) {
     this.icons = new Map<number, DataTableIconSettingsItem>();
     this.id = localStorage.getItem('id');
+    this.userService.getUser(this.id).subscribe(data => {this.korisnik = data; this.userType = this.korisnik.userTypes;console.log(this.korisnik)})
    }
 
   ngOnInit(): void {
@@ -57,7 +58,6 @@ export class SettingsComponent implements OnInit {
       .subscribe();
     });
     if( this.passwordsForm.value.passwords.password != ""){
-     
       let user: any;
       this.userService.getUser(this.id).subscribe(data => {
         user=data;
@@ -90,6 +90,7 @@ export class SettingsComponent implements OnInit {
   }
 
   resetSettingsForm(){
+    this.passwordsForm.reset();
   }
 }
 export interface AddressPriority{

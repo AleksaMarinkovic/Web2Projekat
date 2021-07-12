@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EquipmentService } from 'src/app/services/equipment.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -9,7 +9,6 @@ import { notificationTypesDisplayed } from 'src/assets/notificationTypesDisplaye
 import { workPlanStateChange } from 'src/assets/workPlanStateChange.enum';
 import { workPlanDocumentTypes } from 'src/assets/workPlantDocumentTypes.enum';
 import { workPlanTypes } from 'src/assets/workPlanTypes.enum';
-import { DataTableElementItem } from '../data-tables/data-table-element/data-table-element-datasource';
 import { DataTableNotificationsItem } from '../notifications/notifications.component';
 
 @Component({
@@ -30,15 +29,15 @@ export class AddWorkPlanComponent implements OnInit {
     this.addWorkPlanForm = this.formBuilder.group({
       workPlanId: 0,
       documentType: workPlanDocumentTypes.Planned,
-      status: workPlanTypes.Draft,
+      status: workPlanTypes.Drafted,
       workRequestId: null,//FK
       incidentId: null,//FK
-      address: "",
-      startWorkDate: "",
-      endWorkDate: "",
+      address:  ['', Validators.required],
+      startWorkDate:  ['', Validators.required],
+      endWorkDate:  ['', Validators.required],
       createdBy : localStorage.getItem("id"), 
-      crew: "",
-      purpose: "",
+      crew:  "",
+      purpose:  ['', Validators.required],
       notes: "",
       company: "",
       phone: "",
