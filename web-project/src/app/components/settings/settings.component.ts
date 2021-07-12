@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { AddressService } from 'src/app/services/address.service';
 import { IconService } from 'src/app/services/icon.service';
 import { UserService } from 'src/app/services/user.service';
 import { notificationTypesDisplayed } from 'src/assets/notificationTypesDisplayed.enum';
@@ -30,12 +31,17 @@ export class SettingsComponent implements OnInit {
       hideUnnecesaryFields: false,
       notificationDisplay: notificationTypesDisplayed.All
     }),
+    addresses: this.formBuilder.group({
+      address: "",
+      priority: ""
+    })
   });   
 
   id: any;
   icons: Map<number, DataTableIconSettingsItem>;
 
-  constructor(private formBuilder: FormBuilder, private iconSettingsService: IconService, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private iconSettingsService: IconService, private userService: UserService
+    ,private addressService: AddressService) {
     this.icons = new Map<number, DataTableIconSettingsItem>();
     this.id = localStorage.getItem('id');
    }
@@ -51,13 +57,7 @@ export class SettingsComponent implements OnInit {
       .subscribe();
     });
     if( this.passwordsForm.value.passwords.password != ""){
-      // let pw: PasswordUpdate = {
-      //   oldPassword: this.passwordsForm.value.oldPassword,
-      //   newPassword: this.passwordsForm.value.password,
-      //   confirmPassword: this.passwordsForm.value.passwordRepeat,
-      //   userId: this.id
-      //}
-      //this.userService.passwordUpdate(pw).subscribe();
+     
       let user: any;
       this.userService.getUser(this.id).subscribe(data => {
         user=data;
@@ -68,6 +68,15 @@ export class SettingsComponent implements OnInit {
     localStorage.setItem('displayUnnecesaryFields', this.passwordsForm.value.settings.hideUnnecesaryFields);
     localStorage.setItem('notificationDisplay', this.passwordsForm.value.settings.notificationDisplay);
    
+    if(this.passwordsForm.value.addresses.address != "" && this.passwordsForm.value.addresses.priority != ""){
+      let address: AddressPriority = {
+        address: this.passwordsForm.value.addresses.address,
+        addressId: 0,
+        priority: this.passwordsForm.value.addresses.priority
+      }
+      console.log(address);
+      this.addressService.postAddress(address).subscribe();
+    }
     
   }
 
@@ -83,9 +92,8 @@ export class SettingsComponent implements OnInit {
   resetSettingsForm(){
   }
 }
-export interface PasswordUpdate{
-  oldPassword: string,
-  newPassword: string,
-  confirmPassword: string,
-  userId: number
+export interface AddressPriority{
+  priority: string,
+  address: string,
+  addressId: number
 }

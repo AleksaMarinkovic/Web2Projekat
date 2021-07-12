@@ -1,9 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AddressService } from 'src/app/services/address.service';
 import { ConsumerService } from 'src/app/services/consumer.service';
 import { accountTypes } from 'src/assets/accountTypes.enum';
 import { DataTableConsumerItem } from '../data-tables/data-table-consumer/data-table-consumer-datasource';
+import { AddressPriority } from '../settings/settings.component';
 
 @Component({
   selector: 'app-add-new-consumer',
@@ -16,13 +18,15 @@ export class AddNewConsumerComponent implements OnInit {
     consumerId: 0,
     firstName: ['',Validators.required],
     lastName: ['',Validators.required],
-    location: ['',Validators.required],
+    location: "",
     priority: "",
     phone: "",
     consumerType: "",
   })
+  addresses: AddressPriority[] = [];
+  priority: string = "";
   constructor(private formBuilder : FormBuilder, private consumerService: ConsumerService, 
-    @Inject(MAT_DIALOG_DATA) public data: {consumer: DataTableConsumerItem}) {  
+    @Inject(MAT_DIALOG_DATA) public data: {consumer: DataTableConsumerItem}, private addressService: AddressService) {  
      if(data){
        this.newConsumerForm = this.formBuilder.group({
           consumerId: data.consumer.consumerId,
@@ -34,6 +38,7 @@ export class AddNewConsumerComponent implements OnInit {
           consumerType: data.consumer.consumerType
        })
      }
+     this.addressService.getAllAddresses().subscribe(data => {this.addresses = data; console.log(this.addresses)});
    }
 
   ngOnInit(): void {   
@@ -48,5 +53,16 @@ export class AddNewConsumerComponent implements OnInit {
     console.log(consumer);
 
     this.newConsumerForm.reset();    
+  }
+  onChange(){ 
+    let address = (<HTMLInputElement>document.getElementById("address")).value;
+    console.log(address);
+    this.addresses.forEach(element => {
+      if(element.address == address){
+        this.newConsumerForm.value.priority = element.priority;
+        this.priority = element.priority;
+        console.log(element);
+      }
+    })
   }
 }

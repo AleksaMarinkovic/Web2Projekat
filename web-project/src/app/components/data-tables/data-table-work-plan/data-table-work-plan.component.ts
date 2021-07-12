@@ -2,7 +2,9 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { NotificationService } from 'src/app/services/notification.service';
 import { WorkPlanService } from 'src/app/services/work-plan.service';
+import { DataTableNotificationsItem } from '../../notifications/notifications.component';
 import { DataTableWorkPlanDataSource, DataTableWorkPlanItem } from './data-table-work-plan-datasource';
 @Component({
   selector: 'app-data-table-work-plan',
@@ -16,13 +18,14 @@ export class DataTableWorkPlanComponent implements AfterViewInit {
   dataSource: DataTableWorkPlanDataSource;
 
   displayedColumns = ['id', 'startDate', 'phoneNumber', 'status', 'address', 'delete'];
-
-  constructor(private workPlanService: WorkPlanService, ) { 
+  notifications : DataTableNotificationsItem[];
+  constructor(private workPlanService: WorkPlanService, private notificationService: NotificationService) { 
     this.dataSource = new DataTableWorkPlanDataSource();
 
   }
 
   ngAfterViewInit(): void {
+    this.notificationService.getAllNotifications().subscribe( data=> this.notifications = data);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
@@ -30,6 +33,13 @@ export class DataTableWorkPlanComponent implements AfterViewInit {
   }
  
   delete(row:any){
+
+    this.notifications.forEach(notification => {
+      if(notification.workPlanId == row.workPlanId){
+        notification.workPlanId = null;
+        this.notificationService.putNotification(notification,notification.notificationId).subscribe();
+      }
+    })
     this.workPlanService.deleteWorkPlans(row.workPlanId).subscribe(
       () =>  this.refresh()
     )

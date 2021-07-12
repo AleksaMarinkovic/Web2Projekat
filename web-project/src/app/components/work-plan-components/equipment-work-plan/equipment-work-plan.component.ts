@@ -11,19 +11,13 @@ export class EquipmentWorkPlanComponent implements OnInit {
   @Input() addWorkPlanForm: FormGroup;
   equipmentList : any [] = [];
   selectedEquipment: any;
-  equipments = this.equipmentService.getAllEquipment();
-  equipmentGroup = this.formBuilder.group({
-    newEquipment: ""
-  });
-
-  constructor(private equipmentService : EquipmentService, private formBuilder: FormBuilder) { }
+  equipments = this.equipmentService.getAllEquipment(); 
+  constructor(private equipmentService : EquipmentService) { }
 
   ngOnInit(): void {
   }
   onSubmit(){
     this.equipmentList.push(this.selectedEquipment);
-    console.warn('List is now: ', this.equipmentList);
-    console.warn('Added: ', this.equipmentGroup.value);
-    
+    console.log(this.selectedEquipment);
   }
 }

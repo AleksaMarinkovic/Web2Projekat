@@ -97,6 +97,37 @@ namespace Web2BE.Controllers
         [HttpPost, Authorize]
         public async Task<ActionResult<WorkPlan>> PostWorkPlan(WorkPlan workPlan)
         {
+            var tempEquipment = new List<Equipment>();
+            var tempSwitchingInstructions = new List<WorkPlanSwitchingInstructions>();
+            foreach (var e in workPlan.Equipment)
+            {
+                tempEquipment.Add(e);
+            }
+            workPlan.Equipment.Clear();
+            foreach (var i in workPlan.SwitchingInstructions)
+            {
+                tempSwitchingInstructions.Add(i);
+            }
+            workPlan.SwitchingInstructions.Clear();
+
+
+            foreach (var equipment in tempEquipment)
+            {
+                var entity = await _context.Equipment.Where(e => e.EquipmentId == equipment.EquipmentId).FirstOrDefaultAsync();
+                entity.WorkPlanId = workPlan.WorkPlanId;
+                entity.WorkPlan = workPlan;
+                _context.Equipment.Update(entity);
+                workPlan.Equipment.Add(entity);
+            }
+            foreach (var switchingInstruction in tempSwitchingInstructions)
+            {
+                var entity = await _context.WorkPlanSwitchingInstructions.Where(e => e.WorkPlanSwitchingInstructionstId == switchingInstruction.WorkPlanSwitchingInstructionstId).FirstOrDefaultAsync();
+                entity.WorkPlanId = workPlan.WorkPlanId;
+                entity.WorkPlan = workPlan;
+                _context.WorkPlanSwitchingInstructions.Update(entity);
+                workPlan.SwitchingInstructions.Add(entity);
+            }
+
             _context.WorkPlan.Add(workPlan);
             await _context.SaveChangesAsync();
 

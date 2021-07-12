@@ -59,17 +59,8 @@
           </div>
         </div>
               <!--div *ngIf=user == admin, i tako do kraja-->
-          <div class="row mb-2">
-            <div class="col-lg-3">
-              <label class="padding" for="streetPriority">
-                 Add Street Priority:
-              </label>
-            </div>
-            <div class="col-lg-3">
-              <input class="form-control" id="streetPriority" type="text">              
-            </div>
-          </div>              
-    
+
+             
           <div formGroupName = "settings">
           <div class="row mb-2">
             <div class="col-lg-3">
@@ -95,6 +86,31 @@
             </div>
           </div>                     
         </div>
+
+        <div formGroupName="addresses">               
+          <div class="row mb-2">
+            <div class="col-lg-3">
+              <label class="padding" for="address">
+                Add address:
+              </label>
+            </div>
+            <div class="col-lg-3">
+              <input class="form-control" id="address" type="text" [formControlName]="'address'">              
+            </div>
+          </div>       
+
+          <div class="row mb-2">
+            <div class="col-lg-3">
+              <label class="padding" for="priority">
+                Add Street Priority:
+              </label>
+            </div>
+            <div class="col-lg-3">
+              <input class="form-control" id="priority" type="text" [formControlName]="'priority'">              
+            </div>
+          </div>     
+      </div>
+
           <div class="row mb-2">
             <div class="col-lg-3">
               <label class="padding" for="iconDisplay">
@@ -103,10 +119,7 @@
             </div>
             <div class="row mb-2">
               <app-data-table-icon-settings (iconSettingsEmmiter)="iconSettingsEmmiter($event)"></app-data-table-icon-settings>
-            </div>
-            <div class="col-lg-3">
-              <button class="btn btn-sm-4 btn-primary" type="text">Add Street</button>
-            </div>
+            </div>            
           </div>        
 
           <div class="row mb-2">

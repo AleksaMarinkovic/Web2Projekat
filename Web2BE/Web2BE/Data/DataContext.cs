@@ -72,5 +72,7 @@ namespace Web2BE.Data
             modelBuilder.Entity<WorkRequest>().Property(c => c.WorkRequestId).ValueGeneratedOnAdd();
             modelBuilder.Entity<WorkRequest>().HasKey(c => c.WorkRequestId);
         }
+
+        public DbSet<Web2BE.Models.AddressPriority> AddressPriority { get; set; }
     }
 }

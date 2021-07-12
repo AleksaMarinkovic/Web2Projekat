@@ -13,9 +13,8 @@ namespace Web2BE.Models
         public string Description { get; set; }
 
         public int? EquipmentId { get; set; }
-        public string EquipmentName { get; set; }
         public Equipment Equipment { get; set; }
-        public int WorkPlanId { get; set; }
+        public int? WorkPlanId { get; set; }
         public WorkPlan WorkPlan { get; set; }
 
     }

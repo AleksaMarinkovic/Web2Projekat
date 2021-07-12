@@ -1,15 +1,20 @@
 <div class="container-fluid grid-border">     
     <div class="row">
-        <div class="col-6 text-left">        
-            <form [formGroup] = "instructionGroup">
+        <div class="col-6 text-left">   
+            <form [formGroup] = "addWorkPlanForm">    
                 <div class="row justify-content-center buffer">
-                    <div class="col-3">
-                        <label class="padding" for="equipmentName">
-                            Element
-                        </label>
-                    </div>
-                    <div class="col-3" [formGroup]="instructionGroup">
-                        <input class="form-control" id="equipmentName" type="equipmentName" [formControlName]="'equipmentName'">
+                    <div class="col-2">
+                        <div class="col-1">
+                            <label for="newEquipment">
+                                Choose equipment:
+                            </label>
+                       
+                            <select  [(ngModel)]="selectedEquipment" id="newEquipment" name="newEquipment" [ngModelOptions] = "{standalone:true}">
+                                <option *ngFor="let equipment of equipments | async" [ngValue]="equipment">
+                                    {{equipment.name}}
+                                </option>
+                            </select>                          
+                     </div>
                     </div>
                 </div>
                 <div class="row justify-content-center buffer">
@@ -18,16 +23,17 @@
                             Instruction Description:
                         </label>
                     </div>
-                    <div class="col-3" [formGroup]="instructionGroup">
-                        <input class="form-control" id="description" type="description" [formControlName]="'description'">
+                    <div class="col-3" >
+                        <input class="form-control" id="description" type="text" [(ngModel)]="description" [ngModelOptions]="{standalone: true}">
                     </div>
                 </div>
                 <div class="row justify-content-center buffer">                   
                     <div class="col-3">
-                        <button (click)="onSubmit(instructionGroup.value)" class="btn btn-primary">Add Instruction</button>
+                        <button (click)="onSubmit()" class="btn btn-primary">Add Instruction</button>
                     </div>
                 </div>
-            </form>
+                <input type="hidden" [(ngModel)]="switchingInstructionsList" [formControlName]="'switchingInstructions'">
+             </form> 
         </div>
     </div>
     <div class="row justify-content-center buffer">

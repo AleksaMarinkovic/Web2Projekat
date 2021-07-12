@@ -60,8 +60,10 @@
             <label for="incidentId">Incident:</label>
         </div>
         <div class="col-3" [formGroup]="addWorkPlanForm">
-            <input class="form-control" id="incidentId" name="incidentId" type="text"
-                [formControlName]="'incidentId'">
+            <select id="incidents" name="incidents" [formControlName]="'incidentId'">
+                <option *ngFor="let incident of this.incidents" [value]="incident.incidentId">
+                    {{incident.incidentId}}</option>
+            </select>
         </div>
     </div>
     <div class="row text-left mb-5 mx-3">
@@ -108,6 +110,7 @@
                     {{c.crewName}}</option>
             </select>
         </div>    
+        
     </div>
 
 </div>

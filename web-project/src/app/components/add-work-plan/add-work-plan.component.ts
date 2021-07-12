@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EquipmentService } from 'src/app/services/equipment.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { WorkPlanService } from 'src/app/services/work-plan.service';
 import { notificationTypes } from 'src/assets/notificationTypes.enum';
@@ -8,6 +9,7 @@ import { notificationTypesDisplayed } from 'src/assets/notificationTypesDisplaye
 import { workPlanStateChange } from 'src/assets/workPlanStateChange.enum';
 import { workPlanDocumentTypes } from 'src/assets/workPlantDocumentTypes.enum';
 import { workPlanTypes } from 'src/assets/workPlanTypes.enum';
+import { DataTableElementItem } from '../data-tables/data-table-element/data-table-element-datasource';
 import { DataTableNotificationsItem } from '../notifications/notifications.component';
 
 @Component({
@@ -18,8 +20,9 @@ import { DataTableNotificationsItem } from '../notifications/notifications.compo
 })
 export class AddWorkPlanComponent implements OnInit {
   addWorkPlanForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private workPlanService: WorkPlanService,  private _router: Router,private notificationService: NotificationService) { 
+  addSwitchingInstructionForm: FormGroup;
+  constructor(private formBuilder: FormBuilder, private workPlanService: WorkPlanService,  private _router: Router,private notificationService: NotificationService,
+    private equipmentService: EquipmentService) { 
     
   }
 
@@ -34,7 +37,7 @@ export class AddWorkPlanComponent implements OnInit {
       startWorkDate: "",
       endWorkDate: "",
       createdBy : localStorage.getItem("id"), 
-      crew: "",/*to be changed to chosing crew*/ 
+      crew: "",
       purpose: "",
       notes: "",
       company: "",
@@ -43,13 +46,17 @@ export class AddWorkPlanComponent implements OnInit {
       photo: "",
       lastEditor: "",
       dateEdited: "",
-      documentState: workPlanStateChange.Approve,     
+      documentState: workPlanStateChange.Approve,   
+      equipment: "",
+      switchingInstructions: ""
     });
   }
+  
   onSubmit(workPlan: any){
     this.workPlanService.postWorkPlans(workPlan).subscribe(
       data =>  this.addNotification(workPlan, data.workPlanId)
     );
+    console.log(workPlan);
     this.addWorkPlanForm.reset();
     this._router.navigate(['/work-plans']);
   }      
@@ -67,7 +74,7 @@ export class AddWorkPlanComponent implements OnInit {
       safetyDocumentId: null
     };   
     switch(workPlan.status){
-      case "Draft":{//info
+      case "Drafted":{//info
         notification.description = "New Work plan created";
         notification.type = notificationTypes.Information;
         break;

@@ -17,10 +17,11 @@ export class DataTableInstructionsComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<DataTableWorkPlanSwitchingInstructionsItem>(EXAMPLE_DATA);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'element', 'description', 'delete'];
-  
+  priority: string = "filled automatically";
   constructor(private instructionsService: InstructionService) { }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.refresh();
   }
   refresh(){
     this.instructionsService.getAllWorkPlansSW().subscribe(
@@ -29,6 +30,7 @@ export class DataTableInstructionsComponent implements AfterViewInit {
         this.dataSource.data = EXAMPLE_DATA;
         this.dataSource.paginator = this.paginator; 
         this.dataSource.paginator._changePageSize(this.paginator.pageSize);
+        console.log(this.dataSource.data);
       }
     ); 
   }
@@ -38,7 +40,6 @@ export interface DataTableWorkPlanSwitchingInstructionsItem{
   workPlanSwitchingInstructionsId: number,
   description: string,
   workPlanId: number,
-  equipmentName: string,
   equipmentId: number,
 }
 let EXAMPLE_DATA: DataTableWorkPlanSwitchingInstructionsItem[] =[]
