@@ -16,7 +16,7 @@ export class DataTableInstructionsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<DataTableWorkPlanSwitchingInstructionsItem>(EXAMPLE_DATA);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'element', 'description', 'delete'];
+  displayedColumns = ['id', 'element', 'description', 'delete', 'execute'];
   priority: string = "filled automatically";
   constructor(private instructionsService: InstructionService) { }
   ngAfterViewInit(): void {
@@ -34,7 +34,9 @@ export class DataTableInstructionsComponent implements AfterViewInit {
       }
     ); 
   }
- 
+ delete(rowId : number){
+   this.instructionsService.deleteWorkPlansSW(rowId).subscribe(()=>this.refresh());
+ }
 }
 export interface DataTableWorkPlanSwitchingInstructionsItem{
   workPlanSwitchingInstructionsId: number,
